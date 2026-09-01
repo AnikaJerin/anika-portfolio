@@ -451,8 +451,17 @@ function App(){
   const [active, setActive] = useState("home");
   const [expanded, setExpanded] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cf, setCf] = useState(null);
-  const [gh, setGh] = useState(null);
+  const [cf, setCf] = useState({
+    rating: 1200,
+    rank: "newbie",
+    maxRating: 1200,
+    maxRank: "newbie"
+  });
+  const [gh, setGh] = useState({
+    public_repos: 35,
+    followers: 12,
+    following: 15
+  });
   const [lc, setLc] = useState({
     totalSolved: 58,
     easySolved: 43,
@@ -487,16 +496,22 @@ function App(){
   },[]);
 
   useEffect(()=>{
-    // GitHub Actions refreshes this cache daily.
-    fetch(`${import.meta.env.BASE_URL}live-data.json`)
-      .then(r=>r.ok?r.json():Promise.reject())
-      .then(data=>{
-        if (data.codeforces) setCf(data.codeforces);
-        if (data.github) setGh(data.github);
-        if (data.leetcode && data.leetcode.totalSolved) setLc(data.leetcode);
-        if (data.updatedAt) setSyncedAt(data.updatedAt);
-      })
-      .catch(()=>{});
+    // Fetch cached live-data.json with fallback paths
+    const fetchLiveData = async () => {
+      try {
+        let r = await fetch("./live-data.json");
+        if (!r.ok) r = await fetch(`${import.meta.env.BASE_URL}live-data.json`);
+        if (r.ok) {
+          const data = await r.json();
+          if (data.codeforces) setCf(data.codeforces);
+          if (data.github) setGh(data.github);
+          if (data.leetcode && data.leetcode.totalSolved) setLc(data.leetcode);
+          if (data.updatedAt) setSyncedAt(data.updatedAt);
+        }
+      } catch (_) {}
+    };
+    fetchLiveData();
+
 
     fetch("https://codeforces.com/api/user.info?handles=AnikaJerin")
       .then(r=>r.ok?r.json():null).then(x=>x?.result?.[0]&&setCf(x.result[0])).catch(()=>{});
