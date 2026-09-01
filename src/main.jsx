@@ -211,6 +211,259 @@ function SkillIcon({ type, color }) {
   }
 }
 
+function ZebraWord({ text, className = "", style = {}, isYellow = true, stripeColor = null }) {
+  const ref = useRef(null);
+  const [inView, setInView] = useState(false);
+  // animState = null | { targets: { [charIdx]: { inDir, outDir } }, phase: 'in'|'hold'|'out', active: boolean }
+  const [animState, setAnimState] = useState(null);
+
+  const validIndices = useMemo(() => {
+    const indices = [];
+    for (let i = 0; i < text.length; i++) {
+      if (/[a-zA-Z0-9]/.test(text[i])) indices.push(i);
+    }
+    return indices;
+  }, [text]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setInView(true); observer.unobserve(el); }
+    }, { threshold: 0.1 });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const DIRS = useMemo(() => ["Up", "Down", "Left", "Right"], []);
+
+  useEffect(() => {
+    if (!inView || validIndices.length === 0) return;
+    let t1, t2, t3, t4, frameId;
+
+    const runCycle = () => {
+      // Pick 2 to 4 TRULY RANDOM non-contiguous letter indices across the text
+      const maxPick = Math.min(validIndices.length, 4);
+      const minPick = Math.min(validIndices.length, 2);
+      const countToPick = Math.floor(Math.random() * (maxPick - minPick + 1)) + minPick;
+
+      // Random non-sequential index sampler
+      const copy = [...validIndices];
+      const pickedIndices = [];
+      for (let i = 0; i < countToPick; i++) {
+        const randPos = Math.floor(Math.random() * copy.length);
+        pickedIndices.push(copy[randPos]);
+        copy.splice(randPos, 1);
+      }
+
+      const targets = {};
+      pickedIndices.forEach(idx => {
+        targets[idx] = {
+          inDir: DIRS[Math.floor(Math.random() * DIRS.length)],
+          outDir: DIRS[Math.floor(Math.random() * DIRS.length)],
+        };
+      });
+
+      // Step 1: Initialize 'in' phase at offscreen starting position
+      setAnimState({ targets, phase: "in", active: false });
+
+      // Step 2: Activate slide IN in next tick
+      frameId = requestAnimationFrame(() => {
+        setAnimState(prev => prev ? { ...prev, active: true } : null);
+      });
+
+      // Step 3: Hold phase after slide IN finishes (420ms)
+      t1 = setTimeout(() => {
+        setAnimState(prev => prev ? { ...prev, phase: "hold" } : null);
+      }, 420);
+
+      // Step 4: Prepare slide OUT (1620ms total hold)
+      t2 = setTimeout(() => {
+        setAnimState(prev => prev ? { ...prev, phase: "out", active: false } : null);
+        frameId = requestAnimationFrame(() => {
+          setAnimState(prev => prev ? { ...prev, active: true } : null);
+        });
+      }, 1620);
+
+      // Step 5: Complete cycle and reset to idle (2050ms)
+      t3 = setTimeout(() => {
+        setAnimState(null);
+        t4 = setTimeout(runCycle, Math.random() * 900 + 1300);
+      }, 2050);
+    };
+
+    t4 = setTimeout(runCycle, 600);
+    return () => {
+      clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); clearTimeout(t4);
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [inView, validIndices, DIRS]);
+
+  const triggerNow = () => {
+    if (validIndices.length === 0 || animState !== null) return;
+    const copy = [...validIndices];
+    const pickedIndices = [];
+    const countToPick = Math.min(validIndices.length, 4);
+    for (let i = 0; i < countToPick; i++) {
+      const randPos = Math.floor(Math.random() * copy.length);
+      pickedIndices.push(copy[randPos]);
+      copy.splice(randPos, 1);
+    }
+
+    const targets = {};
+    pickedIndices.forEach(idx => {
+      targets[idx] = {
+        inDir: DIRS[Math.floor(Math.random() * DIRS.length)],
+        outDir: DIRS[Math.floor(Math.random() * DIRS.length)],
+      };
+    });
+
+    setAnimState({ targets, phase: "in", active: false });
+    requestAnimationFrame(() => {
+      setAnimState(prev => prev ? { ...prev, active: true } : null);
+    });
+    setTimeout(() => setAnimState(prev => prev ? { ...prev, phase: "hold" } : null), 420);
+    setTimeout(() => {
+      setAnimState(prev => prev ? { ...prev, phase: "out", active: false } : null);
+      requestAnimationFrame(() => setAnimState(prev => prev ? { ...prev, active: true } : null));
+    }, 1400);
+    setTimeout(() => setAnimState(null), 1820);
+  };
+
+  // Direction transform helpers
+  const getOffscreenTransform = (dir) => {
+    switch (dir) {
+      case "Up": return "translate3d(0, -108%, 0)";
+      case "Down": return "translate3d(0, 108%, 0)";
+      case "Left": return "translate3d(-108%, 0, 0)";
+      case "Right": return "translate3d(108%, 0, 0)";
+      default: return "translate3d(0, -108%, 0)";
+    }
+  };
+
+  const getOppositeOffscreenTransform = (dir) => {
+    switch (dir) {
+      case "Up": return "translate3d(0, 108%, 0)";
+      case "Down": return "translate3d(0, -108%, 0)";
+      case "Left": return "translate3d(108%, 0, 0)";
+      case "Right": return "translate3d(-108%, 0, 0)";
+      default: return "translate3d(0, 108%, 0)";
+    }
+  };
+
+  return (
+    <span
+      ref={ref}
+      className={`zebra-word-container ${className}`}
+      style={{ display: "inline", whiteSpace: "normal", ...style }}
+      onMouseEnter={triggerNow}
+    >
+      {text.split("").map((char, charIdx) => {
+        // Natural whitespace for spaces to ensure responsive word-wrapping without layout bugs
+        if (char === " ") {
+          return <React.Fragment key={charIdx}> </React.Fragment>;
+        }
+
+        const targetInfo = animState?.targets?.[charIdx];
+        const isTarget = !!targetInfo;
+        const phase = isTarget ? animState.phase : "idle";
+        const inDir = isTarget ? targetInfo.inDir : "Up";
+        const outDir = isTarget ? targetInfo.outDir : "Up";
+        const isActive = isTarget ? animState.active : false;
+
+        let solidTransform = "translate3d(0, 0, 0)";
+        let solidOpacity = 1;
+        let stripedTransform = getOppositeOffscreenTransform(inDir);
+        let stripedOpacity = 0;
+        let transition = "none";
+
+        const smoothTransition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease";
+
+        if (isTarget) {
+          if (phase === "in") {
+            if (!isActive) {
+              solidTransform = "translate3d(0, 0, 0)";
+              solidOpacity = 1;
+              stripedTransform = getOppositeOffscreenTransform(inDir);
+              stripedOpacity = 0;
+              transition = "none";
+            } else {
+              solidTransform = getOffscreenTransform(inDir);
+              solidOpacity = 0;
+              stripedTransform = "translate3d(0, 0, 0)";
+              stripedOpacity = 1;
+              transition = smoothTransition;
+            }
+          } else if (phase === "hold") {
+            solidTransform = getOffscreenTransform(inDir);
+            solidOpacity = 0;
+            stripedTransform = "translate3d(0, 0, 0)";
+            stripedOpacity = 1;
+            transition = "none";
+          } else if (phase === "out") {
+            if (!isActive) {
+              stripedTransform = "translate3d(0, 0, 0)";
+              stripedOpacity = 1;
+              solidTransform = getOppositeOffscreenTransform(outDir);
+              solidOpacity = 0;
+              transition = "none";
+            } else {
+              stripedTransform = getOffscreenTransform(outDir);
+              stripedOpacity = 0;
+              solidTransform = "translate3d(0, 0, 0)";
+              solidOpacity = 1;
+              transition = smoothTransition;
+            }
+          }
+        }
+
+        const customStripeStyle = stripeColor
+          ? {
+              backgroundImage: `repeating-linear-gradient(${
+                inDir === "Left" || inDir === "Right" ? "-55deg" : "35deg"
+              }, ${stripeColor} 0px, ${stripeColor} 3px, transparent 3px, transparent 7px)`,
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }
+          : {};
+
+        return (
+          <span key={charIdx} className="zebra-char-box">
+            {/* Layer 1: Solid base letter */}
+            <span
+              className="zebra-layer"
+              style={{
+                transform: solidTransform,
+                opacity: solidOpacity,
+                transition,
+              }}
+            >
+              {char}
+            </span>
+
+            {/* Layer 2: Striped letter overlay */}
+            <span
+              className={`zebra-layer zebra-striped-layer ${
+                isYellow && !stripeColor ? "zebra-striped-bold-yellow" : ""
+              }`}
+              aria-hidden="true"
+              style={{
+                transform: stripedTransform,
+                opacity: stripedOpacity,
+                transition,
+                ...customStripeStyle,
+              }}
+            >
+              {char}
+            </span>
+          </span>
+        );
+      })}
+    </span>
+  );
+}
+
 function HeroHeading() {
   // line 1: "Building software\n" — typed first
   // line 2: "that " (plain) + "thinks." (em)
@@ -227,11 +480,11 @@ function HeroHeading() {
   const afterBreak  = line1End >= 0 ? rawLine1.slice(line1End + 1) : "";
 
   return (
-    <h1 className="hero-typewriter">
+    <h1 className="hero-title" aria-label="Building software that thinks.">
       {beforeBreak}
       {line1End >= 0 && <br/>}
       {afterBreak}
-      {nodes[1]}{/* <em>thinks.</em> */}
+      {done ? <em><ZebraWord text="thinks." isYellow={true} /></em> : nodes[1]}
       <span className={`tw-cursor${done ? " tw-cursor--done" : ""}`}>|</span>
     </h1>
   );
@@ -1051,11 +1304,11 @@ function App(){
         <StatCard icon={Trophy} label="Problem Solving" value={cf?.rating ?? lc?.totalSolved ?? "Live"} sub={cf?.rating ? "Codeforces rating" : "LeetCode + Codeforces"}/>
       </section>
 
-      <Section id="work" eyebrow="01 — EXPERIENCE" title="Production engineering, not just prototypes.">
+      <Section id="work" eyebrow="01 — EXPERIENCE" title={<><ZebraWord text="Production engineering" />, not just prototypes.</>}>
         <div className="experience-grid">{experience.map((e,i)=><article className="exp" key={i}><div className="exp-period">{e.period}</div><div><h3>{e.role}</h3><h4>{e.company}</h4><ul>{e.points.map(p=><li key={p}>{p}</li>)}</ul></div></article>)}</div>
       </Section>
 
-      <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title="Work I want engineers to ask me about.">
+      <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title={<>Work I want engineers to <ZebraWord text="ask" /> me about.</>}>
         <div className="project-grid">{projects.map((p,i)=><article className="project" key={p.title} onClick={()=>setExpanded(expanded===i?null:i)}>
           <div className="project-top"><span className="number">0{i+1}</span><ArrowUpRight size={18}/></div>
           <div className="project-type">{p.type}</div><h3>{p.title}</h3><p>{p.desc}</p>
@@ -1064,7 +1317,7 @@ function App(){
         </article>)}</div>
       </Section>
 
-      <Section id="research" eyebrow="03 — RESEARCH" title="Where experimentation becomes understanding.">
+      <Section id="research" eyebrow="03 — RESEARCH" title={<>Where <ZebraWord text="experimentation" /> becomes <ZebraWord text="understanding." /></>}>
         <div className="research-list">
           <div><span>01</span><h3>Cross-Modal Deep Learning for Alzheimer's Disease</h3><p>MRI imaging + clinical/tabular features → multimodal representation → classification.</p></div>
           <div><span>02</span><h3>Quantum-Enhanced Graph Learning for Molecular Design</h3><p>GNN molecular representations + variational quantum head for bandgap and toxicity prediction.</p></div>
@@ -1072,7 +1325,7 @@ function App(){
         </div>
       </Section>
 
-      <Section id="problem-solving" eyebrow="04 — PROBLEM SOLVING" title="I train the same muscle I use to build systems.">
+      <Section id="problem-solving" eyebrow="04 — PROBLEM SOLVING" title={<>I train the same muscle I use to <ZebraWord text="build systems." /></>}>
         <div className="cp-compact">
           <article className="account-card leetcode-card"><div className="account-top"><span><CircleCheckBig size={16}/> LEETCODE</span><a href={PROFILE.leetcode} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{solved || "—"}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>E <b>{lc?.easySolved ?? "—"}</b></span><span>M <b>{lc?.mediumSolved ?? "—"}</b></span><span>H <b>{lc?.hardSolved ?? "—"}</b></span></div></div><div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>Rank {lc?.ranking?.toLocaleString?.() ?? "—"}</span><span>{lc?.badges?.length ?? 0} badges</span></div></article>
           <article className="account-card codeforces-card"><div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{cfSolved ?? 8}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>RATING <b>{cf?.rating ?? "—"}</b></span><span>CONTESTS <b>{cfContests.length || "—"}</b></span></div></div><div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>{cf?.rank || "newbie"}</span><span>peak {cf?.maxRank || "—"}</span></div></article>
@@ -1081,7 +1334,7 @@ function App(){
         <div className="solve-focus"><span><Terminal size={16}/> DSA</span><span>Arrays</span><span>Binary Search</span><span>Graphs</span><span>DP</span><span>Trees</span><span>Greedy</span><span>Math</span><span>Recursion</span></div>
       </Section>
 
-      <Section id="github" eyebrow="05 — OPEN SOURCE" title="A living engineering archive.">
+      <Section id="github" eyebrow="05 — OPEN SOURCE" title={<><ZebraWord text="A living engineering archive." /></>}>
         <div className="github-panel"><div><Github size={38}/><h3>GitHub / AnikaJerin</h3><p>AI experiments, research implementations, libraries, full-stack systems, algorithms and ongoing learning.</p><a className="text-link" href={PROFILE.github} target="_blank">Explore repositories <ArrowUpRight size={15}/></a></div><div className="gh-numbers"><strong>{gh?.public_repos ?? "35+"}</strong><span>public repos</span><strong>{gh?.followers ?? "—"}</strong><span>followers</span></div></div>
       </Section>
 
@@ -1096,7 +1349,7 @@ function App(){
         </div>
       </section>
 
-      <Section id="credentials" eyebrow="07 — EDUCATION & RECOGNITION" title="Grounded in delivery, driven by learning.">
+      <Section id="credentials" eyebrow="07 — EDUCATION & RECOGNITION" title={<>Grounded in <ZebraWord text="delivery," /> driven by <ZebraWord text="learning." /></>}>
         <div className="credentials-grid">
           <article><GraduationCap size={21}/><span>EDUCATION</span><h3>B.Sc. in Information Technology</h3><p>Jahangirnagar University · CGPA 3.48 / 4.00</p></article>
           <article><Award size={21}/><span>RECOGNITION</span><h3>Best Impact Award</h3><p>Co-authored “COVID-Hero,” a machine-learning based awareness mobile game for children.</p></article>
@@ -1105,10 +1358,10 @@ function App(){
       </Section>
 
       <Section id="about" eyebrow="08 — ABOUT" title="A hybrid profile by design.">
-        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em>software engineering, AI/ML, research, and algorithmic problem solving.</em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
+        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI/ML, research, and algorithmic problem solving." /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
       </Section>
 
-      <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em>worth remembering.</em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
+      <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
     </main>
     <footer><span>© {new Date().getFullYear()} {PROFILE.name}</span><span>BUILT WITH REACT · HOSTED ON GITHUB</span><a href="#home"><ArrowUp size={15}/></a></footer>
   </div>
