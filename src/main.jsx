@@ -429,6 +429,316 @@ function SkillGlobe() {
   );
 }
 
+/* ───────────────────────────── Icon Rain ───────────────────────────── */
+const RAIN_ICONS = [
+  // python
+  "M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05",
+  // react (use a circle + lines approximation drawn separately)
+  null, // placeholder — we'll draw react differently
+  // git
+  "M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187",
+  // html5
+  "M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718h10.059l.236-2.656H5.414l.691 8.031h8.809l-.363 3.938-2.551.688-2.547-.688-.164-1.875H6.609l.328 4.078 5.035 1.391 5.039-1.391.688-7.797H8.531",
+  // fastapi lightning
+  "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.853 4.5l-1.037 6.223h3.582L10.293 19.5l1.037-6.223H7.748L12.853 4.5z",
+];
+
+const RAIN_COLORS = [
+  "#EE4C2C", "#61DAFB", "#F05032", "#3776AB", "#F7DF1E",
+  "#059669", "#00ADD8", "#A855F7", "#FF6C37", "#FCC624",
+  "#4DABCF", "#10B981", "#d9ff62", "#818CF8", "#00F0FF",
+];
+
+function drawRainIcon(ctx, iconIndex, x, y, size, color, alpha) {
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  ctx.fillStyle = color;
+  ctx.strokeStyle = color;
+  ctx.translate(x - size / 2, y - size / 2);
+  ctx.scale(size / 24, size / 24);
+
+  if (iconIndex === 1) {
+    // React: ellipses + center dot
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.ellipse(12, 12, 10, 4.5, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(12, 12, 10, 4.5, Math.PI / 3, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.ellipse(12, 12, 10, 4.5, -Math.PI / 3, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(12, 12, 2, 0, Math.PI * 2);
+    ctx.fill();
+  } else {
+    const p = new Path2D(RAIN_ICONS[iconIndex]);
+    ctx.fill(p);
+  }
+  ctx.restore();
+}
+
+function IconRain() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let raf;
+    let started = Date.now();
+    const DURATION = 4200; // ms total
+    const FADE_START = 3200;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener("resize", resize);
+
+    // Generate drops
+    const drops = Array.from({ length: 38 }, (_, i) => ({
+      x: Math.random() * window.innerWidth,
+      y: -Math.random() * window.innerHeight * 0.9 - 30,
+      vy: 1.8 + Math.random() * 3.2,
+      size: 18 + Math.random() * 22,
+      icon: Math.floor(Math.random() * RAIN_ICONS.length),
+      color: RAIN_COLORS[Math.floor(Math.random() * RAIN_COLORS.length)],
+      rotation: (Math.random() - 0.5) * 0.6,
+      spin: (Math.random() - 0.5) * 0.025,
+      landed: false,
+      landY: window.innerHeight * (0.55 + Math.random() * 0.35),
+      alpha: 0.7 + Math.random() * 0.3,
+      delay: Math.random() * 1200,
+    }));
+
+    function animate() {
+      const now = Date.now();
+      const elapsed = now - started;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const globalFade = elapsed > FADE_START
+        ? 1 - Math.min(1, (elapsed - FADE_START) / (DURATION - FADE_START))
+        : 1;
+
+      if (globalFade <= 0) {
+        canvas.style.display = "none";
+        return;
+      }
+
+      drops.forEach(drop => {
+        if (elapsed < drop.delay) return;
+        if (!drop.landed) {
+          drop.y += drop.vy;
+          drop.rotation += drop.spin;
+          if (drop.y >= drop.landY) {
+            drop.landed = true;
+            drop.y = drop.landY;
+          }
+        }
+        const a = drop.landed
+          ? drop.alpha * globalFade * 0.55
+          : drop.alpha * globalFade;
+
+        ctx.save();
+        ctx.translate(drop.x, drop.y);
+        ctx.rotate(drop.rotation);
+        ctx.translate(-drop.x, -drop.y);
+        drawRainIcon(ctx, drop.icon, drop.x, drop.y, drop.size, drop.color, a);
+        ctx.restore();
+      });
+
+      raf = requestAnimationFrame(animate);
+    }
+    raf = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: "fixed",
+        top: 0, left: 0,
+        width: "100%", height: "100%",
+        pointerEvents: "none",
+        zIndex: 9999,
+      }}
+    />
+  );
+}
+
+/* ─────────────────────── Cursor Glitch Follower ──────────────────────── */
+const CURSOR_COLORS = [
+  "#d9ff62",  // site accent green
+  "#00F0FF",  // cyan
+  "#A855F7",  // purple
+  "#FF6C37",  // orange
+  "#61DAFB",  // react blue
+  "#EC4899",  // pink
+  "#FCC624",  // yellow
+];
+
+const CURSOR_SYMBOLS = [
+  // neuron node — filled center with glowing spikes
+  ({ style, color }) => (
+    <svg viewBox="0 0 32 32" style={style} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
+      <circle cx="16" cy="16" r="4.5" fill={color} fillOpacity="0.25"/>
+      <line x1="16" y1="1" x2="16" y2="9"/>
+      <line x1="16" y1="23" x2="16" y2="31"/>
+      <line x1="1" y1="16" x2="9" y2="16"/>
+      <line x1="23" y1="16" x2="31" y2="16"/>
+      <line x1="5" y1="5" x2="10.5" y2="10.5"/>
+      <line x1="21.5" y1="21.5" x2="27" y2="27"/>
+      <line x1="27" y1="5" x2="21.5" y2="10.5"/>
+      <line x1="5" y1="27" x2="10.5" y2="21.5"/>
+    </svg>
+  ),
+  // brain — bold filled-stroke with folds
+  ({ style, color }) => (
+    <svg viewBox="0 0 32 32" style={style} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M7 22c-2.5-1.2-4-3.5-4-6.5a6.5 6.5 0 0 1 4-6A5.5 5.5 0 0 1 17.5 7a5.5 5.5 0 0 1 5.5 3.5 5.5 5.5 0 0 1 4 5c0 3.2-2 5.5-4.5 6.5v2.5H7V22z" fill={color} fillOpacity="0.12"/>
+      <path d="M13 14c0-1.5 1.5-2.5 3-2m5.5 6.5c0 1-1 2-2.5 2m-3.5-7v5m4.5-5v5"/>
+    </svg>
+  ),
+  // robot head — bolder, filled eyes
+  ({ style, color }) => (
+    <svg viewBox="0 0 32 32" style={style} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="6" y="9" width="20" height="15" rx="3.5" fill={color} fillOpacity="0.12"/>
+      <rect x="10" y="13" width="5" height="4" rx="1.5" fill={color} fillOpacity="0.5"/>
+      <rect x="17" y="13" width="5" height="4" rx="1.5" fill={color} fillOpacity="0.5"/>
+      <line x1="13" y1="21" x2="19" y2="21"/>
+      <line x1="16" y1="6" x2="16" y2="9"/>
+      <circle cx="16" cy="5" r="2" fill={color}/>
+      <line x1="6" y1="17" x2="3" y2="17"/>
+      <line x1="26" y1="17" x2="29" y2="17"/>
+    </svg>
+  ),
+  // circuit crosshair — corner pads + center
+  ({ style, color }) => (
+    <svg viewBox="0 0 32 32" style={style} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
+      <circle cx="16" cy="16" r="3.5" fill={color} fillOpacity="0.3"/>
+      <path d="M16 3v9M16 20v9M3 16h9M20 16h9"/>
+      <rect x="4" y="4" width="5" height="5" rx="1" fill={color} fillOpacity="0.4"/>
+      <rect x="23" y="4" width="5" height="5" rx="1" fill={color} fillOpacity="0.4"/>
+      <rect x="4" y="23" width="5" height="5" rx="1" fill={color} fillOpacity="0.4"/>
+      <rect x="23" y="23" width="5" height="5" rx="1" fill={color} fillOpacity="0.4"/>
+    </svg>
+  ),
+  // DNA / double helix node
+  ({ style, color }) => (
+    <svg viewBox="0 0 32 32" style={style} fill="none" stroke={color} strokeWidth="2" strokeLinecap="round">
+      <path d="M10 4c0 6 12 6 12 12S10 22 10 28"/>
+      <path d="M22 4c0 6-12 6-12 12s12 6 12 12"/>
+      <line x1="10" y1="10" x2="22" y2="10"/>
+      <line x1="10" y1="16" x2="22" y2="16"/>
+      <line x1="10" y1="22" x2="22" y2="22"/>
+    </svg>
+  ),
+];
+
+function CursorGlitch() {
+  const trailRef = useRef([]);
+  const posRef = useRef({ x: -999, y: -999 });
+  const frameRef = useRef(null);
+  const containerRef = useRef(null);
+  const [particles, setParticles] = useState([]);
+  const tickRef = useRef(0);
+
+  useEffect(() => {
+    const handleMove = (e) => {
+      const cx = e.clientX ?? e.touches?.[0]?.clientX;
+      const cy = e.clientY ?? e.touches?.[0]?.clientY;
+      if (cx === undefined) return;
+      posRef.current = { x: cx, y: cy };
+      tickRef.current += 1;
+
+      // Spawn a new particle every ~3 ticks
+      if (tickRef.current % 3 === 0) {
+        const id = Date.now() + Math.random();
+        const iconIdx = Math.floor(Math.random() * CURSOR_SYMBOLS.length);
+        const color = CURSOR_COLORS[Math.floor(Math.random() * CURSOR_COLORS.length)];
+        const offset = {
+          x: (Math.random() - 0.5) * 36,
+          y: (Math.random() - 0.5) * 36,
+        };
+        const size = 20 + Math.random() * 16;
+        const rotation = (Math.random() - 0.5) * 50;
+        setParticles(prev => [
+          ...prev.slice(-10),
+          { id, x: cx + offset.x, y: cy + offset.y, iconIdx, color, size, rotation, born: Date.now() },
+        ]);
+      }
+    };
+
+    window.addEventListener("mousemove", handleMove);
+    window.addEventListener("touchmove", handleMove, { passive: true });
+
+    // GC old particles
+    const gc = setInterval(() => {
+      const now = Date.now();
+      setParticles(prev => prev.filter(p => now - p.born < 950));
+    }, 200);
+
+    return () => {
+      window.removeEventListener("mousemove", handleMove);
+      window.removeEventListener("touchmove", handleMove);
+      clearInterval(gc);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      style={{
+        position: "fixed",
+        inset: 0,
+        pointerEvents: "none",
+        zIndex: 9998,
+        overflow: "hidden",
+      }}
+    >
+      {particles.map(p => {
+        const Symbol = CURSOR_SYMBOLS[p.iconIdx];
+        const age = Date.now() - p.born;
+        const lifeRatio = Math.min(1, age / 950);
+        // fresh: 0.75 opacity, fades to 0
+        const alpha = Math.pow(1 - lifeRatio, 1.4) * 0.75;
+        const scale = 0.55 + lifeRatio * 0.6;
+        // glitch drift: subtle horizontal jitter in last 40% of life
+        const glitchX = lifeRatio > 0.6 ? (Math.random() - 0.5) * 6 : 0;
+        const glitchY = lifeRatio > 0.75 ? (Math.random() - 0.5) * 3 : 0;
+        const color = p.color || "#d9ff62";
+        return (
+          <div
+            key={p.id}
+            style={{
+              position: "absolute",
+              left: p.x - p.size / 2,
+              top: p.y - p.size / 2,
+              width: p.size,
+              height: p.size,
+              opacity: alpha,
+              transform: `rotate(${p.rotation}deg) scale(${scale}) translate(${glitchX}px, ${glitchY}px)`,
+              color,
+              filter: `drop-shadow(0 0 4px ${color}88)`,
+              willChange: "transform, opacity",
+            }}
+          >
+            <Symbol style={{ width: "100%", height: "100%" }} color={color} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function StatCard({icon:Icon, label, value, sub}) {
   return <div className="stat-card"><div className="stat-icon"><Icon size={17}/></div><div><div className="stat-label">{label}</div><div className="stat-value">{value}</div>{sub&&<div className="stat-sub">{sub}</div>}</div></div>
 }
@@ -600,6 +910,8 @@ function App(){
     ...(lc?.contest?.attendedContestsCount ? [{kind:"LEETCODE", title:`${lc.contest.attendedContestsCount} contest${lc.contest.attendedContestsCount === 1 ? "" : "s"} attended`}]:[])
   ];
   return <div>
+    <IconRain />
+    <CursorGlitch />
     <div className="grain"/>
     <header className="nav">
       <a href="#home" className="brand">AJ<span>.</span></a>
@@ -648,7 +960,28 @@ function App(){
         </div>
       </section>
 
-      <div className="ticker"><div>AI SYSTEMS <b>✦</b> SOFTWARE ENGINEERING <b>✦</b> MACHINE LEARNING <b>✦</b> COMPUTER VISION <b>✦</b> ALGORITHMS <b>✦</b> RESEARCH <b>✦</b> AI SYSTEMS <b>✦</b></div></div>
+      <div className="ticker">
+        <div className="ticker-track">
+          <div className="ticker-group">
+            <span>SOFTWARE ENGINEERING <b>✦</b></span>
+            <span>AI & MACHINE LEARNING <b>✦</b></span>
+            <span>COMPUTER VISION PIPELINES <b>✦</b></span>
+            <span>METEOROLOGICAL DATA PLATFORMS <b>✦</b></span>
+            <span>MULTIMODAL DEEP LEARNING <b>✦</b></span>
+            <span>RESTFUL BACKEND APIS <b>✦</b></span>
+            <span>ALGORITHMIC PROBLEM SOLVING <b>✦</b></span>
+          </div>
+          <div className="ticker-group" aria-hidden="true">
+            <span>SOFTWARE ENGINEERING <b>✦</b></span>
+            <span>AI & MACHINE LEARNING <b>✦</b></span>
+            <span>COMPUTER VISION PIPELINES <b>✦</b></span>
+            <span>METEOROLOGICAL DATA PLATFORMS <b>✦</b></span>
+            <span>MULTIMODAL DEEP LEARNING <b>✦</b></span>
+            <span>RESTFUL BACKEND APIS <b>✦</b></span>
+            <span>ALGORITHMIC PROBLEM SOLVING <b>✦</b></span>
+          </div>
+        </div>
+      </div>
 
       <section className="stats">
         <StatCard icon={Code2} label="Engineering" value="5+ years" sub="Production software & AI"/>
