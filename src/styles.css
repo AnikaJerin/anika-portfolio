@@ -16,8 +16,8 @@
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px}.about-lead{font-size:38px;line-height:1.1;letter-spacing:-.04em;margin:0}.about-copy{color:#90939a;line-height:1.7}.about-links{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}.about-links a{display:flex;gap:8px;align-items:center;border:1px solid var(--line);padding:10px 12px;font:10px "DM Mono"}.about-links svg{width:14px}
 .cta{max-width:var(--max);margin:50px auto 100px;padding:100px 28px;text-align:center;border:1px solid var(--line);background:radial-gradient(circle at 50% 0,#18200e,#0c0e10 55%)}.cta svg{color:var(--accent)}.cta h2{font-size:clamp(48px,7vw,92px);line-height:.95;letter-spacing:-.07em;margin:25px 0 35px}.cta .button{display:inline-flex}
 footer{max-width:var(--max);margin:auto;border-top:1px solid var(--line);padding:25px 28px;display:flex;justify-content:space-between;font:9px "DM Mono";color:#5e626a}
-@media(max-width:900px){nav{display:none}.hero{grid-template-columns:1fr;padding-top:70px}.orb{max-width:75vw;max-height:75vw}.stats{grid-template-columns:1fr 1fr}.project-grid,.cp-grid{grid-template-columns:1fr}.research-list>div{grid-template-columns:45px 1fr}.research-list p{grid-column:2}.about-grid{grid-template-columns:1fr;gap:35px}.skills>div{grid-template-columns:120px 1fr}}
-@media(max-width:560px){.hero{padding-left:20px;padding-right:20px}.hero h1{font-size:62px}.stats{grid-template-columns:1fr;padding-left:20px;padding-right:20px}.section{padding:75px 20px}.exp{grid-template-columns:1fr;gap:15px}.project{min-height:320px}.github-panel{display:block}.gh-numbers{text-align:left;margin-top:35px}.hero-mini{flex-wrap:wrap}.orb{width:350px;height:350px}.r3{width:345px;height:345px}.o3{width:345px;height:345px}.r2,.o1{width:280px;height:280px}.r1,.o2{width:200px;height:200px}footer{font-size:8px;gap:15px}.contact-pill{display:none}}
+
+
 
 /* Dynamic leaderboard states and career credentials */
 .cp-bars i:after{width:100%}.cp-bars i.medium:after{background:#a1be4a}.cp-bars i.hard:after{background:#6c7f32}.credentials-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.credentials-grid article{min-height:250px;border:1px solid var(--line);background:linear-gradient(145deg,#101317,#0b0d10);padding:28px}.credentials-grid svg{color:var(--accent)}.credentials-grid span{display:block;margin-top:48px;color:var(--accent);font:10px "DM Mono";letter-spacing:.11em}.credentials-grid h3{font-size:25px;line-height:1.1;letter-spacing:-.04em;margin:12px 0}.credentials-grid p{font-size:13px;line-height:1.6;color:#858991}@media(max-width:900px){.credentials-grid{grid-template-columns:1fr}}
@@ -218,6 +218,220 @@ footer{max-width:var(--max);margin:auto;border-top:1px solid var(--line);padding
   to { opacity: 1; transform: translateY(0); }
 }
 
-.skills-text-breakdown {
-  margin-top: 40px;
+
+/* ── Hamburger & Mobile Nav ─────────────────────────────── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 20;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.25s;
+}
+.mobile-nav {
+  position: fixed;
+  inset: 74px 0 0 0;
+  background: rgba(8,9,11,0.97);
+  backdrop-filter: blur(20px);
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  border-top: 1px solid var(--line);
+}
+.mobile-nav a {
+  font: 13px "DM Mono";
+  letter-spacing: 0.12em;
+  color: #777b84;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.mobile-nav a.active,
+.mobile-nav a:hover {
+  color: var(--text);
+}
+.mobile-nav-cta {
+  margin-top: 10px;
+  border: 1px solid var(--line) !important;
+  border-radius: 100px;
+  padding: 12px 22px !important;
+  color: var(--text) !important;
+  font-size: 13px !important;
+}
+
+/* ── Skills globe responsive ────────────────────────────── */
+@media (max-width: 560px) {
+  .globe-stage {
+    width: min(92vw, 400px);
+    height: min(92vw, 400px);
+  }
+  .skills-category-filters {
+    gap: 6px;
+    padding: 0 4px;
+  }
+  .cat-pill {
+    font-size: 9px;
+    padding: 5px 10px;
+  }
+  .node-tooltip {
+    top: 40px;
+  }
+  .tooltip-name { font-size: 10px; }
+}
+
+/* ── ≤900px ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  nav { display: none; }
+  .hamburger { display: flex; }
+  .contact-pill { display: none; }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 70px;
+  }
+  .orb { max-width: 75vw; max-height: 75vw; }
+  .stats { grid-template-columns: 1fr 1fr; }
+  .project-grid, .cp-grid { grid-template-columns: 1fr; }
+  .research-list > div { grid-template-columns: 45px 1fr; }
+  .research-list p { grid-column: 2; }
+  .about-grid { grid-template-columns: 1fr; gap: 35px; }
+  .skills > div { grid-template-columns: 120px 1fr; }
+
+  /* Hero visual */
+  .hero-visual { height: 450px; }
+  .cp-compact { grid-template-columns: 1fr; }
+  .portrait-card { width: 175px; }
+  .avatar-stage { width: 245px; }
+
+  /* CP dashboard */
+  .cp-dashboard { grid-template-columns: 1fr; }
+  .activity-card { grid-column: auto; }
+  .solve-summary { gap: 22px; }
+  .achievement-scroll { max-height: 180px; }
+
+  /* Credentials */
+  .credentials-grid { grid-template-columns: 1fr; }
+
+  /* Avatar canvas */
+  .avatar-center { margin-bottom: -16px; }
+  .avatar-canvas { height: 330px; }
+}
+
+/* ── ≤560px ─────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  .hero {
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 55px;
+  }
+  .hero h1 { font-size: clamp(46px, 13vw, 72px); }
+  .hero-text { font-size: 15px; }
+  .hero-actions { flex-wrap: wrap; gap: 10px; }
+  .hero-actions .button { font-size: 12px; padding: 11px 14px; }
+  .hero-mini { flex-wrap: wrap; }
+
+  .stats {
+    grid-template-columns: 1fr;
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .section { padding: 60px 18px; }
+  .section-head h2 { font-size: clamp(30px, 9vw, 52px); }
+
+  .exp { grid-template-columns: 1fr; gap: 15px; }
+  .project { min-height: 300px; }
+
+  .github-panel { display: block; }
+  .gh-numbers { text-align: left; margin-top: 35px; }
+
+  /* Orb sizes */
+  .orb { width: 320px; height: 320px; }
+  .r3 { width: 315px; height: 315px; }
+  .o3 { width: 315px; height: 315px; }
+  .r2, .o1 { width: 250px; height: 250px; }
+  .r1, .o2 { width: 178px; height: 178px; }
+
+  /* Hero visual */
+  .hero-visual {
+    height: 400px;
+    transform: scale(0.86);
+    margin: -24px -32px;
+  }
+  .portrait-card { width: 145px; }
+  .portrait-frame { height: 178px; }
+  .avatar-stage { height: 320px; width: 220px; }
+
+  .achievements-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .achievements-scroll { width: 100%; }
+  .account-main strong { font-size: 42px; }
+
+  /* CP dashboard */
+  .dashboard-card { padding: 19px; }
+  .solve-summary { gap: 14px; }
+  .solve-ring { width: 135px; height: 135px; }
+  .solve-ring:before { width: 117px; height: 117px; }
+  .solve-ring strong { font-size: 34px; }
+  .difficulty-list > div { font-size: 11px; }
+  .activity-grid { gap: 4px; }
+  .activity-foot { gap: 14px; }
+  .cf-score strong { font-size: 50px; }
+
+  /* Research */
+  .research-list > div {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .research-list p { grid-column: auto; }
+
+  /* Skills text */
+  .skills > div { grid-template-columns: 1fr; gap: 5px; }
+  .skills span { margin-bottom: 3px; }
+
+  /* Mini avatar */
+  .mini-avatar { margin-top: 25px; }
+  .avatar-scene { transform: scale(0.82); margin-right: -34px; }
+  .mini-avatar-label { max-width: 75px; line-height: 1.5; }
+
+  /* Orbit satellites */
+  .orbit-satellite { height: 25px; min-width: 35px; padding: 0 5px; gap: 3px; }
+  .orbit-satellite svg { width: 10px; height: 10px; }
+  .orbit-satellite b { font-size: 7px; }
+  .so-cv, .so-ml, .so-swe { width: 250px; height: 250px; }
+  .so-ai, .so-dsa { width: 180px; height: 180px; }
+  .so-hci, .so-geo { width: 315px; height: 315px; }
+
+  /* Avatar canvas */
+  .avatar-center { margin: 19px 0 0; }
+  .avatar-canvas { height: 270px; width: 100%; }
+  .avatar-note { font-size: 8px; }
+
+  footer { font-size: 8px; gap: 15px; flex-wrap: wrap; }
+}
+
+/* ── ≤400px (smallest phones) ───────────────────────────── */
+@media (max-width: 400px) {
+  .hero h1 { font-size: 42px; }
+  .section { padding: 50px 14px; }
+  .globe-stage {
+    width: 94vw;
+    height: 94vw;
+  }
+  .account-main strong { font-size: 36px; }
+  .mini-graph { height: 55px; }
 }

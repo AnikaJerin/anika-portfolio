@@ -77,6 +77,8 @@ const SKILL_ITEMS = [
   { name: "REST APIs", category: "Backend", color: "#06B6D4", icon: "rest" },
   { name: "PostgreSQL", category: "Backend", color: "#4169E1", icon: "postgresql" },
   { name: "React", category: "Frontend / Data", color: "#61DAFB", icon: "react" },
+  { name: "Three.js", category: "Frontend / Data", color: "#FFFFFF", icon: "threejs" },
+  { name: "Next.js", category: "Frontend / Data", color: "#E2E8F0", icon: "nextjs" },
   { name: "HTML", category: "Frontend / Data", color: "#E34F26", icon: "html" },
   { name: "CSS", category: "Frontend / Data", color: "#1572B6", icon: "css" },
   { name: "Plotly", category: "Frontend / Data", color: "#818CF8", icon: "plotly" },
@@ -153,6 +155,10 @@ function SkillIcon({ type, color }) {
       return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10C22 6.48 17.52 2 12 2zm-1 14.5l-3.5-3.5 1.41-1.41L11 13.67l5.09-5.09L17.5 10 11 16.5z"/></svg>;
     case "git":
       return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>;
+    case "threejs":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3.17 2L2 21.83 12 24l10-2.17L20.83 2H3.17zM17.5 19.5l-5.5 1.2-5.5-1.2-.91-10.67h12.82L17.5 19.5zM7.66 13l.25 3.03L12 17.1l4.09-.9.41-4.85H7.25L7.02 9.7h9.96l.25-2.34H6.77L6.5 4.5h11l.25 2.5H6.75L7 9.7h9.95l-.5 5.52L12 16.4l-4.45-.97L7.3 13h.36z"/></svg>;
+    case "nextjs":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 0 1-.364.033C7.443.346 4.25 2.185 2.228 5.012a11.875 11.875 0 0 0-2.119 5.243c-.096.659-.108.854-.108 1.747s.012 1.089.108 1.748c.652 4.506 3.86 8.292 8.209 9.695.779.25 1.6.422 2.534.525.363.04 1.935.04 2.299 0 1.611-.178 2.977-.577 4.323-1.264.207-.106.247-.134.219-.158-.02-.013-.9-1.193-1.955-2.62l-1.919-2.592-2.404-3.558a338.739 338.739 0 0 0-2.422-3.556c-.009-.002-.018 1.579-.023 3.51-.007 3.38-.01 3.515-.052 3.595a.426.426 0 0 1-.206.214c-.075.037-.14.044-.495.044H7.81l-.108-.068a.438.438 0 0 1-.157-.171l-.05-.106.006-4.703.007-4.705.072-.092a.645.645 0 0 1 .174-.143c.096-.047.134-.051.54-.051.478 0 .558.018.682.154.035.038 1.337 1.999 2.895 4.361a10760.433 10760.433 0 0 0 4.735 7.17l1.9 2.879.096-.063a12.317 12.317 0 0 0 2.466-2.163 11.944 11.944 0 0 0 2.824-6.134c.096-.66.108-.854.108-1.748 0-.893-.012-1.088-.108-1.747-.652-4.506-3.859-8.292-8.208-9.695a12.597 12.597 0 0 0-2.499-.523A33.119 33.119 0 0 0 11.573 0zm4.069 7.217c.347 0 .408.005.486.047a.473.473 0 0 1 .237.277c.018.06.023 1.365.018 4.304l-.006 4.218-.744-1.14-.746-1.14v-3.066c0-1.982.01-3.097.023-3.15a.478.478 0 0 1 .233-.296c.096-.05.13-.054.5-.054z"/></svg>;
     case "github":
       return <Github size={20} color={color}/>;
     case "linux":
@@ -174,14 +180,18 @@ function SkillGlobe() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [hoveredSkill, setHoveredSkill] = useState(null);
   const [rotation, setRotation] = useState({ rx: 0.2, ry: 0 });
+  const [stageSize, setStageSize] = useState(520);
   const isHoveredRef = useRef(false);
   const canvasRef = useRef(null);
+  const stageRef = useRef(null);
   const isDraggingRef = useRef(false);
   const dragStartRef = useRef({ x: 0, y: 0 });
 
   const categories = ["All", "AI / ML", "Programming", "Backend", "Frontend / Data", "Engineering"];
-  const radius = 190;
   const numItems = SKILL_ITEMS.length;
+
+  // Responsive radius: scales with the container size
+  const radius = Math.min(stageSize * 0.37, 190);
 
   const points = useMemo(() => {
     return SKILL_ITEMS.map((skill, i) => {
@@ -194,7 +204,22 @@ function SkillGlobe() {
         z0: radius * Math.cos(phi),
       };
     });
-  }, [numItems]);
+  }, [numItems, radius]);
+
+  // Watch container size
+  useEffect(() => {
+    if (!stageRef.current) return;
+    const ro = new ResizeObserver(entries => {
+      const { width } = entries[0].contentRect;
+      setStageSize(width);
+      if (canvasRef.current) {
+        canvasRef.current.width = width;
+        canvasRef.current.height = width;
+      }
+    });
+    ro.observe(stageRef.current);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     let animId;
@@ -262,27 +287,38 @@ function SkillGlobe() {
 
     animId = requestAnimationFrame(renderLoop);
     return () => cancelAnimationFrame(animId);
-  }, [rotation]);
+  }, [rotation, radius]);
 
   const handleMouseDown = (e) => {
     isDraggingRef.current = true;
     dragStartRef.current = { x: e.clientX, y: e.clientY };
   };
-
   const handleMouseMove = (e) => {
     if (!isDraggingRef.current) return;
     const dx = e.clientX - dragStartRef.current.x;
     const dy = e.clientY - dragStartRef.current.y;
     dragStartRef.current = { x: e.clientX, y: e.clientY };
-    setRotation((prev) => ({
-      rx: prev.rx - dy * 0.005,
-      ry: prev.ry + dx * 0.005,
-    }));
+    setRotation((prev) => ({ rx: prev.rx - dy * 0.005, ry: prev.ry + dx * 0.005 }));
   };
+  const handleMouseUp = () => { isDraggingRef.current = false; };
 
-  const handleMouseUp = () => {
-    isDraggingRef.current = false;
+  // Touch drag support
+  const handleTouchStart = (e) => {
+    const t = e.touches[0];
+    isDraggingRef.current = true;
+    isHoveredRef.current = true;
+    dragStartRef.current = { x: t.clientX, y: t.clientY };
   };
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current) return;
+    e.preventDefault();
+    const t = e.touches[0];
+    const dx = t.clientX - dragStartRef.current.x;
+    const dy = t.clientY - dragStartRef.current.y;
+    dragStartRef.current = { x: t.clientX, y: t.clientY };
+    setRotation((prev) => ({ rx: prev.rx - dy * 0.005, ry: prev.ry + dx * 0.005 }));
+  };
+  const handleTouchEnd = () => { isDraggingRef.current = false; isHoveredRef.current = false; };
 
   const cosY = Math.cos(rotation.ry);
   const sinY = Math.sin(rotation.ry);
@@ -312,6 +348,10 @@ function SkillGlobe() {
     };
   });
 
+  // Scale icon size with globe
+  const iconScale = Math.min(1, stageSize / 520);
+  const nodeSize = Math.round(44 * iconScale);
+
   return (
     <div className="skills-globe-wrapper">
       <div className="skills-category-filters">
@@ -327,14 +367,18 @@ function SkillGlobe() {
       </div>
 
       <div
+        ref={stageRef}
         className="globe-stage"
         onMouseEnter={() => { isHoveredRef.current = true; }}
         onMouseLeave={() => { isHoveredRef.current = false; setHoveredSkill(null); isDraggingRef.current = false; }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
-        <canvas ref={canvasRef} width={520} height={520} className="globe-canvas" />
+        <canvas ref={canvasRef} width={stageSize} height={stageSize} className="globe-canvas" />
 
         <div className="nodes-container">
           {projectedNodes.map((node) => {
@@ -353,10 +397,15 @@ function SkillGlobe() {
                   isHoveredRef.current = true;
                   setHoveredSkill(node);
                 }}
+                onTouchStart={(e) => {
+                  e.stopPropagation();
+                  setHoveredSkill(node);
+                }}
               >
                 <div
                   className="node-icon-wrapper"
                   style={{
+                    width: nodeSize, height: nodeSize,
                     color: node.color,
                     borderColor: isHovered ? node.color : "rgba(255,255,255,0.14)",
                     boxShadow: isHovered ? `0 0 24px ${node.color}aa, inset 0 0 12px ${node.color}55` : "0 4px 12px rgba(0,0,0,0.4)"
@@ -401,13 +450,23 @@ function recentActivity(calendar = {}) {
 function App(){
   const [active, setActive] = useState("home");
   const [expanded, setExpanded] = useState(null);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [cf, setCf] = useState(null);
   const [gh, setGh] = useState(null);
-  const [lc, setLc] = useState(null);
+  const [lc, setLc] = useState({
+    totalSolved: 58,
+    easySolved: 43,
+    mediumSolved: 13,
+    hardSolved: 2,
+    ranking: 2434622,
+    badges: [{ displayName: "LeetCode Badge", icon: null }],
+    contest: null,
+  });
   const [syncedAt, setSyncedAt] = useState(null);
   const [lcCalendar, setLcCalendar] = useState({});
   const [cfContests, setCfContests] = useState([]);
   const [cfCalendar, setCfCalendar] = useState({});
+  const [cfSolved, setCfSolved] = useState(8);
 
   useEffect(()=>{
     const obs = new IntersectionObserver(es=>{
@@ -428,16 +487,22 @@ function App(){
   },[]);
 
   useEffect(()=>{
-    // GitHub Actions refreshes this cache daily. Direct calls below keep local previews live.
+    // GitHub Actions refreshes this cache daily.
     fetch(`${import.meta.env.BASE_URL}live-data.json`)
       .then(r=>r.ok?r.json():Promise.reject())
-      .then(data=>{ setCf(data.codeforces); setGh(data.github); setLc(data.leetcode); setSyncedAt(data.updatedAt); })
+      .then(data=>{
+        if (data.codeforces) setCf(data.codeforces);
+        if (data.github) setGh(data.github);
+        if (data.leetcode && data.leetcode.totalSolved) setLc(data.leetcode);
+        if (data.updatedAt) setSyncedAt(data.updatedAt);
+      })
       .catch(()=>{});
+
     fetch("https://codeforces.com/api/user.info?handles=AnikaJerin")
       .then(r=>r.ok?r.json():null).then(x=>x?.result?.[0]&&setCf(x.result[0])).catch(()=>{});
     fetch("https://codeforces.com/api/user.rating?handle=AnikaJerin")
       .then(r=>r.ok?r.json():null).then(x=>Array.isArray(x?.result)&&setCfContests(x.result)).catch(()=>{});
-    fetch("https://codeforces.com/api/user.status?handle=AnikaJerin&from=1&count=1000")
+    fetch("https://codeforces.com/api/user.status?handle=AnikaJerin&from=1&count=10000")
       .then(r=>r.ok?r.json():null).then(x=>{
         if (!Array.isArray(x?.result)) return;
         const calendar = x.result.reduce((all, submission)=>{
@@ -446,17 +511,62 @@ function App(){
           return all;
         }, {});
         setCfCalendar(calendar);
+        // Count unique accepted problems
+        const accepted = new Set(
+          x.result
+            .filter(s => s.verdict === "OK")
+            .map(s => `${s.problem.contestId}-${s.problem.index}`)
+        );
+        setCfSolved(accepted.size || 8);
       }).catch(()=>{});
-    fetch("https://leetcode.com/graphql/", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({query:"query portfolio($username: String!) { matchedUser(username: $username) { submitStatsGlobal { acSubmissionNum { difficulty count } } profile { ranking } badges { id displayName icon } } userProfileCalendar(username: $username) { submissionCalendar totalActiveDays streak } userContestRanking(username: $username) { attendedContestsCount rating globalRanking topPercentage badge { name } }}", variables:{username:"AnikaJerin"}})})
-      .then(r=>r.ok?r.json():null).then(data=>{
-        const matched = data?.data?.matchedUser;
-        if (matched) {
-          const stats = Object.fromEntries((matched.submitStatsGlobal?.acSubmissionNum || []).map(x=>[x.difficulty, x.count]));
-          setLc({totalSolved:stats.All || 0, easySolved:stats.Easy || 0, mediumSolved:stats.Medium || 0, hardSolved:stats.Hard || 0, ranking:matched.profile?.ranking, badges:matched.badges || [], contest:data.data.userContestRanking});
+    
+    // Real-time LeetCode fetch via fast CORS proxy
+    const lcUser = "AnikaJerin";
+    const tryLCApis = async () => {
+      // API 1: Vercel Proxy (Fast, returns totalSolved, easy/med/hard, ranking, calendar)
+      try {
+        const r = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${lcUser}`);
+        if (r.ok) {
+          const d = await r.json();
+          if (d && (d.totalSolved !== undefined || d.easySolved !== undefined)) {
+            setLc(prev => ({
+              totalSolved: d.totalSolved ?? prev.totalSolved ?? 58,
+              easySolved: d.easySolved ?? prev.easySolved ?? 43,
+              mediumSolved: d.mediumSolved ?? prev.mediumSolved ?? 13,
+              hardSolved: d.hardSolved ?? prev.hardSolved ?? 2,
+              ranking: d.ranking ?? prev.ranking ?? 2434622,
+              badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : [{ displayName: "LeetCode Badge", icon: null }]),
+              contest: prev.contest,
+            }));
+            if (d.submissionCalendar) {
+              setLcCalendar(typeof d.submissionCalendar === "string"
+                ? JSON.parse(d.submissionCalendar)
+                : d.submissionCalendar);
+            }
+            return;
+          }
         }
-        const raw = data?.data?.userProfileCalendar?.submissionCalendar;
-        if (raw) setLcCalendar(JSON.parse(raw));
-      }).catch(()=>{});
+      } catch (_) {}
+
+      // API 2: alfa-leetcode-api (Fallback)
+      try {
+        const r = await fetch(`https://alfa-leetcode-api.onrender.com/${lcUser}/solved`);
+        if (r.ok) {
+          const d = await r.json();
+          if (d?.solvedProblem !== undefined) {
+            setLc(prev => ({
+              ...prev,
+              totalSolved: d.solvedProblem || 58,
+              easySolved: d.easySolved || 43,
+              mediumSolved: d.mediumSolved || 13,
+              hardSolved: d.hardSolved || 2,
+            }));
+          }
+        }
+      } catch (_) {}
+    };
+    tryLCApis();
+
     fetch("https://api.github.com/users/AnikaJerin")
       .then(r=>r.ok?r.json():null).then(x=>x&&setGh(x)).catch(()=>{});
   },[]);
@@ -478,9 +588,16 @@ function App(){
     <div className="grain"/>
     <header className="nav">
       <a href="#home" className="brand">AJ<span>.</span></a>
-      <nav>{nav.map(x=><a key={x} className={active===x?"active":""} href={"#"+x}>{x.replace("-", " ")}</a>)}</nav>
+      <nav>{nav.map(x=><a key={x} className={active===x?"active":""} href={"#"+x} onClick={()=>setMenuOpen(false)}>{x.replace("-", " ")}</a>)}</nav>
       <a className="contact-pill" href={`mailto:${PROFILE.email}`}>Let's talk <ArrowUpRight size={14}/></a>
+      <button className="hamburger" aria-label="Menu" onClick={()=>setMenuOpen(o=>!o)}>
+        <span/><span/><span/>
+      </button>
     </header>
+    {menuOpen && <div className="mobile-nav" onClick={()=>setMenuOpen(false)}>
+      {nav.map(x=><a key={x} href={"#"+x} className={active===x?"active":""}>{x.replace("-", " ")}</a>)}
+      <a href={`mailto:${PROFILE.email}`} className="mobile-nav-cta">Let's talk</a>
+    </div>}
 
     <main>
       <section id="home" className="hero">
@@ -549,7 +666,7 @@ function App(){
       <Section id="problem-solving" eyebrow="04 — PROBLEM SOLVING" title="I train the same muscle I use to build systems.">
         <div className="cp-compact">
           <article className="account-card leetcode-card"><div className="account-top"><span><CircleCheckBig size={16}/> LEETCODE</span><a href={PROFILE.leetcode} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{solved || "—"}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>E <b>{lc?.easySolved ?? "—"}</b></span><span>M <b>{lc?.mediumSolved ?? "—"}</b></span><span>H <b>{lc?.hardSolved ?? "—"}</b></span></div></div><div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>Rank {lc?.ranking?.toLocaleString?.() ?? "—"}</span><span>{lc?.badges?.length ?? 0} badges</span></div></article>
-          <article className="account-card codeforces-card"><div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{cf?.rating ?? "—"}</strong><small>CURRENT RATING</small></div><div className="mini-splits"><span>MAX <b>{cf?.maxRating ?? "—"}</b></span><span>CONTESTS <b>{cfContests.length || "—"}</b></span></div></div><div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>{cf?.rank || "rank updating"}</span><span>peak {cf?.maxRank || "—"}</span></div></article>
+          <article className="account-card codeforces-card"><div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{cfSolved ?? 8}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>RATING <b>{cf?.rating ?? "—"}</b></span><span>CONTESTS <b>{cfContests.length || "—"}</b></span></div></div><div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>{cf?.rank || "newbie"}</span><span>peak {cf?.maxRank || "—"}</span></div></article>
         </div>
         <div className="achievements-strip"><div className="strip-title"><Medal size={16}/><span>LIVE ACHIEVEMENTS</span></div><div className="achievements-scroll">{achievements.length ? achievements.map((item,i)=><div className="achievement-pill" key={`${item.title}-${i}`}>{item.icon ? <img src={item.icon} alt=""/> : <Trophy size={15}/>}<span>{item.kind}</span><b>{item.title}</b></div>) : <p className="empty-state">New badges and contest milestones appear here automatically.</p>}</div></div>
         <div className="solve-focus"><span><Terminal size={16}/> DSA</span><span>Arrays</span><span>Binary Search</span><span>Graphs</span><span>DP</span><span>Trees</span><span>Greedy</span><span>Math</span><span>Recursion</span></div>

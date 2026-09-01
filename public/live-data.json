@@ -1,6 +1,28 @@
 {
-  "updatedAt": null,
-  "github": null,
-  "codeforces": null,
-  "leetcode": null
+  "updatedAt": "2026-09-01T21:05:00Z",
+  "github": {
+    "public_repos": 35,
+    "followers": 12,
+    "following": 15
+  },
+  "codeforces": {
+    "rating": 1200,
+    "rank": "newbie",
+    "maxRating": 1200,
+    "maxRank": "newbie"
+  },
+  "leetcode": {
+    "totalSolved": 58,
+    "easySolved": 43,
+    "mediumSolved": 13,
+    "hardSolved": 2,
+    "ranking": 2434622,
+    "badges": [
+      {
+        "displayName": "LeetCode Solver",
+        "icon": null
+      }
+    ],
+    "contest": null
+  }
 }
