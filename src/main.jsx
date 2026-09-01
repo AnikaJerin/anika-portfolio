@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useMemo, useRef} from "react";
 import {createRoot} from "react-dom/client";
 import {
   ArrowDown, ArrowUp, ArrowUpRight, BrainCircuit, Code2, Github, Linkedin,
   Mail, ExternalLink, Trophy, Terminal, Sparkles, Flame, Medal, BarChart3,
-  BookOpen, Award, MapPin, GraduationCap, CalendarDays, CircleCheckBig
+  BookOpen, Award, MapPin, GraduationCap, CalendarDays, CircleCheckBig,
+  Eye, Cpu, MousePointer2
 } from "lucide-react";
 import "./styles.css";
 
@@ -50,6 +51,334 @@ const skills = [
   ["Frontend / Data", "React · HTML · CSS · Plotly · Folium · Leaflet"],
   ["Engineering", "Git · GitHub · Linux · Postman · Jupyter · NumPy · Pandas"],
 ];
+
+const SKILL_ITEMS = [
+  { name: "PyTorch", category: "AI / ML", color: "#EE4C2C", icon: "pytorch" },
+  { name: "TensorFlow", category: "AI / ML", color: "#FF6F00", icon: "tensorflow" },
+  { name: "Keras", category: "AI / ML", color: "#D00000", icon: "keras" },
+  { name: "Scikit-learn", category: "AI / ML", color: "#F7931E", icon: "scikitlearn" },
+  { name: "OpenCV", category: "AI / ML", color: "#5C3EE8", icon: "opencv" },
+  { name: "YOLO", category: "AI / ML", color: "#00F0FF", icon: "yolo" },
+  { name: "CNN", category: "AI / ML", color: "#A855F7", icon: "cnn" },
+  { name: "LSTM", category: "AI / ML", color: "#EC4899", icon: "lstm" },
+  { name: "Vision Transformers", category: "AI / ML", color: "#3B82F6", icon: "vit" },
+  { name: "GNN", category: "AI / ML", color: "#10B981", icon: "gnn" },
+  { name: "Python", category: "Programming", color: "#3776AB", icon: "python" },
+  { name: "C++", category: "Programming", color: "#00599C", icon: "cpp" },
+  { name: "C", category: "Programming", color: "#A8B9CC", icon: "c" },
+  { name: "Go", category: "Programming", color: "#00ADD8", icon: "go" },
+  { name: "MATLAB", category: "Programming", color: "#E11D48", icon: "matlab" },
+  { name: "SQL", category: "Programming", color: "#336791", icon: "sql" },
+  { name: "JavaScript", category: "Programming", color: "#F7DF1E", icon: "javascript" },
+  { name: "FastAPI", category: "Backend", color: "#059669", icon: "fastapi" },
+  { name: "Flask", category: "Backend", color: "#E2E8F0", icon: "flask" },
+  { name: "Django", category: "Backend", color: "#10B981", icon: "django" },
+  { name: "Odoo", category: "Backend", color: "#714B67", icon: "odoo" },
+  { name: "REST APIs", category: "Backend", color: "#06B6D4", icon: "rest" },
+  { name: "PostgreSQL", category: "Backend", color: "#4169E1", icon: "postgresql" },
+  { name: "React", category: "Frontend / Data", color: "#61DAFB", icon: "react" },
+  { name: "HTML", category: "Frontend / Data", color: "#E34F26", icon: "html" },
+  { name: "CSS", category: "Frontend / Data", color: "#1572B6", icon: "css" },
+  { name: "Plotly", category: "Frontend / Data", color: "#818CF8", icon: "plotly" },
+  { name: "Folium", category: "Frontend / Data", color: "#41B883", icon: "folium" },
+  { name: "Leaflet", category: "Frontend / Data", color: "#199900", icon: "leaflet" },
+  { name: "Git", category: "Engineering", color: "#F05032", icon: "git" },
+  { name: "GitHub", category: "Engineering", color: "#FFFFFF", icon: "github" },
+  { name: "Linux", category: "Engineering", color: "#FCC624", icon: "linux" },
+  { name: "Postman", category: "Engineering", color: "#FF6C37", icon: "postman" },
+  { name: "Jupyter", category: "Engineering", color: "#F37626", icon: "jupyter" },
+  { name: "NumPy", category: "Engineering", color: "#4DABCF", icon: "numpy" },
+  { name: "Pandas", category: "Engineering", color: "#A855F7", icon: "pandas" },
+];
+
+function SkillIcon({ type, color }) {
+  switch (type) {
+    case "python":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14.25.18l.9.2.73.26.59.3.45.32.34.34.25.34.16.33.1.3.04.26.02.2-.01.13V8.5l-.05.63-.13.55-.21.46-.26.38-.3.31-.33.25-.35.19-.35.14-.33.1-.3.07-.26.04-.21.02H8.77l-.69.05-.59.14-.5.22-.41.27-.33.32-.27.35-.2.36-.15.37-.1.35-.07.32-.04.27-.02.21v3.06H3.17l-.21-.03-.28-.07-.32-.12-.35-.18-.36-.26-.36-.36-.35-.46-.32-.59-.28-.73-.21-.88-.14-1.05-.05-1.23.06-1.22.16-1.04.24-.87.32-.71.36-.57.4-.44.42-.33.42-.24.4-.16.36-.1.32-.05.24-.01h.16l.06.01h8.16v-.83H6.18l-.01-2.75-.02-.37.05-.34.11-.31.17-.28.25-.26.31-.23.38-.2.44-.18.51-.15.58-.12.64-.1.71-.06.77-.04.84-.02 1.27.05zm-6.3 1.98l-.23.33-.08.41.08.41.23.34.33.22.41.09.41-.09.33-.22.23-.34.08-.41-.08-.41-.23-.33-.33-.22-.41-.09-.41.09z"/></svg>;
+    case "pytorch":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M14.936 2.036a.48.48 0 0 0-.672.048l-4.992 5.616a.48.48 0 0 0 .048.672.48.48 0 0 0 .672-.048l4.992-5.616a.48.48 0 0 0-.048-.672zM12 0a12 12 0 1 0 12 12A12.014 12.014 0 0 0 12 0zm.048 4.32a.48.48 0 0 1 .336.144l4.992 4.992a.48.48 0 0 1-.672.672l-4.992-4.992a.48.48 0 0 1 .336-.816zm-3.6 4.32a3.84 3.84 0 1 1-3.84 3.84 3.84 3.84 0 0 1 3.84-3.84zm0 1.44a2.4 2.4 0 1 0 2.4 2.4 2.4 2.4 0 0 0-2.4-2.4z"/></svg>;
+    case "tensorflow":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1.292 5.856L11.54 0v24l-4.095-2.38V14.18l-3.07 1.78v-4.73l3.07-1.78V7.64l-6.153 3.57V5.856zm21.416 0L12.46 0v24l4.095-2.38V14.18l3.07 1.78v-4.73l-3.07-1.78V7.64l6.153 3.57V5.856z"/></svg>;
+    case "keras":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M24 0H0v24h24V0zM12.92 18.59l-4.14-5.26v5.26H6.11V5.41h2.67v5.82l4.01-5.82h3.19l-4.52 6.16 4.71 7.02h-3.25z"/></svg>;
+    case "scikitlearn":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4a8 8 0 0 1 7.45 5.09A7.95 7.95 0 0 0 12 7a7.95 7.95 0 0 0-7.45 2.09A8 8 0 0 1 12 4zm0 16a8 8 0 0 1-7.45-5.09A7.95 7.95 0 0 0 12 17a7.95 7.95 0 0 0 7.45-2.09A8 8 0 0 1 12 20z"/></svg>;
+    case "opencv":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0a6 6 0 0 0-6 6 6 6 0 0 0 1.258 3.659L3.5 16.5A6 6 0 0 0 0 21a6 6 0 0 0 6 6 6 6 0 0 0 4.341-1.859l1.659-3.75a6 6 0 0 0 3.659 1.258 6 6 0 0 0 6-6 6 6 0 0 0-1.859-4.341l-3.75-1.659A6 6 0 0 0 18 6a6 6 0 0 0-6-6zm0 3a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM6 18a3 3 0 1 1 0 6 3 3 0 0 1 0-6zm12 0a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"/></svg>;
+    case "yolo":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="4"/><path d="M12 3v3m0 12v3M3 12h3m12 0h3"/></svg>;
+    case "cnn":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="8" y="14" width="8" height="8" rx="1"/><path d="M6 10v2a2 2 0 0 0 2 2h4m6-4v2a2 2 0 0 1-2 2h-4"/></svg>;
+    case "lstm":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><path d="M9 12h6m-3-3l3 3-3 3"/><path d="M18 9a6 6 0 0 0-12 0"/></svg>;
+    case "vit":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>;
+    case "gnn":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><line x1="8.5" y1="7.5" x2="10" y2="15.5"/><line x1="15.5" y1="7.5" x2="14" y2="15.5"/><line x1="9" y1="6" x2="15" y2="6"/></svg>;
+    case "cpp":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22.38 5.75L12.5.04a1 1 0 0 0-1 0L1.62 5.75A1 1 0 0 0 1 6.62v10.76a1 1 0 0 0 .62.87l9.88 5.71a1 1 0 0 0 1 0l9.88-5.71a1 1 0 0 0 .62-.87V6.62a1 1 0 0 0-.62-.87zM9.25 14.5a3.25 3.25 0 1 1 0-6.5c1.2 0 2.15.6 2.7 1.5l-1.35.8c-.3-.5-.7-.8-1.35-.8a1.75 1.75 0 1 0 0 3.5c.65 0 1.05-.3 1.35-.8l1.35.8c-.55.9-1.5 1.5-2.7 1.5zm6.75-2h-1v1h-1v-1h-1v-1h1v-1h1v1h1v1zm4 0h-1v1h-1v-1h-1v-1h1v-1h1v1h1v1z"/></svg>;
+    case "c":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22.38 5.75L12.5.04a1 1 0 0 0-1 0L1.62 5.75A1 1 0 0 0 1 6.62v10.76a1 1 0 0 0 .62.87l9.88 5.71a1 1 0 0 0 1 0l9.88-5.71a1 1 0 0 0 .62-.87V6.62a1 1 0 0 0-.62-.87zM12 16a4 4 0 1 1 0-8c1.6 0 2.8.8 3.5 2l-1.8 1c-.4-.7-1-.1-1.7-.1a2 2 0 1 0 0 4c.7 0 1.3-.3 1.7-1l1.8 1c-.7 1.2-1.9 2.1-3.5 2.1z"/></svg>;
+    case "go":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1.81 10.07h4.88c-.1.52-.22 1.07-.36 1.62H1.81c.15-.55.26-1.1.36-1.62zm-.83 3.32h5.12c-.22.68-.48 1.35-.78 1.99H1.42a17.6 17.6 0 0 1-.44-1.99zm14.3-3.32c1.78 0 3.01.76 3.65 2.17h-2.18c-.37-.53-.94-.85-1.57-.85-1.12 0-1.89.89-1.89 2.15 0 1.25.75 2.13 1.87 2.13.82 0 1.45-.48 1.67-1.2h-1.85v-1.62h4.08v3.94h-1.68v-.79c-.58.62-1.4 1.01-2.39 1.01-2.22 0-3.88-1.55-3.88-3.62 0-2.07 1.68-3.32 4.17-3.32zm8.72 3.32c0 2.06-1.6 3.32-3.8 3.32-2.2 0-3.8-1.26-3.8-3.32 0-2.06 1.6-3.32 3.8-3.32 2.2 0 3.8 1.26 3.8 3.32zm-2.05 0c0-1.25-.74-2.13-1.75-2.13-1.01 0-1.75.88-1.75 2.13 0 1.25.74 2.13 1.75 2.13 1.01 0 1.75-.88 1.75-2.13z"/></svg>;
+    case "matlab":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M2 18s4-12 7-12 4 14 7 14 6-8 6-8"/><path d="M2 18h20"/></svg>;
+    case "sql":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 3.79 2 6v12c0 2.21 4.48 4 10 4s10-1.79 10-4V6c0-2.21-4.48-4-10-4zm0 2c4.42 0 8 1.34 8 2s-3.58 2-8 2-8-1.34-8-2 3.58-2 8-2zm0 6c4.42 0 8-1.34 8-2v3c0 .66-3.58 2-8 2s-8-1.34-8-2V8c0 .66 3.58 2 8 2zm0 6c4.42 0 8-1.34 8-2v3c0 .66-3.58 2-8 2s-8-1.34-8-2v-3c0 .66 3.58 2 8 2z"/></svg>;
+    case "javascript":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.465.735-.63 1.29-.495.315.075.69.3.885.63.795-.54.795-.54 1.335-.9-.33-.525-.66-.84-1.05-1.05-.72-.39-1.74-.48-2.505-.21-1.05.345-1.74 1.23-1.635 2.37.12 1.35 1.2 1.95 2.505 2.475.99.39 1.485.645 1.62 1.155.255.84-.33 1.41-1.47 1.41-.855 0-1.425-.375-1.875-1.08-.6.39-.6.39-1.35.87.27.465.615.84 1.05 1.14 1.02.72 2.52.84 3.66.39 1.455-.57 2.145-1.77 1.965-3.345z"/></svg>;
+    case "fastapi":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm.853 4.5l-1.037 6.223h3.582L10.293 19.5l1.037-6.223H7.748L12.853 4.5z"/></svg>;
+    case "flask":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><path d="M9 3h6m-3 0v6.5L19 20A1 1 0 0 1 18.15 21H5.85A1 1 0 0 1 5 20l7-10.5V3z"/><circle cx="10" cy="16" r="1" fill="currentColor"/><circle cx="14" cy="18" r="1" fill="currentColor"/></svg>;
+    case "django":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.146 0h3.125v16.71c-1.385.297-2.61.41-3.754.41-3.415 0-4.994-1.56-4.994-4.502 0-3.05 1.83-4.662 4.708-4.662.338 0 .614.02.915.082V0zm0 10.457a2.53 2.53 0 0 0-.675-.082c-1.42 0-2.228.777-2.228 2.27 0 1.41.777 2.128 2.188 2.128.246 0 .47-.02.715-.062v-4.254zM16.142 5.035h3.124v11.838h-3.124V5.035zM16.142 0h3.124v3.15h-3.124V0z"/></svg>;
+    case "odoo":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 4.5a5.5 5.5 0 1 1 0 11 5.5 5.5 0 0 1 0-11z"/></svg>;
+    case "rest":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8m-4-4v8"/><circle cx="8" cy="12" r="1.5" fill="currentColor"/><circle cx="16" cy="12" r="1.5" fill="currentColor"/></svg>;
+    case "postgresql":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M11.968 0C5.782 0 .762 4.674.762 10.988c0 3.738 1.95 7.027 4.945 8.995l-.66 3.09 3.518-1.78c1.077.34 2.226.53 3.403.53 6.186 0 11.206-4.674 11.206-10.988S18.154 0 11.968 0zm-2.43 14.51a2.15 2.15 0 1 1 0-4.3 2.15 2.15 0 0 1 0 4.3zm5.86 0a2.15 2.15 0 1 1 0-4.3 2.15 2.15 0 0 1 0 4.3z"/></svg>;
+    case "react":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2"><ellipse cx="12" cy="12" rx="10" ry="4.5"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(120 12 12)"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>;
+    case "html":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718h10.059l.236-2.656H5.414l.691 8.031h8.809l-.363 3.938-2.551.688-2.547-.688-.164-1.875H6.609l.328 4.078 5.035 1.391 5.039-1.391.688-7.797H8.531z"/></svg>;
+    case "css":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.232-2.718h10.059l.236-2.656H5.414l.691 8.031h8.809l-.363 3.938-2.551.688-2.547-.688-.164-1.875H6.609l.328 4.078 5.035 1.391 5.039-1.391.688-7.797H8.531z"/></svg>;
+    case "plotly":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h3v18H3V3zm6 6h3v12H9V9zm6-4h3v16h-3V5zm6 8h3v8h-3v-8z"/></svg>;
+    case "folium":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>;
+    case "leaflet":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10C22 6.48 17.52 2 12 2zm-1 14.5l-3.5-3.5 1.41-1.41L11 13.67l5.09-5.09L17.5 10 11 16.5z"/></svg>;
+    case "git":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.546 10.93L13.067.452c-.604-.603-1.582-.603-2.188 0L8.708 2.627l2.76 2.76c.645-.215 1.379-.07 1.889.441.516.515.658 1.258.438 1.9l2.658 2.66c.645-.223 1.387-.078 1.9.435.721.72.721 1.884 0 2.604-.719.719-1.881.719-2.6 0-.539-.541-.674-1.337-.404-1.996L12.86 8.955v6.525c.176.086.342.203.488.348.713.721.713 1.883 0 2.6-.719.721-1.889.721-2.609 0-.719-.719-.719-1.879 0-2.598.182-.18.387-.316.605-.406V8.835c-.217-.091-.424-.222-.6-.401-.545-.545-.676-1.342-.396-2.009L7.636 3.7.45 10.881c-.6.605-.6 1.584 0 2.189l10.48 10.477c.604.604 1.582.604 2.186 0l10.43-10.43c.605-.603.605-1.582 0-2.187"/></svg>;
+    case "github":
+      return <Github size={20} color={color}/>;
+    case "linux":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.186 2.002c-2.482 0-4.004 1.69-4.004 4.027 0 1.258.468 2.47 1.053 3.328-.585 1.547-2.316 2.508-3.978 2.508-1.52 0-2.808-.877-2.808-2.34 0-1.848 1.989-2.574 3.744-2.574.678 0 1.345.117 1.93.351.293-.76.41-1.579.41-2.4 0-3.626-2.748-6.198-6.257-6.198C.877-1.294-1.286 1.923-1.286 5.84c0 4.797 3.451 8.892 8.307 8.892 2.632 0 4.797-1.229 6.023-3.158 1.111 1.93 3.333 3.158 5.965 3.158 4.856 0 8.307-4.095 8.307-8.892 0-3.917-2.163-7.134-3.567-7.134-3.509 0-6.257 2.572-6.257 6.198 0 .82.117 1.64.41 2.4.585-.234 1.252-.351 1.93-.351 1.755 0 3.744.726 3.744 2.574 0 1.463-1.288 2.34-2.808 2.34-1.662 0-3.393-.961-3.978-2.508.585-.858 1.053-2.07 1.053-3.328 0-2.337-1.522-4.027-4.004-4.027z"/></svg>;
+    case "postman":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13.545 0C6.674 0 0 5.487 0 12.358c0 4.605 2.656 8.59 6.55 10.518l3.18-5.507a6.233 6.233 0 0 1-.84-3.111c0-3.447 2.795-6.242 6.242-6.242 1.341 0 2.578.423 3.59 1.144L21.84 3.74A13.432 13.432 0 0 0 13.545 0z"/></svg>;
+    case "jupyter":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7.18 3.42a8.55 8.55 0 0 0-4.9 7.62c0 4.3 3.19 7.9 7.42 8.48.5-.7 1.03-1.42 1.58-2.15-3.08-.4-5.46-3.04-5.46-6.33 0-2.45 1.32-4.57 3.28-5.69l-1.92-1.93zm9.64 0l-1.92 1.93c1.96 1.12 3.28 3.24 3.28 5.69 0 3.29-2.38 5.93-5.46 6.33.55.73 1.08 1.45 1.58 2.15 4.23-.58 7.42-4.18 7.42-8.48 0-3.16-1.84-5.91-4.9-7.62z"/></svg>;
+    case "numpy":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M2.25 4.5v15h4.5v-7.5l6 7.5h4.5v-15h-4.5v7.5l-6-7.5h-4.5z"/></svg>;
+    case "pandas":
+      return <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 3h4v18H3V3zm7 0h4v18h-4V3zm7 0h4v18h-4V3z"/></svg>;
+    default:
+      return <Code2 size={20} color={color}/>;
+  }
+}
+
+function SkillGlobe() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+  const [rotation, setRotation] = useState({ rx: 0.2, ry: 0 });
+  const isHoveredRef = useRef(false);
+  const canvasRef = useRef(null);
+  const isDraggingRef = useRef(false);
+  const dragStartRef = useRef({ x: 0, y: 0 });
+
+  const categories = ["All", "AI / ML", "Programming", "Backend", "Frontend / Data", "Engineering"];
+  const radius = 190;
+  const numItems = SKILL_ITEMS.length;
+
+  const points = useMemo(() => {
+    return SKILL_ITEMS.map((skill, i) => {
+      const phi = Math.acos(1 - (2 * (i + 0.5)) / numItems);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+      return {
+        ...skill,
+        x0: radius * Math.sin(phi) * Math.cos(theta),
+        y0: radius * Math.sin(phi) * Math.sin(theta),
+        z0: radius * Math.cos(phi),
+      };
+    });
+  }, [numItems]);
+
+  useEffect(() => {
+    let animId;
+    let lastTime = performance.now();
+
+    const renderLoop = (now) => {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      if (!isHoveredRef.current && !isDraggingRef.current) {
+        setRotation((prev) => ({
+          rx: prev.rx + 0.04 * delta,
+          ry: prev.ry + 0.32 * delta,
+        }));
+      }
+
+      const canvas = canvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        const cx = w / 2;
+        const cy = h / 2;
+
+        ctx.strokeStyle = "rgba(168, 85, 247, 0.15)";
+        ctx.lineWidth = 1;
+
+        const numRings = 7;
+        for (let i = 1; i < numRings; i++) {
+          const latPhi = (Math.PI * i) / numRings;
+          const ringR = radius * Math.sin(latPhi);
+          const ringY0 = radius * Math.cos(latPhi);
+
+          ctx.beginPath();
+          for (let a = 0; a <= Math.PI * 2 + 0.1; a += 0.2) {
+            const rx0 = ringR * Math.cos(a);
+            const ry0 = ringY0;
+            const rz0 = ringR * Math.sin(a);
+
+            const cosY = Math.cos(rotation.ry);
+            const sinY = Math.sin(rotation.ry);
+            const cosX = Math.cos(rotation.rx);
+            const sinX = Math.sin(rotation.rx);
+
+            const x1 = rx0 * cosY + rz0 * sinY;
+            const z1 = -rx0 * sinY + rz0 * cosY;
+            const y2 = ry0 * cosX - z1 * sinX;
+            const z2 = ry0 * sinX + z1 * cosX;
+
+            const scale = 500 / (500 - z2);
+            const px = cx + x1 * scale;
+            const py = cy + y2 * scale;
+
+            if (a === 0) ctx.moveTo(px, py);
+            else ctx.lineTo(px, py);
+          }
+          ctx.stroke();
+        }
+      }
+
+      animId = requestAnimationFrame(renderLoop);
+    };
+
+    animId = requestAnimationFrame(renderLoop);
+    return () => cancelAnimationFrame(animId);
+  }, [rotation]);
+
+  const handleMouseDown = (e) => {
+    isDraggingRef.current = true;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDraggingRef.current) return;
+    const dx = e.clientX - dragStartRef.current.x;
+    const dy = e.clientY - dragStartRef.current.y;
+    dragStartRef.current = { x: e.clientX, y: e.clientY };
+    setRotation((prev) => ({
+      rx: prev.rx - dy * 0.005,
+      ry: prev.ry + dx * 0.005,
+    }));
+  };
+
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  const cosY = Math.cos(rotation.ry);
+  const sinY = Math.sin(rotation.ry);
+  const cosX = Math.cos(rotation.rx);
+  const sinX = Math.sin(rotation.rx);
+
+  const projectedNodes = points.map((pt) => {
+    const x1 = pt.x0 * cosY + pt.z0 * sinY;
+    const z1 = -pt.x0 * sinY + pt.z0 * cosY;
+    const y2 = pt.y0 * cosX - z1 * sinX;
+    const z2 = pt.y0 * sinX + z1 * cosX;
+
+    const perspective = 500;
+    const scale = perspective / (perspective - z2);
+    const alpha = Math.max(0.2, Math.min(1, (z2 + radius) / (2 * radius)));
+    const isMatch = activeCategory === "All" || pt.category === activeCategory;
+
+    return {
+      ...pt,
+      px: x1 * scale,
+      py: y2 * scale,
+      z2,
+      scale,
+      alpha: isMatch ? alpha : alpha * 0.22,
+      zIndex: Math.round(z2 + radius),
+      isMatch,
+    };
+  });
+
+  return (
+    <div className="skills-globe-wrapper">
+      <div className="skills-category-filters">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            className={`cat-pill ${activeCategory === cat ? "active" : ""}`}
+            onClick={() => setActiveCategory(cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div
+        className="globe-stage"
+        onMouseEnter={() => { isHoveredRef.current = true; }}
+        onMouseLeave={() => { isHoveredRef.current = false; setHoveredSkill(null); isDraggingRef.current = false; }}
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+      >
+        <canvas ref={canvasRef} width={520} height={520} className="globe-canvas" />
+
+        <div className="nodes-container">
+          {projectedNodes.map((node) => {
+            const isHovered = hoveredSkill?.name === node.name;
+            return (
+              <div
+                key={node.name}
+                className={`globe-node ${isHovered ? "hovered" : ""} ${!node.isMatch ? "dimmed" : ""}`}
+                style={{
+                  transform: `translate3d(${node.px}px, ${node.py}px, 0px) scale(${isHovered ? 1.35 : node.scale * 0.9})`,
+                  opacity: isHovered ? 1 : node.alpha,
+                  zIndex: isHovered ? 9999 : node.zIndex,
+                }}
+                onMouseEnter={(e) => {
+                  e.stopPropagation();
+                  isHoveredRef.current = true;
+                  setHoveredSkill(node);
+                }}
+              >
+                <div
+                  className="node-icon-wrapper"
+                  style={{
+                    color: node.color,
+                    borderColor: isHovered ? node.color : "rgba(255,255,255,0.14)",
+                    boxShadow: isHovered ? `0 0 24px ${node.color}aa, inset 0 0 12px ${node.color}55` : "0 4px 12px rgba(0,0,0,0.4)"
+                  }}
+                >
+                  <SkillIcon type={node.icon} color={node.color} />
+                </div>
+
+                {isHovered && (
+                  <div className="node-tooltip">
+                    <span className="tooltip-name">{node.name.toUpperCase()}</span>
+                    <span className="tooltip-cat">{node.category}</span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function StatCard({icon:Icon, label, value, sub}) {
   return <div className="stat-card"><div className="stat-icon"><Icon size={17}/></div><div><div className="stat-label">{label}</div><div className="stat-value">{value}</div>{sub&&<div className="stat-sub">{sub}</div>}</div></div>
@@ -173,7 +502,15 @@ function App(){
           <div className="orb">
             <div className="orb-core"><BrainCircuit size={42}/><b>AI</b><small>ENGINEERING</small></div>
             <div className="ring r1"/><div className="ring r2"/><div className="ring r3"/>
-            <div className="orbit o1"><span>ML</span></div><div className="orbit o2"><span>DSA</span></div><div className="orbit o3"><span>CV</span></div>
+            <div className="orbit-skills" aria-label="Technical focus areas">
+              <div className="skill-orbit so-cv"><span className="orbit-satellite"><Eye/><b>CV</b></span></div>
+              <div className="skill-orbit so-ml"><span className="orbit-satellite"><BrainCircuit/><b>ML</b></span></div>
+              <div className="skill-orbit so-swe"><span className="orbit-satellite"><Code2/><b>SWE</b></span></div>
+              <div className="skill-orbit so-ai"><span className="orbit-satellite"><Cpu/><b>AI</b></span></div>
+              <div className="skill-orbit so-dsa"><span className="orbit-satellite"><Terminal/><b>DSA</b></span></div>
+              <div className="skill-orbit so-hci"><span className="orbit-satellite"><MousePointer2/><b>HCI</b></span></div>
+              <div className="skill-orbit so-geo"><span className="orbit-satellite"><MapPin/><b>GEO</b></span></div>
+            </div>
           </div>
           <div className="orb-caption">RESEARCH × ENGINEERING × PROBLEM SOLVING</div>
         </div>
@@ -222,9 +559,16 @@ function App(){
         <div className="github-panel"><div><Github size={38}/><h3>GitHub / AnikaJerin</h3><p>AI experiments, research implementations, libraries, full-stack systems, algorithms and ongoing learning.</p><a className="text-link" href={PROFILE.github} target="_blank">Explore repositories <ArrowUpRight size={15}/></a></div><div className="gh-numbers"><strong>{gh?.public_repos ?? "35+"}</strong><span>public repos</span><strong>{gh?.followers ?? "—"}</strong><span>followers</span></div></div>
       </Section>
 
-      <Section id="skills" eyebrow="06 — TECHNICAL ARSENAL" title="Tools I use to turn ideas into systems.">
-        <div className="skills">{skills.map(([a,b])=><div key={a}><span>{a}</span><p>{b}</p></div>)}</div>
-      </Section>
+      <section id="skills" className="section skills-section-wrap">
+        <div className="section-head">
+          <span>06 — TECH STACK</span>
+          <h2 className="skills-main-title">My <span className="skills-gradient-title">Skills</span></h2>
+        </div>
+        <SkillGlobe />
+        <div className="skills skills-text-breakdown">
+          {skills.map(([a,b])=><div key={a}><span>{a}</span><p>{b}</p></div>)}
+        </div>
+      </section>
 
       <Section id="credentials" eyebrow="07 — EDUCATION & RECOGNITION" title="Grounded in delivery, driven by learning.">
         <div className="credentials-grid">
