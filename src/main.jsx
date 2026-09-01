@@ -8,6 +8,41 @@ import {
 } from "lucide-react";
 import "./styles.css";
 
+/* ─── Typewriter hook ─────────────────────────────────────────────────── */
+// segments: array of { text, em } — em=true wraps in <em>
+// Returns { nodes, done } where nodes is renderable JSX children
+function useTypewriter(segments, { speed = 45, startDelay = 350 } = {}) {
+  const flat = segments.map(s => ({ ...s, chars: [...s.text] }));
+  const totalChars = flat.reduce((n, s) => n + s.chars.length, 0);
+  const [count, setCount] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const t = setTimeout(() => setStarted(true), startDelay);
+    return () => clearTimeout(t);
+  }, [startDelay]);
+
+  useEffect(() => {
+    if (!started || count >= totalChars) return;
+    const t = setTimeout(() => setCount(c => c + 1), speed);
+    return () => clearTimeout(t);
+  }, [started, count, totalChars, speed]);
+
+  const done = count >= totalChars;
+
+  // Build display nodes
+  let remaining = count;
+  const nodes = flat.map((seg, i) => {
+    const visible = seg.chars.slice(0, remaining).join("");
+    remaining = Math.max(0, remaining - seg.chars.length);
+    return seg.em
+      ? <em key={i}>{visible}</em>
+      : <React.Fragment key={i}>{visible}</React.Fragment>;
+  });
+
+  return { nodes, done };
+}
+
 const PROFILE = {
   name: "Syeda Anika Jerin",
   short: "ANIKA JERIN",
@@ -174,6 +209,32 @@ function SkillIcon({ type, color }) {
     default:
       return <Code2 size={20} color={color}/>;
   }
+}
+
+function HeroHeading() {
+  // line 1: "Building software\n" — typed first
+  // line 2: "that " (plain) + "thinks." (em)
+  const SEGMENTS = [
+    { text: "Building software\nthat ", em: false },
+    { text: "thinks.",               em: true  },
+  ];
+  const { nodes, done } = useTypewriter(SEGMENTS, { speed: 42, startDelay: 400 });
+
+  // Split first segment at the newline for the <br/> to work
+  const line1End = nodes[0]?.props?.children?.indexOf("\n") ?? -1;
+  const rawLine1 = nodes[0]?.props?.children ?? "";
+  const beforeBreak = line1End >= 0 ? rawLine1.slice(0, line1End) : rawLine1;
+  const afterBreak  = line1End >= 0 ? rawLine1.slice(line1End + 1) : "";
+
+  return (
+    <h1 className="hero-typewriter">
+      {beforeBreak}
+      {line1End >= 0 && <br/>}
+      {afterBreak}
+      {nodes[1]}{/* <em>thinks.</em> */}
+      <span className={`tw-cursor${done ? " tw-cursor--done" : ""}`}>|</span>
+    </h1>
+  );
 }
 
 function SkillGlobe() {
@@ -930,7 +991,7 @@ function App(){
       <section id="home" className="hero">
         <div className="hero-copy">
           <div className="eyebrow"><span className="dot"/> SOFTWARE ENGINEER · AI ENGINEER · RESEARCHER</div>
-          <h1>Building software<br/>that <em>thinks.</em></h1>
+          <HeroHeading />
           <p className="hero-text">I'm {PROFILE.name}, a software engineer with 5+ years shipping AI-driven systems - from computer vision and data platforms to research-grade machine learning.</p>
           <div className="hero-actions">
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
