@@ -211,7 +211,7 @@ function SkillIcon({ type, color }) {
   }
 }
 
-function ZebraWord({ text, className = "", style = {}, isYellow = true, stripeColor = null }) {
+function ZebraWord({ text, className = "", style = {}, isYellow = false, stripeColor = null }) {
   const ref = useRef(null);
   const [inView, setInView] = useState(false);
   // animState = null | { targets: { [charIdx]: { inDir, outDir } }, phase: 'in'|'hold'|'out', active: boolean }
@@ -351,6 +351,11 @@ function ZebraWord({ text, className = "", style = {}, isYellow = true, stripeCo
     }
   };
 
+  // Tokenize text into words and spaces
+  const tokens = useMemo(() => text.split(/(\s+)/), [text]);
+
+  let globalCharCounter = 0;
+
   return (
     <span
       ref={ref}
@@ -358,105 +363,120 @@ function ZebraWord({ text, className = "", style = {}, isYellow = true, stripeCo
       style={{ display: "inline", whiteSpace: "normal", ...style }}
       onMouseEnter={triggerNow}
     >
-      {text.split("").map((char, charIdx) => {
-        // Natural whitespace for spaces to ensure responsive word-wrapping without layout bugs
-        if (char === " ") {
-          return <React.Fragment key={charIdx}> </React.Fragment>;
+      {tokens.map((token, tokenIdx) => {
+        // Natural whitespace for space runs to ensure responsive word-wrapping across all viewports
+        if (/\s+/.test(token)) {
+          globalCharCounter += token.length;
+          return <React.Fragment key={tokenIdx}>{token}</React.Fragment>;
         }
 
-        const targetInfo = animState?.targets?.[charIdx];
-        const isTarget = !!targetInfo;
-        const phase = isTarget ? animState.phase : "idle";
-        const inDir = isTarget ? targetInfo.inDir : "Up";
-        const outDir = isTarget ? targetInfo.outDir : "Up";
-        const isActive = isTarget ? animState.active : false;
-
-        let solidTransform = "translate3d(0, 0, 0)";
-        let solidOpacity = 1;
-        let stripedTransform = getOppositeOffscreenTransform(inDir);
-        let stripedOpacity = 0;
-        let transition = "none";
-
-        const smoothTransition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease";
-
-        if (isTarget) {
-          if (phase === "in") {
-            if (!isActive) {
-              solidTransform = "translate3d(0, 0, 0)";
-              solidOpacity = 1;
-              stripedTransform = getOppositeOffscreenTransform(inDir);
-              stripedOpacity = 0;
-              transition = "none";
-            } else {
-              solidTransform = getOffscreenTransform(inDir);
-              solidOpacity = 0;
-              stripedTransform = "translate3d(0, 0, 0)";
-              stripedOpacity = 1;
-              transition = smoothTransition;
-            }
-          } else if (phase === "hold") {
-            solidTransform = getOffscreenTransform(inDir);
-            solidOpacity = 0;
-            stripedTransform = "translate3d(0, 0, 0)";
-            stripedOpacity = 1;
-            transition = "none";
-          } else if (phase === "out") {
-            if (!isActive) {
-              stripedTransform = "translate3d(0, 0, 0)";
-              stripedOpacity = 1;
-              solidTransform = getOppositeOffscreenTransform(outDir);
-              solidOpacity = 0;
-              transition = "none";
-            } else {
-              stripedTransform = getOffscreenTransform(outDir);
-              stripedOpacity = 0;
-              solidTransform = "translate3d(0, 0, 0)";
-              solidOpacity = 1;
-              transition = smoothTransition;
-            }
-          }
-        }
-
-        const customStripeStyle = stripeColor
-          ? {
-              backgroundImage: `repeating-linear-gradient(${
-                inDir === "Left" || inDir === "Right" ? "-55deg" : "35deg"
-              }, ${stripeColor} 0px, ${stripeColor} 3px, transparent 3px, transparent 7px)`,
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }
-          : {};
+        const wordCharStartIndex = globalCharCounter;
+        globalCharCounter += token.length;
 
         return (
-          <span key={charIdx} className="zebra-char-box">
-            {/* Layer 1: Solid base letter */}
-            <span
-              className="zebra-layer"
-              style={{
-                transform: solidTransform,
-                opacity: solidOpacity,
-                transition,
-              }}
-            >
-              {char}
-            </span>
+          <span
+            key={tokenIdx}
+            className="zebra-word-unit"
+            style={{ display: "inline", whiteSpace: "nowrap" }}
+          >
+            {token.split("").map((char, charInWordIdx) => {
+              const charIdx = wordCharStartIndex + charInWordIdx;
+              const targetInfo = animState?.targets?.[charIdx];
+              const isTarget = !!targetInfo;
+              const phase = isTarget ? animState.phase : "idle";
+              const inDir = isTarget ? targetInfo.inDir : "Up";
+              const outDir = isTarget ? targetInfo.outDir : "Up";
+              const isActive = isTarget ? animState.active : false;
 
-            {/* Layer 2: Striped letter overlay */}
-            <span
-              className={`zebra-layer zebra-striped-layer ${
-                isYellow && !stripeColor ? "zebra-striped-bold-yellow" : ""
-              }`}
-              aria-hidden="true"
-              style={{
-                transform: stripedTransform,
-                opacity: stripedOpacity,
-                transition,
-                ...customStripeStyle,
-              }}
-            >
-              {char}
-            </span>
+              let solidTransform = "translate3d(0, 0, 0)";
+              let solidOpacity = 1;
+              let stripedTransform = getOppositeOffscreenTransform(inDir);
+              let stripedOpacity = 0;
+              let transition = "none";
+
+              const smoothTransition = "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease";
+
+              if (isTarget) {
+                if (phase === "in") {
+                  if (!isActive) {
+                    solidTransform = "translate3d(0, 0, 0)";
+                    solidOpacity = 1;
+                    stripedTransform = getOppositeOffscreenTransform(inDir);
+                    stripedOpacity = 0;
+                    transition = "none";
+                  } else {
+                    solidTransform = getOffscreenTransform(inDir);
+                    solidOpacity = 0;
+                    stripedTransform = "translate3d(0, 0, 0)";
+                    stripedOpacity = 1;
+                    transition = smoothTransition;
+                  }
+                } else if (phase === "hold") {
+                  solidTransform = getOffscreenTransform(inDir);
+                  solidOpacity = 0;
+                  stripedTransform = "translate3d(0, 0, 0)";
+                  stripedOpacity = 1;
+                  transition = "none";
+                } else if (phase === "out") {
+                  if (!isActive) {
+                    stripedTransform = "translate3d(0, 0, 0)";
+                    stripedOpacity = 1;
+                    solidTransform = getOppositeOffscreenTransform(outDir);
+                    solidOpacity = 0;
+                    transition = "none";
+                  } else {
+                    stripedTransform = getOffscreenTransform(outDir);
+                    stripedOpacity = 0;
+                    solidTransform = "translate3d(0, 0, 0)";
+                    solidOpacity = 1;
+                    transition = smoothTransition;
+                  }
+                }
+              }
+
+              const customStripeStyle = stripeColor
+                ? {
+                    backgroundImage: `repeating-linear-gradient(${
+                      inDir === "Left" || inDir === "Right" ? "-55deg" : "35deg"
+                    }, ${stripeColor} 0px, ${stripeColor} 3px, transparent 3px, transparent 7px)`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }
+                : {};
+
+              return (
+                <span key={charIdx} className="zebra-char-box">
+                  {/* Layer 1: Solid base letter */}
+                  <span
+                    className="zebra-layer"
+                    style={{
+                      transform: solidTransform,
+                      opacity: solidOpacity,
+                      transition,
+                    }}
+                  >
+                    {char}
+                  </span>
+
+                  {/* Layer 2: Striped letter overlay with solid edge contours */}
+                  <span
+                    className={`zebra-layer zebra-striped-layer ${
+                      !stripeColor ? (isYellow ? "zebra-striped-bold-yellow" : "zebra-striped-bold-white") : ""
+                    }`}
+                    aria-hidden="true"
+                    style={{
+                      transform: stripedTransform,
+                      opacity: stripedOpacity,
+                      transition,
+                      ...customStripeStyle,
+                    }}
+                  >
+                    {char}
+                  </span>
+                </span>
+              );
+            })}
           </span>
         );
       })}
@@ -1358,10 +1378,10 @@ function App(){
       </Section>
 
       <Section id="about" eyebrow="08 — ABOUT" title="A hybrid profile by design.">
-        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI/ML, research, and algorithmic problem solving." /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
+        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI/ML, research, and algorithmic problem solving." isYellow={true} /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
       </Section>
 
-      <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
+      <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." isYellow={true} /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
     </main>
     <footer><span>© {new Date().getFullYear()} {PROFILE.name}</span><span>BUILT WITH REACT · HOSTED ON GITHUB</span><a href="#home"><ArrowUp size={15}/></a></footer>
   </div>
