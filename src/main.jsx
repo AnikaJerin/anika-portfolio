@@ -46,7 +46,7 @@ function useTypewriter(segments, { speed = 45, startDelay = 350 } = {}) {
 const PROFILE = {
   name: "Syeda Anika Jerin",
   short: "ANIKA JERIN",
-  title: "Software Engineer · AI Engineer · Researcher",
+  title: "Software Engineer · AI Engineer",
   email: "s.anikajerin@gmail.com",
   github: "https://github.com/AnikaJerin",
   linkedin: "https://www.linkedin.com/in/anika-jerin/",
@@ -1293,7 +1293,7 @@ function App(){
     <main>
       <section id="home" className="hero">
         <div className="hero-copy">
-          <div className="eyebrow"><span className="dot"/> SOFTWARE ENGINEER · AI ENGINEER · RESEARCHER</div>
+          <div className="eyebrow"><span className="dot"/> SOFTWARE ENGINEER · AI ENGINEER</div>
           <HeroHeading />
           <p className="hero-text">
             I'm {PROFILE.name}, a software engineer with 5+ years of building intelligent, scalable solutions across Computer Vision, Deep Learning, Odoo ERP, and full-stack development. I’ve worked on <strong>AI-driven software, enterprise platforms, and business automation solutions</strong> for a range of clients, with major projects including the <strong>Bangladesh Highway Police, Bangladesh Meteorological Department, and Smart Technologies</strong>. My experience spans <strong>AI/ML, Computer Vision, full-stack development, and complex Odoo ERP customization and integration</strong>, while my research explores <strong>multimodal medical AI, HCI, and interactive 3D visualization</strong>. I enjoy turning complex ideas into <strong>practical, scalable technology</strong>.
@@ -1305,7 +1305,7 @@ function App(){
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
-            <span>PYTHON</span><i/> <span>PYTORCH</span><i/> <span>COMPUTER VISION</span><i/> <span>ALGORITHMS</span>
+            <span>AI</span><i/> <span>SWE (FULL-STACK)</span><i/> <span>RESEARCH</span><i/> <span>ODOO ERP</span>
           </div>
         </div>
 
@@ -1354,7 +1354,7 @@ function App(){
         <StatCard icon={Code2} label="Engineering" value="5+ years" sub="Production software & AI"/>
         <StatCard icon={BrainCircuit} label="Focus" value="AI + SWE" sub="Production & research"/>
         <StatCard icon={Github} label="GitHub" value={`${gh?.public_repos ?? 37} repos`} sub="Live public repositories"/>
-        <StatCard icon={Trophy} label="Problem Solving" value={`${totalCombinedSolved}+`} sub="LeetCode · Codeforces · HackerRank"/>
+        <StatCard icon={Trophy} label="Problem Solving" value={totalCombinedSolved >= 1000 ? `${(totalCombinedSolved / 1000).toFixed(totalCombinedSolved % 1000 === 0 ? 0 : 1)}k+` : totalCombinedSolved} sub="LeetCode · Codeforces · HackerRank"/>
       </section>
 
       <Section id="work" eyebrow="01 — EXPERIENCE" title={<><ZebraWord text="Production engineering" />, not just prototypes.</>}>
