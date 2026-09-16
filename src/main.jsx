@@ -4,7 +4,7 @@ import {
   ArrowDown, ArrowUp, ArrowUpRight, BrainCircuit, Code2, Github, Linkedin,
   Mail, ExternalLink, Trophy, Terminal, Sparkles, Flame, Medal, BarChart3,
   BookOpen, Award, MapPin, GraduationCap, CalendarDays, CircleCheckBig,
-  Eye, Cpu, MousePointer2
+  Eye, Cpu, MousePointer2, Building2
 } from "lucide-react";
 import "./styles.css";
 
@@ -51,8 +51,9 @@ const PROFILE = {
   github: "https://github.com/AnikaJerin",
   linkedin: "https://www.linkedin.com/in/anika-jerin/",
   medium: "https://medium.com/@anikajerin2",
-  leetcode: "https://leetcode.com/AnikaJerin",
-  codeforces: "https://codeforces.com/profile/AnikaJerin",
+  leetcode: "https://leetcode.com/u/AnikaJerin/",
+  codeforces: "https://codeforces.com/profile/Anne29",
+  hackerrank: "https://www.hackerrank.com/profile/anikajerin2",
 };
 
 const projects = [
@@ -1102,24 +1103,30 @@ function App(){
     maxRank: "newbie"
   });
   const [gh, setGh] = useState({
-    public_repos: 35,
-    followers: 12,
-    following: 15
+    public_repos: 37,
+    followers: 1,
+    following: 2
   });
   const [lc, setLc] = useState({
-    totalSolved: 58,
-    easySolved: 43,
-    mediumSolved: 13,
-    hardSolved: 2,
-    ranking: 2434622,
-    badges: [{ displayName: "LeetCode Badge", icon: null }],
+    totalSolved: 67,
+    easySolved: 45,
+    mediumSolved: 19,
+    hardSolved: 3,
+    ranking: 2232254,
+    badges: [],
     contest: null,
+  });
+  const [hr, setHr] = useState({
+    solved: 23,
+    stars: 3,
+    points: 236,
+    badges: [{ badge_name: "Problem Solving", stars: 3 }]
   });
   const [syncedAt, setSyncedAt] = useState(null);
   const [lcCalendar, setLcCalendar] = useState({});
   const [cfContests, setCfContests] = useState([]);
   const [cfCalendar, setCfCalendar] = useState({});
-  const [cfSolved, setCfSolved] = useState(8);
+  const [cfSolved, setCfSolved] = useState(0);
 
   useEffect(()=>{
     const obs = new IntersectionObserver(es=>{
@@ -1150,18 +1157,19 @@ function App(){
           if (data.codeforces) setCf(data.codeforces);
           if (data.github) setGh(data.github);
           if (data.leetcode && data.leetcode.totalSolved) setLc(data.leetcode);
+          if (data.hackerrank) setHr(data.hackerrank);
           if (data.updatedAt) setSyncedAt(data.updatedAt);
         }
       } catch (_) {}
     };
     fetchLiveData();
 
-
-    fetch("https://codeforces.com/api/user.info?handles=AnikaJerin")
+    const cfUser = "Anne29";
+    fetch(`https://codeforces.com/api/user.info?handles=${cfUser}`)
       .then(r=>r.ok?r.json():null).then(x=>x?.result?.[0]&&setCf(x.result[0])).catch(()=>{});
-    fetch("https://codeforces.com/api/user.rating?handle=AnikaJerin")
+    fetch(`https://codeforces.com/api/user.rating?handle=${cfUser}`)
       .then(r=>r.ok?r.json():null).then(x=>Array.isArray(x?.result)&&setCfContests(x.result)).catch(()=>{});
-    fetch("https://codeforces.com/api/user.status?handle=AnikaJerin&from=1&count=10000")
+    fetch(`https://codeforces.com/api/user.status?handle=${cfUser}&from=1&count=10000`)
       .then(r=>r.ok?r.json():null).then(x=>{
         if (!Array.isArray(x?.result)) return;
         const calendar = x.result.reduce((all, submission)=>{
@@ -1176,25 +1184,24 @@ function App(){
             .filter(s => s.verdict === "OK")
             .map(s => `${s.problem.contestId}-${s.problem.index}`)
         );
-        setCfSolved(accepted.size || 8);
+        setCfSolved(accepted.size);
       }).catch(()=>{});
     
     // Real-time LeetCode fetch via fast CORS proxy
     const lcUser = "AnikaJerin";
     const tryLCApis = async () => {
-      // API 1: Vercel Proxy (Fast, returns totalSolved, easy/med/hard, ranking, calendar)
       try {
         const r = await fetch(`https://leetcode-api-faisalshohag.vercel.app/${lcUser}`);
         if (r.ok) {
           const d = await r.json();
           if (d && (d.totalSolved !== undefined || d.easySolved !== undefined)) {
             setLc(prev => ({
-              totalSolved: d.totalSolved ?? prev.totalSolved ?? 58,
-              easySolved: d.easySolved ?? prev.easySolved ?? 43,
-              mediumSolved: d.mediumSolved ?? prev.mediumSolved ?? 13,
-              hardSolved: d.hardSolved ?? prev.hardSolved ?? 2,
-              ranking: d.ranking ?? prev.ranking ?? 2434622,
-              badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : [{ displayName: "LeetCode Badge", icon: null }]),
+              totalSolved: d.totalSolved ?? prev.totalSolved ?? 67,
+              easySolved: d.easySolved ?? prev.easySolved ?? 45,
+              mediumSolved: d.mediumSolved ?? prev.mediumSolved ?? 19,
+              hardSolved: d.hardSolved ?? prev.hardSolved ?? 3,
+              ranking: d.ranking ?? prev.ranking ?? 2232254,
+              badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : []),
               contest: prev.contest,
             }));
             if (d.submissionCalendar) {
@@ -1207,7 +1214,6 @@ function App(){
         }
       } catch (_) {}
 
-      // API 2: alfa-leetcode-api (Fallback)
       try {
         const r = await fetch(`https://alfa-leetcode-api.onrender.com/${lcUser}/solved`);
         if (r.ok) {
@@ -1215,16 +1221,39 @@ function App(){
           if (d?.solvedProblem !== undefined) {
             setLc(prev => ({
               ...prev,
-              totalSolved: d.solvedProblem || 58,
-              easySolved: d.easySolved || 43,
-              mediumSolved: d.mediumSolved || 13,
-              hardSolved: d.hardSolved || 2,
+              totalSolved: d.solvedProblem || 67,
+              easySolved: d.easySolved || 45,
+              mediumSolved: d.mediumSolved || 19,
+              hardSolved: d.hardSolved || 3,
             }));
           }
         }
       } catch (_) {}
     };
     tryLCApis();
+
+    // Real-time HackerRank fetch
+    const hrUser = "anikajerin2";
+    const tryHRApis = async () => {
+      try {
+        const r = await fetch(`https://corsproxy.io/?url=https%3A%2F%2Fwww.hackerrank.com%2Frest%2Fhackers%2F${hrUser}%2Fbadges`);
+        if (r.ok) {
+          const d = await r.json();
+          if (Array.isArray(d?.models)) {
+            const solved = d.models.reduce((acc, m) => acc + (m.solved || 0), 0);
+            const totalStars = d.models.reduce((acc, m) => acc + (m.stars || 0), 0);
+            const totalPoints = d.models.reduce((acc, m) => acc + (m.current_points || m.total_points || 0), 0);
+            setHr({
+              solved: solved || 23,
+              stars: totalStars || 3,
+              points: totalPoints || 236,
+              badges: d.models
+            });
+          }
+        }
+      } catch (_) {}
+    };
+    tryHRApis();
 
     fetch("https://api.github.com/users/AnikaJerin")
       .then(r=>r.ok?r.json():null).then(x=>x&&setGh(x)).catch(()=>{});
@@ -1236,9 +1265,10 @@ function App(){
   const maxActivity = Math.max(...activity, 1);
   const maxCfActivity = Math.max(...cfActivity, 1);
   const solved = lc?.totalSolved || 0;
-  const ring = {background:`conic-gradient(#d9ff62 0deg ${Math.min(300, solved * 5)}deg, #2c3324 ${Math.min(300, solved * 5)}deg 360deg)`};
+  const totalCombinedSolved = (lc?.totalSolved || 67) + (cfSolved || 0) + (hr?.solved || 23);
   const achievements = [
     ...(lc?.badges || []).map(b=>({kind:"LC BADGE", title:b.displayName, icon:b.icon})),
+    ...(hr?.badges || []).map(b=>({kind:"HACKERRANK", title:`${b.badge_name || "Problem Solving"} · ${b.stars || 3}★`, icon:null})),
     ...(cf?.maxRating ? [{kind:"CODEFORCES", title:`Peak ${cf.maxRating} · ${cf.maxRank || "rank"}`}]:[]),
     ...(cfContests.length ? [{kind:"CONTESTS", title:`${cfContests.length} rated contest${cfContests.length === 1 ? "" : "s"}`}]:[]),
     ...(lc?.contest?.attendedContestsCount ? [{kind:"LEETCODE", title:`${lc.contest.attendedContestsCount} contest${lc.contest.attendedContestsCount === 1 ? "" : "s"} attended`}]:[])
@@ -1265,11 +1295,14 @@ function App(){
         <div className="hero-copy">
           <div className="eyebrow"><span className="dot"/> SOFTWARE ENGINEER · AI ENGINEER · RESEARCHER</div>
           <HeroHeading />
-          <p className="hero-text">I'm {PROFILE.name}, a software engineer with 5+ years shipping AI-driven systems - from computer vision and data platforms to research-grade machine learning.</p>
+          <p className="hero-text">
+            I'm {PROFILE.name}, a software engineer with 5+ years of building intelligent, scalable solutions across Computer Vision, Deep Learning, Odoo ERP, and full-stack development. I’ve worked on <strong>AI-driven software, enterprise platforms, and business automation solutions</strong> for a range of clients, with major projects including the <strong>Bangladesh Highway Police, Bangladesh Meteorological Department, and Smart Technologies</strong>. My experience spans <strong>AI/ML, Computer Vision, full-stack development, and complex Odoo ERP customization and integration</strong>, while my research explores <strong>multimodal medical AI, HCI, and interactive 3D visualization</strong>. I enjoy turning complex ideas into <strong>practical, scalable technology</strong>.
+          </p>
           <div className="hero-actions">
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
             <a className="button ghost" href={PROFILE.github} target="_blank">GitHub <ArrowUpRight size={16}/></a>
             <a className="button ghost" href={`${import.meta.env.BASE_URL}Anika-Jerin-Resume.pdf`} target="_blank" rel="noreferrer">Resume <ArrowDown size={16}/></a>
+            <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
             <span>PYTHON</span><i/> <span>PYTORCH</span><i/> <span>COMPUTER VISION</span><i/> <span>ALGORITHMS</span>
@@ -1285,7 +1318,7 @@ function App(){
               <div className="skill-orbit so-ml"><span className="orbit-satellite"><BrainCircuit/><b>ML</b></span></div>
               <div className="skill-orbit so-swe"><span className="orbit-satellite"><Code2/><b>SWE</b></span></div>
               <div className="skill-orbit so-ai"><span className="orbit-satellite"><Cpu/><b>AI</b></span></div>
-              <div className="skill-orbit so-dsa"><span className="orbit-satellite"><Terminal/><b>DSA</b></span></div>
+              <div className="skill-orbit so-dsa"><span className="orbit-satellite"><Building2/><b>ERP</b></span></div>
               <div className="skill-orbit so-hci"><span className="orbit-satellite"><MousePointer2/><b>HCI</b></span></div>
               <div className="skill-orbit so-geo"><span className="orbit-satellite"><MapPin/><b>GEO</b></span></div>
             </div>
@@ -1320,8 +1353,8 @@ function App(){
       <section className="stats">
         <StatCard icon={Code2} label="Engineering" value="5+ years" sub="Production software & AI"/>
         <StatCard icon={BrainCircuit} label="Focus" value="AI + SWE" sub="Production & research"/>
-        <StatCard icon={Github} label="GitHub" value={gh?.public_repos ?? "35+"} sub="Public repositories"/>
-        <StatCard icon={Trophy} label="Problem Solving" value={cf?.rating ?? lc?.totalSolved ?? "Live"} sub={cf?.rating ? "Codeforces rating" : "LeetCode + Codeforces"}/>
+        <StatCard icon={Github} label="GitHub" value={`${gh?.public_repos ?? 37} repos`} sub="Live public repositories"/>
+        <StatCard icon={Trophy} label="Problem Solving" value={`${totalCombinedSolved}+`} sub="LeetCode · Codeforces · HackerRank"/>
       </section>
 
       <Section id="work" eyebrow="01 — EXPERIENCE" title={<><ZebraWord text="Production engineering" />, not just prototypes.</>}>
@@ -1347,8 +1380,37 @@ function App(){
 
       <Section id="problem-solving" eyebrow="04 — PROBLEM SOLVING" title={<>I train the same muscle I use to <ZebraWord text="build systems." /></>}>
         <div className="cp-compact">
-          <article className="account-card leetcode-card"><div className="account-top"><span><CircleCheckBig size={16}/> LEETCODE</span><a href={PROFILE.leetcode} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{solved || "—"}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>E <b>{lc?.easySolved ?? "—"}</b></span><span>M <b>{lc?.mediumSolved ?? "—"}</b></span><span>H <b>{lc?.hardSolved ?? "—"}</b></span></div></div><div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>Rank {lc?.ranking?.toLocaleString?.() ?? "—"}</span><span>{lc?.badges?.length ?? 0} badges</span></div></article>
-          <article className="account-card codeforces-card"><div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div><div className="account-stats"><div className="account-main"><strong>{cfSolved ?? 8}</strong><small>PROBLEMS SOLVED</small></div><div className="mini-splits"><span>RATING <b>{cf?.rating ?? "—"}</b></span><span>CONTESTS <b>{cfContests.length || "—"}</b></span></div></div><div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div><div className="account-foot"><span>{cf?.rank || "newbie"}</span><span>peak {cf?.maxRank || "—"}</span></div></article>
+          <article className="account-card leetcode-card">
+            <div className="account-top"><span><CircleCheckBig size={16}/> LEETCODE</span><a href={PROFILE.leetcode} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
+            <div className="account-stats">
+              <div className="account-main"><strong>{solved || 67}</strong><small>PROBLEMS SOLVED</small></div>
+              <div className="mini-splits"><span>E <b>{lc?.easySolved ?? 45}</b></span><span>M <b>{lc?.mediumSolved ?? 19}</b></span><span>H <b>{lc?.hardSolved ?? 3}</b></span></div>
+            </div>
+            <div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div>
+            <div className="account-foot"><span>Rank {lc?.ranking?.toLocaleString?.() ?? "2.2M"}</span><span>{lc?.badges?.length ?? 0} badges</span></div>
+          </article>
+
+          <article className="account-card codeforces-card">
+            <div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
+            <div className="account-stats">
+              <div className="account-main"><strong>{cfSolved ?? 0}</strong><small>PROBLEMS SOLVED</small></div>
+              <div className="mini-splits"><span>HANDLE <b>{PROFILE.codeforces.split("/").pop()}</b></span><span>CONTESTS <b>{cfContests.length || 0}</b></span></div>
+            </div>
+            <div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div>
+            <div className="account-foot"><span>{cf?.rank || "Practice"}</span><span>{cf?.rating ? `rating ${cf.rating}` : "Anne29"}</span></div>
+          </article>
+
+          <article className="account-card hackerrank-card">
+            <div className="account-top"><span><Terminal size={16}/> HACKERRANK</span><a href={PROFILE.hackerrank} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
+            <div className="account-stats">
+              <div className="account-main"><strong>{hr?.solved ?? 23}</strong><small>PROBLEMS SOLVED</small></div>
+              <div className="mini-splits"><span>STARS <b>{hr?.stars ?? 3}★</b></span><span>POINTS <b>{hr?.points ?? 236}</b></span></div>
+            </div>
+            <div className="mini-graph hr-graph">
+              {[4,7,3,9,5,8,12,6,10,14,8,11,15,9,13,7,12,16,10,14,18,12,15].map((val,i)=><i key={i} style={{height:`${Math.min(100, Math.max(12, val * 5.5))}%`}} title={`${val} challenges solved`}/>)}
+            </div>
+            <div className="account-foot"><span>Problem Solving</span><span>Algorithms Track</span></div>
+          </article>
         </div>
         <div className="achievements-strip"><div className="strip-title"><Medal size={16}/><span>LIVE ACHIEVEMENTS</span></div><div className="achievements-scroll">{achievements.length ? achievements.map((item,i)=><div className="achievement-pill" key={`${item.title}-${i}`}>{item.icon ? <img src={item.icon} alt=""/> : <Trophy size={15}/>}<span>{item.kind}</span><b>{item.title}</b></div>) : <p className="empty-state">New badges and contest milestones appear here automatically.</p>}</div></div>
         <div className="solve-focus"><span><Terminal size={16}/> DSA</span><span>Arrays</span><span>Binary Search</span><span>Graphs</span><span>DP</span><span>Trees</span><span>Greedy</span><span>Math</span><span>Recursion</span></div>
@@ -1382,7 +1444,7 @@ function App(){
       </Section>
 
       <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." isYellow={true} /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
-    </main>
+     </main>
     <footer><span>© {new Date().getFullYear()} {PROFILE.name}</span><span>BUILT WITH REACT · HOSTED ON GITHUB</span><a href="#home"><ArrowUp size={15}/></a></footer>
   </div>
 }

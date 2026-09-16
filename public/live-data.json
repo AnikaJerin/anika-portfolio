@@ -1,28 +1,60 @@
 {
-  "updatedAt": "2026-09-01T21:05:00Z",
+  "updatedAt": "2026-09-16T14:50:52.824Z",
   "github": {
-    "public_repos": 35,
-    "followers": 12,
-    "following": 15
+    "public_repos": 37,
+    "followers": 1,
+    "following": 2,
+    "updated_at": "2026-09-14T18:46:58Z"
   },
   "codeforces": {
-    "rating": 1200,
-    "rank": "newbie",
-    "maxRating": 1200,
-    "maxRank": "newbie"
+    "solved": 0
   },
   "leetcode": {
-    "totalSolved": 58,
-    "easySolved": 43,
-    "mediumSolved": 13,
-    "hardSolved": 2,
-    "ranking": 2434622,
+    "totalSolved": 67,
+    "easySolved": 45,
+    "mediumSolved": 19,
+    "hardSolved": 3,
+    "ranking": 2232254,
+    "badges": [],
+    "submissionCalendar": {
+      "1764115200": 5,
+      "1766102400": 1,
+      "1766275200": 1,
+      "1767398400": 3,
+      "1768176000": 1,
+      "1771200000": 5,
+      "1771459200": 7,
+      "1771718400": 1,
+      "1788307200": 3,
+      "1788393600": 2,
+      "1788652800": 9,
+      "1789171200": 4
+    }
+  },
+  "hackerrank": {
+    "solved": 23,
+    "stars": 3,
+    "points": 236,
     "badges": [
       {
-        "displayName": "LeetCode Solver",
-        "icon": null
+        "badge_category": "HackerBadge::MultiDomain",
+        "badge_type": "problem-solving",
+        "category_name": null,
+        "badge_name": "Problem Solving",
+        "badge_short_name": null,
+        "total_stars": 6,
+        "total_points": 475,
+        "url": "/domains/algorithms",
+        "solved": 23,
+        "total_challenges": 563,
+        "track_total_score": 0,
+        "hacker_rank": 1001192,
+        "stars": 3,
+        "level": 2,
+        "current_points": 236,
+        "progress_to_next_star": 0.13,
+        "upcoming_level": null
       }
-    ],
-    "contest": null
+    ]
   }
 }
