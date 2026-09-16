@@ -1113,14 +1113,31 @@ function App(){
     mediumSolved: 19,
     hardSolved: 3,
     ranking: 2232254,
-    badges: [],
-    contest: null,
+    contestRating: 1480,
+    globalRanking: null,
+    attendedContests: 1,
+    badges: [
+      {
+        displayName: "Data Structure I",
+        icon: "https://assets.leetcode.com/static_assets/others/DS_I.png"
+      }
+    ],
+    contest: { rating: 1480, attendedContestsCount: 1, globalRanking: null },
   });
   const [hr, setHr] = useState({
     solved: 23,
     stars: 3,
     points: 236,
-    badges: [{ badge_name: "Problem Solving", stars: 3 }]
+    badges: [{ badge_name: "Problem Solving", stars: 3, points: 236, solved: 23 }],
+    certifications: [
+      { title: "Software Engineer", role: "Role Verified", kind: "CERTIFICATION" },
+      { title: "Orchestrate", role: "Certified", kind: "CERTIFICATION" }
+    ],
+    orchestrate: {
+      edition: "Sep 2026",
+      rank: "#924",
+      percentile: "Top 31%"
+    }
   });
   const [syncedAt, setSyncedAt] = useState(null);
   const [lcCalendar, setLcCalendar] = useState({});
@@ -1196,13 +1213,15 @@ function App(){
           const d = await r.json();
           if (d && (d.totalSolved !== undefined || d.easySolved !== undefined)) {
             setLc(prev => ({
+              ...prev,
               totalSolved: d.totalSolved ?? prev.totalSolved ?? 67,
               easySolved: d.easySolved ?? prev.easySolved ?? 45,
               mediumSolved: d.mediumSolved ?? prev.mediumSolved ?? 19,
               hardSolved: d.hardSolved ?? prev.hardSolved ?? 3,
               ranking: d.ranking ?? prev.ranking ?? 2232254,
-              badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : []),
-              contest: prev.contest,
+              contestRating: prev.contestRating ?? 1480,
+              globalRanking: prev.globalRanking ?? null,
+              badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : [{ displayName: "Data Structure I", icon: "https://assets.leetcode.com/static_assets/others/DS_I.png" }]),
             }));
             if (d.submissionCalendar) {
               setLcCalendar(typeof d.submissionCalendar === "string"
@@ -1243,12 +1262,13 @@ function App(){
             const solved = d.models.reduce((acc, m) => acc + (m.solved || 0), 0);
             const totalStars = d.models.reduce((acc, m) => acc + (m.stars || 0), 0);
             const totalPoints = d.models.reduce((acc, m) => acc + (m.current_points || m.total_points || 0), 0);
-            setHr({
-              solved: solved || 23,
-              stars: totalStars || 3,
-              points: totalPoints || 236,
-              badges: d.models
-            });
+            setHr(prev => ({
+              ...prev,
+              solved: solved || prev.solved || 23,
+              stars: totalStars || prev.stars || 3,
+              points: totalPoints || prev.points || 236,
+              badges: d.models.length ? d.models : prev.badges
+            }));
           }
         }
       } catch (_) {}
@@ -1267,11 +1287,13 @@ function App(){
   const solved = lc?.totalSolved || 0;
   const totalCombinedSolved = (lc?.totalSolved || 67) + (cfSolved || 0) + (hr?.solved || 23);
   const achievements = [
-    ...(lc?.badges || []).map(b=>({kind:"LC BADGE", title:b.displayName, icon:b.icon})),
-    ...(hr?.badges || []).map(b=>({kind:"HACKERRANK", title:`${b.badge_name || "Problem Solving"} · ${b.stars || 3}★`, icon:null})),
+    ...(lc?.badges || []).map(b=>({kind:"LEETCODE BADGE", title:b.displayName, icon:b.icon})),
+    ...(hr?.badges || []).map(b=>({kind:"HACKERRANK BADGE", title:`${b.badge_name || "Problem Solving"} · ${b.stars || 3}★`, icon:null})),
+    ...(hr?.certifications || []).map(c=>({kind:"CERTIFICATION", title:`${c.title} · ${c.role}`, icon:null})),
+    ...(hr?.orchestrate ? [{kind:"ORCHESTRATE", title:`Rank ${hr.orchestrate.rank} · ${hr.orchestrate.percentile} (${hr.orchestrate.edition})`, icon:null}]:[]),
     ...(cf?.maxRating ? [{kind:"CODEFORCES", title:`Peak ${cf.maxRating} · ${cf.maxRank || "rank"}`}]:[]),
     ...(cfContests.length ? [{kind:"CONTESTS", title:`${cfContests.length} rated contest${cfContests.length === 1 ? "" : "s"}`}]:[]),
-    ...(lc?.contest?.attendedContestsCount ? [{kind:"LEETCODE", title:`${lc.contest.attendedContestsCount} contest${lc.contest.attendedContestsCount === 1 ? "" : "s"} attended`}]:[])
+    ...(lc?.contestRating || lc?.contest?.rating ? [{kind:"LEETCODE CONTEST", title:`Rating ${Math.round(lc?.contestRating || lc?.contest?.rating)} · ${lc?.globalRanking ? `Global Rank #${lc.globalRanking.toLocaleString()}` : `${lc?.attendedContests || 1} contest attended`}`}]:[])
   ];
   return <div>
     <IconRain />
@@ -1387,7 +1409,10 @@ function App(){
               <div className="mini-splits"><span>E <b>{lc?.easySolved ?? 45}</b></span><span>M <b>{lc?.mediumSolved ?? 19}</b></span><span>H <b>{lc?.hardSolved ?? 3}</b></span></div>
             </div>
             <div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div>
-            <div className="account-foot"><span>Rank {lc?.ranking?.toLocaleString?.() ?? "2.2M"}</span><span>{lc?.badges?.length ?? 0} badges</span></div>
+            <div className="account-foot">
+              <span>{lc?.globalRanking ? `Global Rank #${lc.globalRanking.toLocaleString()}` : `Rating ${lc?.contestRating || lc?.contest?.rating || 1480}`}</span>
+              <span title={lc?.badges?.[0]?.displayName || "Data Structure I"}>{lc?.badges?.length || 1} badge{lc?.badges?.length === 1 ? "" : "s"}</span>
+            </div>
           </article>
 
           <article className="account-card codeforces-card">
@@ -1409,7 +1434,10 @@ function App(){
             <div className="mini-graph hr-graph">
               {[4,7,3,9,5,8,12,6,10,14,8,11,15,9,13,7,12,16,10,14,18,12,15].map((val,i)=><i key={i} style={{height:`${Math.min(100, Math.max(12, val * 5.5))}%`}} title={`${val} challenges solved`}/>)}
             </div>
-            <div className="account-foot"><span>Problem Solving</span><span>Algorithms Track</span></div>
+            <div className="account-foot">
+              <span>Orchestrate {hr?.orchestrate?.rank || "#924"} ({hr?.orchestrate?.percentile || "Top 31%"})</span>
+              <span>{hr?.certifications?.length || 2} Certifications · {hr?.badges?.length || 1} Badge</span>
+            </div>
           </article>
         </div>
         <div className="achievements-strip"><div className="strip-title"><Medal size={16}/><span>LIVE ACHIEVEMENTS</span></div><div className="achievements-scroll">{achievements.length ? achievements.map((item,i)=><div className="achievement-pill" key={`${item.title}-${i}`}>{item.icon ? <img src={item.icon} alt=""/> : <Trophy size={15}/>}<span>{item.kind}</span><b>{item.title}</b></div>) : <p className="empty-state">New badges and contest milestones appear here automatically.</p>}</div></div>

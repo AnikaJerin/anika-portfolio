@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-16T14:50:52.824Z",
+  "updatedAt": "2026-09-16T16:01:14.748Z",
   "github": {
     "public_repos": 37,
     "followers": 1,
@@ -15,7 +15,17 @@
     "mediumSolved": 19,
     "hardSolved": 3,
     "ranking": 2232254,
-    "badges": [],
+    "contestRating": 1480,
+    "globalRanking": null,
+    "attendedContests": 1,
+    "badges": [
+      {
+        "id": "1020376",
+        "displayName": "Data Structure I",
+        "icon": "https://assets.leetcode.com/static_assets/others/DS_I.png",
+        "creationDate": "2022-09-08"
+      }
+    ],
     "submissionCalendar": {
       "1764115200": 5,
       "1766102400": 1,
@@ -48,13 +58,33 @@
         "solved": 23,
         "total_challenges": 563,
         "track_total_score": 0,
-        "hacker_rank": 1001192,
+        "hacker_rank": 1001198,
         "stars": 3,
         "level": 2,
         "current_points": 236,
         "progress_to_next_star": 0.13,
         "upcoming_level": null
       }
-    ]
+    ],
+    "certifications": [
+      {
+        "title": "Software Engineer",
+        "role": "Role Verified",
+        "kind": "CERTIFICATION",
+        "icon": null
+      },
+      {
+        "title": "Orchestrate",
+        "role": "Certified",
+        "kind": "CERTIFICATION",
+        "icon": null
+      }
+    ],
+    "orchestrate": {
+      "edition": "Sep 2026",
+      "rank": "#924",
+      "percentile": "Top 31%",
+      "medal": null
+    }
   }
 }
