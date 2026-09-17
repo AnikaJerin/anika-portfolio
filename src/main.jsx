@@ -68,16 +68,28 @@ const projects = [
 ];
 
 const experience = [
-  {period:"2020 — 2025", role:"Software Engineer", company:"Smart Technologies BD. Ltd.", points:[
-    "AI-driven traffic monitoring and auto-fining system for Bangladesh Highway Police.",
-    "Computer vision pipelines for speeding, wrong-way driving and automatic number plate recognition.",
-    "Meteorological forecasting and archiving platform handling SYNOP, METAR, TAF, BUFR and related data.",
-    "AI quality monitoring integrated with enterprise ERP workflows.",
-    "RESTful backend APIs and ML inference services."
-  ]},
-  {period:"2020", role:"Software Engineer", company:"Smarter Stock — Ecosoftbd", points:[
-    "Data preparation and LSTM-based stock prediction experimentation."
-  ]}
+  {
+    period: "Dec 2020 — Oct 2025",
+    role: "Software Engineer",
+    company: "Smart Technologies BD. Ltd.",
+    location: "West Kafrul, Dhaka, Bangladesh",
+    points: [
+      "Contributed to high-stakes, government-funded national infrastructure initiatives backed by total funding exceeding 100 Crore BDT (~$10M+ USD) from government agencies and international organizations like the World Meteorological Organization (WMO).",
+      "Developed, optimized, and deployed custom computer vision models (YOLO, DeepSORT) for real-time video inference and automated violation detection in large-scale edge-monitoring applications.",
+      "Engineered core data ingestion, decoding, and forecasting pipelines to process, analyze, and archive heterogeneous real-time sensor and meteorological datasets (e.g., SYNOP, METAR, BUFR).",
+      "Customized and built modular enterprise ERP systems by developing backend APIs and seamlessly integrating business logic across Sales, Inventory, Accounting, POS, and HR/Admission modules using Python and Odoo."
+    ]
+  },
+  {
+    period: "Sept 2020 — Nov 2020",
+    role: "Software Engineer",
+    company: "Smarter Stock — Ecosoftbd",
+    location: "Dhaka, Bangladesh",
+    points: [
+      "Processed, cleaned, and aggregated large-scale time-series financial datasets to inform strategic decision-making.",
+      "Applied deep learning algorithms (LSTM) on processed datasets to model trends and generate predictive analytics."
+    ]
+  }
 ];
 
 const skills = [
@@ -1327,7 +1339,10 @@ function App(){
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
-            <span>AI</span><i/> <span>SWE (FULL-STACK)</span><i/> <span>RESEARCH</span><i/> <span>ODOO ERP</span>
+            <span className="hero-tag hero-tag-ai">AI</span>
+            <span className="hero-tag hero-tag-swe">SWE (FULL-STACK)</span>
+            <span className="hero-tag hero-tag-research">RESEARCH</span>
+            <span className="hero-tag hero-tag-odoo">ODOO ERP</span>
           </div>
         </div>
 
@@ -1380,7 +1395,36 @@ function App(){
       </section>
 
       <Section id="work" eyebrow="01 — EXPERIENCE" title={<><ZebraWord text="Production engineering" />, not just prototypes.</>}>
-        <div className="experience-grid">{experience.map((e,i)=><article className="exp" key={i}><div className="exp-period">{e.period}</div><div><h3>{e.role}</h3><h4>{e.company}</h4><ul>{e.points.map(p=><li key={p}>{p}</li>)}</ul></div></article>)}</div>
+        <div className="experience-grid">
+          {experience.map((e, i) => (
+            <article className="exp" key={i}>
+              <div className="exp-period">
+                <CalendarDays size={13} className="exp-date-icon" />
+                <span>{e.period}</span>
+              </div>
+              <div className="exp-body">
+                <div className="exp-header">
+                  <h3>{e.role}</h3>
+                  <div className="exp-meta">
+                    <span className="exp-company">
+                      <Building2 size={13} /> {e.company}
+                    </span>
+                    {e.location && (
+                      <span className="exp-location">
+                        <MapPin size={13} /> {e.location}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <ul>
+                  {e.points.map((p, pIdx) => (
+                    <li key={pIdx}>{p}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
+        </div>
       </Section>
 
       <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title={<>Work I want engineers to <ZebraWord text="ask" /> me about.</>}>
