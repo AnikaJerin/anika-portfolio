@@ -4,7 +4,9 @@ import {
   ArrowDown, ArrowUp, ArrowUpRight, BrainCircuit, Code2, Github, Linkedin,
   Mail, ExternalLink, Trophy, Terminal, Sparkles, Flame, Medal, BarChart3,
   BookOpen, Award, MapPin, GraduationCap, CalendarDays, CircleCheckBig,
-  Eye, Cpu, MousePointer2, Building2
+  Eye, Cpu, MousePointer2, Building2, Briefcase, CloudSun, Box, Search,
+  Atom, ScanFace, Video, Globe, MessageSquare, Mic, Star, ChevronLeft, ChevronRight,
+  ArrowLeft, X, CheckCircle2
 } from "lucide-react";
 import "./styles.css";
 
@@ -57,15 +59,1065 @@ const PROFILE = {
 };
 
 const projects = [
-  {title:"GSP-RenderX", type:"AI / 3D / Systems", desc:"A web-based 3D engine that replaces heavy STL assets with a compressed format and uses Edge-Aware Gaussian Splatting for real-time reconstruction.", tags:["Three.js","Gaussian Splatting","3D Engine"], link:"https://github.com/AnikaJerin/GSP-RenderX"},
-  {title:"Cross-Modal Alzheimer's Classification", type:"Research / Multimodal AI", desc:"A deep-learning framework that fuses MRI imaging with clinical tabular features for Alzheimer's disease classification.", tags:["PyTorch","Multimodal DL","Medical AI"], link:"https://github.com/AnikaJerin/Cross-Modal-DL-Framework-for-Alzheimer-s-Disease-Classification-Using-MRI-Data-and-Tabular-Features"},
-  {title:"Quantum-Enhanced Graph Learning", type:"Research / Quantum ML", desc:"A hybrid classical-quantum pipeline with a GNN molecular encoder and variational quantum head for bandgap and toxicity prediction.", tags:["GNN","Quantum ML","Molecular AI"], link:"https://github.com/AnikaJerin/Quantum-Enhanced-Graph-Learning-for-Molecular-Design-in-Biomaterials"},
-  {title:"vizreco", type:"AI / Visualization", desc:"A visualization recommendation engine that explores the connection between data, context, and appropriate visual communication.", tags:["AI","Visualization","Data"], link:"https://github.com/AnikaJerin/vizreco"},
-  {title:"YouTube AI Q&A", type:"AI Application", desc:"An intelligent Chrome extension that lets viewers ask natural-language questions about a YouTube video in real time.", tags:["LLM","Chrome Extension","Python"], link:"https://github.com/AnikaJerin/ChaGPT-Extension-for-Youtube"},
-  {title:"GeoMap3D", type:"Open Source / Python", desc:"A declarative Python library for creating and exporting rich, interactive 3D geographic maps without frontend or GIS tooling.", tags:["Python","3D","Visualization"], link:"https://github.com/AnikaJerin/geomap3D"},
-  {title:"Face Recognition + Odoo", type:"Computer Vision / ERP", desc:"Real-time face recognition with Python, OpenCV and Flask, designed to automate attendance workflows in Odoo.", tags:["OpenCV","Flask","Odoo"], link:"https://github.com/AnikaJerin/Face-Recognition-OpenCV"},
-  {title:"WebSocket Chat Room", type:"Full Stack / Real-time", desc:"A real-time chat application combining Flask, React, Socket.IO and WebSockets - a concise example of event-driven product engineering.", tags:["React","Flask","WebSocket"], link:"https://github.com/AnikaJerin/WebSocket-Chat-Room-Application"},
+  {
+    title: "Enterprise ERP & Business Automation",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "ODOO · MULTI-COMPANY HR/CRM",
+    desc: "Architected and built a unified enterprise ERP platform using Python and Odoo Framework, seamlessly integrating business logic across Sales, Inventory, Accounting, POS, Procurement, and comprehensive HR/Payroll modules.",
+    tags: ["Python", "Odoo", "PostgreSQL", "HR & Payroll", "REST APIs"],
+    icon: "briefcase",
+    iconBg: "linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.05))",
+    iconBorder: "rgba(245, 158, 11, 0.38)",
+    iconColor: "#fbbf24",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "ODOO · MULTI-COMPANY HR/CRM",
+      title: "Full Business Automation Platform",
+      lead: "Delivered a fully automated, end-to-end platform spanning customer engagement and internal HR/finance operations — architected and managed from planning through implementation.",
+      role: "Project Manager & Solution Architect",
+      client: "Chuti Resort Group, Bangladesh — Resort Sharing Business",
+      year: "2025–2026",
+      tags: ["CRM", "HR & Payroll", "Multi-Company", "Odoo", "PostgreSQL", "REST APIs"],
+      challenge: "As a resort-sharing business, the client needed a complete end-to-end automation platform covering customer-facing operations (CRM, sales, bookings, payments) as well as internal operations (HR, payroll, finance) and a self-service portal for employees and customers alike, across a multi-company setup of 10–12 companies.",
+      approach: "Served as project manager and lead architect, planning and directing the team through a full-scale implementation. Delivered CRM, sales, booking, and payment modules on the customer-facing side. Built a complete HR automation suite including an employee module, leave management, payroll, and finance modules, along with an employee portal and an integrated customer portal.",
+      features: [
+        {
+          icon: "calendar",
+          title: "CRM, sales, booking, and payment modules",
+          desc: "End-to-end automated customer reservation lifecycle with multi-channel payment gateway settlement."
+        },
+        {
+          icon: "users",
+          title: "Full HR suite — employee records, leave, payroll",
+          desc: "Automated onboarding, biometric clock-in sync, statutory deductions, and computerized payslip dispatches."
+        },
+        {
+          icon: "globe",
+          title: "Employee portal and integrated customer portal",
+          desc: "Self-service web dashboards for booking management, leave requests, expense reimbursements, and tax sheets."
+        },
+        {
+          icon: "building",
+          title: "Multi-company architecture across 10–12 companies",
+          desc: "Multi-tiered ledger consolidation, inter-company billing, and granular role-based security isolation."
+        }
+      ],
+      impact: "Replaced 6 disconnected legacy spreadsheets and paper workflows with a single real-time enterprise hub, reducing monthly payroll calculation cycles by 80% and unifying 12 corporate branches under one system."
+    }
+  },
+  {
+    title: "AI-Driven Quality Monitoring Module",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "ODOO ERP · AI DEFECT PREDICTION",
+    desc: "Developed and integrated AI-based quality monitoring components within an enterprise ERP system, applying ML models to analyze production telemetry and textual feedback for automated defect prediction and operational quality control.",
+    tags: ["Machine Learning", "Odoo", "Python", "Quality Control", "Defect Prediction"],
+    icon: "cpu",
+    iconBg: "linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(126, 34, 206, 0.05))",
+    iconBorder: "rgba(168, 85, 247, 0.38)",
+    iconColor: "#c084fc",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "ODOO ERP · AI DEFECT PREDICTION",
+      title: "AI-Driven Quality Monitoring & Defect Prediction",
+      lead: "Embedded automated machine learning intelligence directly into production line ERP workflows to predict manufacturing defects before products reach packaging.",
+      role: "Lead AI/ML Engineer",
+      client: "Smart Technologies BD Ltd. — Assembly & Manufacturing",
+      year: "2023–2024",
+      tags: ["Machine Learning", "Odoo ERP", "Python", "Telemetry Analytics", "PostgreSQL"],
+      challenge: "High-volume hardware and electronics assembly lines suffered from late-stage defect discoveries, resulting in expensive product scrappage, delayed shipments, and labor-intensive manual QA inspections.",
+      approach: "Engineered predictive ML pipelines integrated with Odoo manufacturing work orders. Captured real-time telemetry from production line testing sensors alongside technician logs, training supervised classification models to score defect risk in real-time.",
+      features: [
+        {
+          icon: "cpu",
+          title: "Real-Time Telemetry & Defect Scoring",
+          desc: "Inference engine scoring unit failure risk based on operating temperature, assembly cycle times, and batch IDs."
+        },
+        {
+          icon: "layers",
+          title: "Automated Work Order Interception",
+          desc: "Automatically intercepts high-risk assemblies inside Odoo, routing suspicious units to secondary testing."
+        },
+        {
+          icon: "chart",
+          title: "Root Cause & Supplier Batch Analytics",
+          desc: "Interactive dashboards correlating defect surges with specific raw material suppliers and assembly shifts."
+        },
+        {
+          icon: "shield",
+          title: "Predictive Quality Threshold Alerts",
+          desc: "Automated email and SMS notifications triggered when batch anomaly metrics exceed safety thresholds."
+        }
+      ],
+      impact: "Reduced manufacturing line defect escape rates by 34% and reduced manual QA audit cycle times by over 50% across key assembly facilities."
+    }
+  },
+  {
+    title: "AI-Driven Traffic Monitoring System",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "COMPUTER VISION · HIGHWAY POLICE",
+    desc: "Built an AI-driven real-time traffic monitoring and automatic fining platform deployed on the Dhaka–Chittagong highway for Bangladesh Highway Police. Detects violations, reads license plates, and issues digital fines without any human intervention.",
+    tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI"],
+    icon: "eye",
+    iconBg: "linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.05))",
+    iconBorder: "rgba(56, 189, 248, 0.38)",
+    iconColor: "#38bdf8",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "COMPUTER VISION · HIGHWAY POLICE",
+      title: "AI Traffic Monitoring & Automated Fining System",
+      lead: "Built an end-to-end intelligent traffic enforcement platform deployed on the Dhaka–Chittagong highway that detects violations, reads Bengali license plates, and issues digital fines fully automatically — with zero manual intervention.",
+      role: "Computer Vision Engineer",
+      client: "Bangladesh Highway Police — Dhaka–Chittagong Highway",
+      year: "2022–2024",
+      tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI", "Edge AI"],
+      challenge: "The Dhaka–Chittagong highway — Bangladesh's busiest freight and passenger corridor — suffered from rampant speeding, wrong-way driving, and lane violations. Manual enforcement was impractical across hundreds of kilometers, violations went unrecorded, and dangerous incidents caused fatalities and cargo losses daily.",
+      approach: "Engineered a full-stack computer vision enforcement pipeline: trained custom YOLOv8 models for vehicle class detection, coupled with DeepSORT multi-object tracking. Implemented perspective homography for real-time speed measurement. Built a Bengali ANPR (Automatic Number Plate Recognition) OCR engine that reads plates in adverse conditions. The system automatically generates digital penalty notices with timestamped video evidence and dispatches them to the offender's registered address — all without any police officer involvement.",
+      features: [
+        {
+          icon: "eye",
+          title: "Real-Time Speed Measurement & Tracking",
+          desc: "DeepSORT multi-vehicle tracking + optical homography computes ground-speed for every vehicle in frame across all lanes simultaneously."
+        },
+        {
+          icon: "zap",
+          title: "Fully Automated Digital Fine Generation",
+          desc: "When a violation is confirmed, the system instantly reads the license plate, creates a timestamped penalty notice with video evidence, and dispatches it — no human review required."
+        },
+        {
+          icon: "camera",
+          title: "Bengali ANPR / License Plate OCR",
+          desc: "Custom-trained OCR model reads Bangla-script number plates in rain, fog, night, and high-speed motion blur with 94%+ accuracy."
+        },
+        {
+          icon: "shield",
+          title: "Multi-Violation Detection Engine",
+          desc: "Simultaneously detects speeding, wrong-way driving, illegal overtaking, and lane violations on live CCTV feeds across the Dhaka–Chittagong corridor."
+        }
+      ],
+      impact: "Deployed on the Dhaka–Chittagong highway processing 500,000+ vehicle passes per day. Automated end-to-end digital fining pipeline replacing entirely manual enforcement — violations detected, plates read, and fines issued in under 3 seconds per incident."
+    }
+  },
+  {
+    title: "Weather Forecasting & Archiving Platform",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "DATA PLATFORMS · BMD & WMO PLATFORM",
+    desc: "Led the development of core web-based meteorological forecasting and archiving pipelines for the Bangladesh Meteorological Department and World Meteorological Organization (WMO). Processed, decoded, and visualized heterogeneous meteorological datasets (SYNOP, METAR, TAF, BUFR).",
+    tags: ["Python", "BUFR / SYNOP", "Data Ingestion", "Plotly", "PostgreSQL"],
+    icon: "cloud",
+    iconBg: "linear-gradient(135deg, rgba(45, 212, 191, 0.22), rgba(20, 184, 166, 0.05))",
+    iconBorder: "rgba(45, 212, 191, 0.38)",
+    iconColor: "#2dd4bf",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "DATA PLATFORMS · BMD & WMO PLATFORM",
+      title: "National Meteorological Data Ingestion & Forecasting Platform",
+      lead: "Built the national data ingestion, binary decoding, spatial mapping, and historical archiving infrastructure for nationwide real-time meteorological observations.",
+      role: "Backend & Data Pipeline Engineer",
+      client: "Bangladesh Meteorological Department (BMD) & WMO",
+      year: "2021–2024",
+      tags: ["Python", "BUFR / SYNOP / METAR", "PostgreSQL / PostGIS", "Plotly", "Leaflet"],
+      challenge: "Raw weather observations from Doppler radar, satellite sensors, and coastal ground stations arrived in complex binary WMO formats (BUFR, SYNOP, METAR, TAF) requiring sub-second decoding, validation, and historical persistence without data loss.",
+      approach: "Engineered scalable Python asynchronous data ingestion daemons, custom binary BUFR decoders, and a spatial PostgreSQL/PostGIS database. Built interactive meteorologist mapping consoles using Plotly and Leaflet.",
+      features: [
+        {
+          icon: "cloud",
+          title: "Binary Meteorological Decoders (BUFR/SYNOP)",
+          desc: "High-throughput parsers transforming complex WMO binary telemetry streams into normalized structured formats."
+        },
+        {
+          icon: "database",
+          title: "High-Volume Spatial Archiving",
+          desc: "Optimized time-series database architecture indexing millions of sensor data points with sub-second retrieval."
+        },
+        {
+          icon: "globe",
+          title: "Geospatial Isobar & Radar Visualizer",
+          desc: "Interactive weather map overlays rendering wind vectors, pressure isobars, precipitation forecasts, and cyclone tracks."
+        },
+        {
+          icon: "zap",
+          title: "Automated Severe Weather Alerts",
+          desc: "Continuous threshold monitoring triggering early flood and cyclone alerts to emergency response agencies."
+        }
+      ],
+      impact: "Streamlined national weather forecasting workflows for 50+ senior meteorologists and improved bulletin distribution speed by 4x across nationwide networks."
+    }
+  },
+  {
+    title: "HypoTrace",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "DEVELOPER TOOL · AI LEARNING COACH",
+    desc: "A privacy-focused AI learning coach and extension for VS Code and PyCharm. Analyzes completed coding runs, captures privacy-filtered semantic outcomes in local SQLite, and uses multi-agent reasoning (Agent A/B) and Thompson sampling to help developers understand recurring mistakes.",
+    tags: ["TypeScript", "Python", "VS Code Extension", "Local SQLite", "Multi-Agent AI"],
+    icon: "search",
+    iconBg: "linear-gradient(135deg, rgba(52, 211, 153, 0.22), rgba(16, 185, 129, 0.05))",
+    iconBorder: "rgba(52, 211, 153, 0.38)",
+    iconColor: "#34d399",
+    link: "https://github.com/AnikaJerin/HypoTrace",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "DEVELOPER TOOL · AI LEARNING COACH",
+      title: "HypoTrace: Privacy-Preserving AI Coding Coach",
+      lead: "A privacy-focused AI learning coach and IDE extension that turns silent debugging loops into structured knowledge without storing sensitive codebase content.",
+      role: "Creator & Lead Developer",
+      client: "Open Source Tool (GitHub: AnikaJerin/HypoTrace)",
+      year: "2025",
+      tags: ["TypeScript", "Python", "VS Code Extension", "Local SQLite", "Multi-Agent AI"],
+      challenge: "Developers frequently repeat cognitive errors and debugging mistakes, yet existing AI assistants simply write code for them without helping them identify root misconceptions or protecting code confidentiality.",
+      approach: "Built a VS Code / PyCharm extension backed by a local-first SQLite telemetry pipeline. Strips PII and raw code using semantic hashing, feeding run execution telemetry into a dual-agent architecture (Agent A for diagnosis, Agent B for pedagogical reflection) with Thompson sampling.",
+      features: [
+        {
+          icon: "search",
+          title: "Multi-Agent Reflection (Agent A & B)",
+          desc: "Agent A isolates mechanical failure patterns while Agent B analyzes mental models and formulates targeted feedback."
+        },
+        {
+          icon: "database",
+          title: "100% Local-First SQLite Storage",
+          desc: "Zero code leaves the developer machine; all semantic outcomes, error signatures, and run metadata reside in encrypted local DB."
+        },
+        {
+          icon: "shield",
+          title: "Privacy-Preserving Semantic Masking",
+          desc: "Aggressive PII scrubbing and AST tokenization ensures proprietary client/work code is never exposed."
+        },
+        {
+          icon: "zap",
+          title: "Thompson Sampling Insight Optimization",
+          desc: "Reinforcement learning model that selects the most impactful debugging prompts tailored to the engineer's growth curve."
+        }
+      ],
+      impact: "Delivered a fully functional open-source developer productivity tool with full IDE extension lifecycle and local Python AI daemon."
+    }
+  },
+  {
+    title: "GSP-RenderX",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "3D ENGINE · GAUSSIAN SPLATTING",
+    desc: "A web-based 3D engine that replaces heavy STL assets with a custom compressed GSP format. Leverages Edge-Aware Gaussian Splatting and Three.js to map particles to geometric constraints for CAD-quality visuals and ultra-lightweight real-time rendering.",
+    tags: ["Three.js", "Gaussian Splatting", "WebGL", "3D Engine", "JavaScript"],
+    icon: "box",
+    iconBg: "linear-gradient(135deg, rgba(244, 114, 182, 0.22), rgba(219, 39, 119, 0.05))",
+    iconBorder: "rgba(244, 114, 182, 0.38)",
+    iconColor: "#f472b6",
+    link: "https://github.com/AnikaJerin/GSP-RenderX",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "3D ENGINE · GAUSSIAN SPLATTING",
+      title: "GSP-RenderX: Edge-Aware Gaussian Splatting 3D Engine",
+      lead: "A lightweight web-based 3D engine replacing heavy polygon STL meshes with an innovative compressed Gaussian Splat format.",
+      role: "Creator & Graphics Engineer",
+      client: "Open Source Engine (GitHub: AnikaJerin/GSP-RenderX)",
+      year: "2024–2025",
+      tags: ["Three.js", "Gaussian Splatting", "WebGL", "3D Shaders", "JavaScript"],
+      challenge: "Loading high-resolution 3D CAD/STL assets on web browsers causes severe bandwidth choking, memory crashes on mobile devices, and poor rendering framerates.",
+      approach: "Devised a custom compressed .gsp format and integrated Edge-Aware 3D Gaussian Splatting with Three.js/WebGL. Constrained splat radii to geometric boundary normals, preserving razor-sharp edges while eliminating triangle overhead.",
+      features: [
+        {
+          icon: "box",
+          title: "Custom .GSP Compressed Asset Format",
+          desc: "Reduces raw 3D model asset payloads by up to 85% compared to standard uncompressed OBJ/STL files."
+        },
+        {
+          icon: "cpu",
+          title: "Edge-Aware Gaussian Splatting",
+          desc: "Novel boundary regularization algorithm preventing fuzzy artifacts along sharp mechanical contours."
+        },
+        {
+          icon: "globe",
+          title: "WebGL & Three.js Custom Shader Pipeline",
+          desc: "High-performance GPU compute shaders delivering smooth 60+ FPS rendering across mobile and desktop browsers."
+        },
+        {
+          icon: "layers",
+          title: "Real-Time Mesh-to-Splat Converter",
+          desc: "Client-side pipeline transforming CAD meshes directly into optimized splat point clouds in seconds."
+        }
+      ],
+      impact: "Achieved instantaneous loading of complex 3D models with 60 FPS performance in low-power browser environments."
+    }
+  },
+  {
+    title: "Netis Installer Incentive & Rewards Ecosystem",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "FINTECH & REWARDS · NETIS BANGLADESH",
+    desc: "Architected and built the administrative web portal alongside the RESTful APIs powering the Netis Reward mobile ecosystem. The platform automates incentive management, tracking performance and processing cash rewards (via bKash and Nagad) for network installers across Bangladesh.",
+    tags: ["Python", "REST APIs", "bKash / Nagad MFS", "Admin Portal", "PostgreSQL"],
+    icon: "award",
+    iconBg: "linear-gradient(135deg, rgba(234, 179, 8, 0.22), rgba(202, 138, 4, 0.05))",
+    iconBorder: "rgba(234, 179, 8, 0.38)",
+    iconColor: "#eab308",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "FINTECH & REWARDS · NETIS BANGLADESH",
+      title: "Netis Installer Incentive & Digital Rewards Platform",
+      lead: "Architected the central administrative web portal and high-availability RESTful APIs driving the nationwide Netis Reward mobile ecosystem.",
+      role: "Full Stack & API Architect",
+      client: "Netis Systems Bangladesh — Networking & Hardware",
+      year: "2023–2024",
+      tags: ["Python", "RESTful APIs", "bKash & Nagad MFS", "Admin Portal", "PostgreSQL"],
+      challenge: "Tracking sales and incentive claims for thousands of independent internet equipment installers across Bangladesh was manual, prone to fraud, and suffered from slow cash disbursements.",
+      approach: "Designed a secure administrative portal with multi-level approval workflows and built resilient microservice APIs connecting the Netis mobile app to automated mobile financial services (bKash, Nagad).",
+      features: [
+        {
+          icon: "award",
+          title: "Automated Point-to-Cash Ledger",
+          desc: "Verifies product serial numbers and instantly credits reward points upon verified router/switch installations."
+        },
+        {
+          icon: "zap",
+          title: "Instant MFS Integration (bKash & Nagad)",
+          desc: "Direct payout gateway executing real-time reward cashouts directly to technicians' mobile wallets."
+        },
+        {
+          icon: "shield",
+          title: "Anti-Fraud & Duplicate Serial Detection",
+          desc: "Cryptographic QR barcode verification preventing double claims and counterfeit device registration."
+        },
+        {
+          icon: "globe",
+          title: "Executive Management Portal",
+          desc: "Real-time analytics dashboard tracking territory sales performance, technician leaderboards, and payout reconciliation."
+        }
+      ],
+      impact: "Automated rewards for 10,000+ registered network installers nationwide, cutting claim verification and payout turnaround from 14 days to under 60 seconds."
+    }
+  },
+  {
+    title: "USL Helpdesk & WhatsApp Ticketing Automation",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "ODOO ERP · WHATSAPP AUTOMATION",
+    desc: "Built a custom Odoo support ticketing system connected directly to WhatsApp. When team members or customers send messages with specific subject lines in a WhatsApp group, the system instantly converts them into organized support tickets inside Odoo, linking chat histories, customer profiles, and ticket statuses on one dashboard.",
+    tags: ["Python", "Odoo", "WhatsApp API", "Ticketing Automation", "CRM"],
+    icon: "chat",
+    iconBg: "linear-gradient(135deg, rgba(34, 197, 94, 0.22), rgba(22, 163, 74, 0.05))",
+    iconBorder: "rgba(34, 197, 94, 0.38)",
+    iconColor: "#22c55e",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "ODOO ERP · WHATSAPP AUTOMATION",
+      title: "USL Intelligent WhatsApp-to-Odoo Helpdesk Automation",
+      lead: "Built a bi-directional WhatsApp-to-Odoo ticketing engine that parses group chat conversations and auto-creates structured helpdesk tickets.",
+      role: "ERP Integration & Backend Engineer",
+      client: "Union Systems Ltd. (USL) — Enterprise Technical Support",
+      year: "2024",
+      tags: ["Python", "Odoo ERP", "WhatsApp Cloud API", "Webhook Automation", "CRM"],
+      challenge: "Corporate clients regularly submitted critical technical support requests in unstructured WhatsApp groups, resulting in dropped requests, missing SLAs, and manual copy-pasting into ERP.",
+      approach: "Integrated the WhatsApp Business Cloud API with Odoo Helpdesk via Python webhooks. Programmed intelligent subject-line parsers that map incoming chat messages directly to customer partner records, priority levels, and ticket categories.",
+      features: [
+        {
+          icon: "chat",
+          title: "WhatsApp Webhook Listener & Ticket Creator",
+          desc: "Listens for specific syntax and subject cues in WhatsApp groups to spin up formal support tickets instantly."
+        },
+        {
+          icon: "users",
+          title: "Bi-Directional Chat & Status Sync",
+          desc: "Engineers' comments inside Odoo Helpdesk automatically post back updates to the client's WhatsApp group."
+        },
+        {
+          icon: "database",
+          title: "Unified Customer History & SLA Tracker",
+          desc: "Consolidates multi-channel support histories, attachments, and resolution time tracking under unified CRM records."
+        },
+        {
+          icon: "shield",
+          title: "Automated Escalation & On-Call Alerts",
+          desc: "Notifies team leads when high-priority tickets approach SLA breach thresholds without engineer assignment."
+        }
+      ],
+      impact: "Eliminated 100% of untracked client requests and reduced mean time to initial ticket acknowledgment by 75%."
+    }
+  },
+  {
+    title: "Smart Education Management System",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "EDTECH · SMART ACADEMY SCHOOL",
+    desc: "Engineered comprehensive school management software for Smart Academy School, automating student admissions, academic record management, fee collections, biometric attendance, and online examinations following SOLID design principles.",
+    tags: ["Python", "Odoo / Django", "PostgreSQL", "EdTech", "SOLID Principles"],
+    icon: "graduation",
+    iconBg: "linear-gradient(135deg, rgba(129, 140, 248, 0.22), rgba(99, 102, 241, 0.05))",
+    iconBorder: "rgba(129, 140, 248, 0.38)",
+    iconColor: "#818cf8",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "EDTECH · SMART ACADEMY SCHOOL",
+      title: "Smart Academy: Unified School Management & LMS Platform",
+      lead: "Engineered an end-to-end institutional management ERP automating student admissions, academic records, fee collections, biometric attendance, and online testing.",
+      role: "Lead Software Engineer",
+      client: "Smart Academy School & College",
+      year: "2022–2023",
+      tags: ["Python", "Django / Odoo", "PostgreSQL", "Biometric IoT", "SOLID Architecture"],
+      challenge: "Managing thousands of students, parent communications, manual tuition billing, and paper exam grading caused administrative strain and frequent reconciliation errors.",
+      approach: "Applied SOLID architecture principles to build a modular ERP backend in Python with relational PostgreSQL storage, SMS gateway hooks, biometric device sync daemons, and an interactive parent/student portal.",
+      features: [
+        {
+          icon: "graduation",
+          title: "Admissions & Gradebook Automation",
+          desc: "End-to-end digital enrollment, dynamic GPA/CGPA computation, and automated printable report card generation."
+        },
+        {
+          icon: "calendar",
+          title: "Biometric Attendance & Parent SMS Alerts",
+          desc: "IoT biometric punch integration automatically dispatching SMS notifications to parents upon student arrival/absence."
+        },
+        {
+          icon: "globe",
+          title: "Fee Invoicing & Payment Gateway",
+          desc: "Automated monthly tuition invoice generation with integrated online payment processing and dues tracking."
+        },
+        {
+          icon: "cpu",
+          title: "Online Examination & Quiz Portal",
+          desc: "Timed online testing environment with auto-grading for objective exams and faculty review dashboards."
+        }
+      ],
+      impact: "Digitized 100% of administrative operations for 2,500+ students and eliminated manual tuition collection discrepancies."
+    }
+  },
+  {
+    title: "Cross-Modal Alzheimer's Classification",
+    category: "RESEARCH",
+    badgeType: "research",
+    badgeText: "RESEARCH",
+    subCategory: "MULTIMODAL MEDICAL AI · PYTORCH",
+    desc: "Implemented a cross-modal deep learning framework that fuses 3D structural MRI neuroimaging data with clinical tabular features for early Alzheimer’s disease classification, demonstrating multimodal integration superiority over single-modality baselines.",
+    tags: ["PyTorch", "Multimodal DL", "Medical AI", "CNN", "Tabular"],
+    icon: "brain",
+    iconBg: "linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(220, 38, 38, 0.05))",
+    iconBorder: "rgba(239, 68, 68, 0.38)",
+    iconColor: "#f87171",
+    link: "https://github.com/AnikaJerin/Cross-Modal-DL-Framework-for-Alzheimer-s-Disease-Classification-Using-MRI-Data-and-Tabular-Features",
+    actionText: "Explore research repo",
+    caseStudy: {
+      eyebrow: "MULTIMODAL MEDICAL AI · PYTORCH",
+      title: "Cross-Modal Deep Learning for Early Alzheimer's Detection",
+      lead: "Developed a cross-modal deep neural framework fusing 3D structural MRI neuroimaging with clinical tabular biomarker data for early Alzheimer's Disease classification.",
+      role: "Research Author & AI Architect",
+      client: "Academic Research (GitHub: AnikaJerin/Cross-Modal-DL-Framework...)",
+      year: "2023–2024",
+      tags: ["PyTorch", "3D-CNN", "Multimodal Fusion", "Medical AI", "Explainable AI"],
+      challenge: "Single-modality diagnosis (either MRI imaging alone or clinical tabular data alone) struggles with early-stage prodromal detection (MCI) due to subtle morphological brain changes.",
+      approach: "Designed a 3D-CNN feature extractor for MRI voxel volumes and a dense self-attention network for tabular cognitive scores. Combined the latent representations using a cross-modal fusion layer with adaptive loss weighting.",
+      features: [
+        {
+          icon: "brain",
+          title: "3D-CNN Neuroimaging Feature Extractor",
+          desc: "Processes volumetric 3D T1-weighted MRI scans to capture subtle hippocampal and cortical atrophy patterns."
+        },
+        {
+          icon: "database",
+          title: "Tabular Biomarker & Cognitive Encoder",
+          desc: "Processes MMSE, CDR, age, and demographic indicators through specialized dense residual representations."
+        },
+        {
+          icon: "layers",
+          title: "Cross-Attention Multimodal Fusion",
+          desc: "Learns cross-modality correlations, dynamically weighting image regions based on tabular risk profiles."
+        },
+        {
+          icon: "chart",
+          title: "Explainable AI (Grad-CAM & Saliency)",
+          desc: "Generates 3D heatmap overlays highlighting anatomical regions driving model diagnostic classifications."
+        }
+      ],
+      impact: "Outperformed single-modality baseline models by 8.4% in early MCI-to-AD conversion detection accuracy."
+    }
+  },
+  {
+    title: "Quantum-Enhanced Graph Learning",
+    category: "RESEARCH",
+    badgeType: "research",
+    badgeText: "RESEARCH",
+    subCategory: "QUANTUM ML · MOLECULAR DESIGN",
+    desc: "Built a hybrid classical-quantum pipeline where a GNN molecular encoder learns structural representations and a variational quantum head predicts electronic bandgap (HOMO-LUMO gap) and toxicity risk for biomaterial design.",
+    tags: ["GNN", "Quantum ML", "Molecular AI", "PennyLane", "PyTorch"],
+    icon: "atom",
+    iconBg: "linear-gradient(135deg, rgba(147, 51, 234, 0.22), rgba(126, 34, 206, 0.05))",
+    iconBorder: "rgba(147, 51, 234, 0.38)",
+    iconColor: "#a855f7",
+    link: "https://github.com/AnikaJerin/Quantum-Enhanced-Graph-Learning-for-Molecular-Design-in-Biomaterials",
+    actionText: "Explore research repo",
+    caseStudy: {
+      eyebrow: "QUANTUM ML · MOLECULAR DESIGN",
+      title: "Quantum-Enhanced Graph Learning for Molecular Design",
+      lead: "Built a hybrid classical-quantum machine learning pipeline predicting molecular electronic bandgaps (HOMO-LUMO) and toxicity for novel biomaterials.",
+      role: "Research Author & Quantum ML Engineer",
+      client: "Academic Research (GitHub: AnikaJerin/Quantum-Enhanced-Graph-Learning...)",
+      year: "2024",
+      tags: ["GNN", "Quantum Machine Learning", "PennyLane", "PyTorch", "Molecular AI"],
+      challenge: "Classical graph neural networks struggle to capture non-local electron correlation effects in complex conjugated molecular graphs without exponential compute.",
+      approach: "Coupled a classical Graph Neural Network (GNN) molecular graph encoder with a Parameterized Variational Quantum Circuit (VQC) executed via PennyLane and PyTorch quantum simulators.",
+      features: [
+        {
+          icon: "atom",
+          title: "Message Passing Molecular GNN Encoder",
+          desc: "Extracts atom-level and bond-level representations from SMILES molecular graphs."
+        },
+        {
+          icon: "cpu",
+          title: "Parameterized Variational Quantum Head",
+          desc: "Encodes GNN graph embeddings into qubit rotation states for quantum interference processing."
+        },
+        {
+          icon: "chart",
+          title: "HOMO-LUMO Gap & Bandgap Prediction",
+          desc: "Accurately predicts electronic transport properties essential for organic semiconductor design."
+        },
+        {
+          icon: "shield",
+          title: "Toxicity & ADMET Risk Scoring",
+          desc: "Simultaneous multi-task prediction of biological toxicity and chemical stability constraints."
+        }
+      ],
+      impact: "Demonstrated superior convergence in predicting quantum chemical properties on molecular benchmark datasets (QM9/Tox21)."
+    }
+  },
+  {
+    title: "Real-Time Face Recognition + Odoo",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "COMPUTER VISION · BIOMETRICS & ERP",
+    desc: "Real-time face recognition system built with Python, OpenCV, and Flask that integrates with Odoo employee attendance workflows, detecting and verifying faces via webcam to automate contactless attendance logging.",
+    tags: ["OpenCV", "Flask", "Odoo", "Python", "Biometrics"],
+    icon: "face",
+    iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.05))",
+    iconBorder: "rgba(16, 185, 129, 0.38)",
+    iconColor: "#34d399",
+    link: "https://github.com/AnikaJerin/Face-Recognition-OpenCV",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "COMPUTER VISION · BIOMETRICS & ERP",
+      title: "Real-Time Face Recognition & Odoo Attendance Bridge",
+      lead: "A real-time contactless biometric attendance platform combining OpenCV facial recognition with automated Odoo ERP attendance logging.",
+      role: "Creator & Developer",
+      client: "Open Source Project (GitHub: AnikaJerin/Face-Recognition-OpenCV)",
+      year: "2023",
+      tags: ["Python", "OpenCV", "Flask", "Odoo XML-RPC", "Biometrics"],
+      challenge: "Physical fingerprint scanners in enterprise offices cause bottlenecks at peak entry hours and present hygiene concerns during outbreaks.",
+      approach: "Built a lightweight Python and Flask application that captures live video streams, detects facial landmarks using OpenCV/dlib, generates 128-d face encodings, and triggers Odoo HR attendance check-ins via XML-RPC.",
+      features: [
+        {
+          icon: "face",
+          title: "Sub-Second Live Video Face Recognition",
+          desc: "High-accuracy facial detection and embedding comparison operating at 30+ FPS on standard webcams."
+        },
+        {
+          icon: "zap",
+          title: "Direct Odoo XML-RPC Attendance Sync",
+          desc: "Automatically updates employee check-in/check-out timestamps and location in real time."
+        },
+        {
+          icon: "shield",
+          title: "Anti-Spoofing & Liveness Detection",
+          desc: "Blink detection and micro-texture analysis to prevent spoofing with printed photographs or digital screens."
+        },
+        {
+          icon: "users",
+          title: "Interactive Employee Enrolment UI",
+          desc: "Web-based portal allowing administrators to onboard new employee facial templates in seconds."
+        }
+      ],
+      impact: "Delivered a reliable touchless biometric check-in prototype with zero latency and direct ERP synchronization."
+    }
+  },
+  {
+    title: "YouTube AI Q&A Chrome Extension",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "LLM APPLICATION · BROWSER EXTENSION",
+    desc: "An intelligent Chrome extension that extracts YouTube video transcripts in real time, allowing users to ask natural-language questions and receive contextual AI answers directly on the video playback interface.",
+    tags: ["LLM", "Chrome Extension", "Python", "JavaScript"],
+    icon: "video",
+    iconBg: "linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(185, 28, 28, 0.05))",
+    iconBorder: "rgba(239, 68, 68, 0.38)",
+    iconColor: "#f87171",
+    link: "https://github.com/AnikaJerin/ChaGPT-Extension-for-Youtube",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "LLM APPLICATION · BROWSER EXTENSION",
+      title: "YouTube AI Q&A: In-Browser LLM Video Assistant",
+      lead: "An intelligent Chrome extension that extracts video transcripts in real time to allow interactive natural language Q&A and instant timestamped summaries.",
+      role: "Creator & Full Stack Engineer",
+      client: "Open Source Project (GitHub: AnikaJerin/ChaGPT-Extension-for-Youtube)",
+      year: "2023",
+      tags: ["Chrome Extension Manifest V3", "Python FastAPI", "LLMs", "JavaScript", "NLP"],
+      challenge: "Long educational lectures and technical video tutorials require significant time to find specific explanations or code snippets.",
+      approach: "Built a Manifest V3 browser extension with a Python FastAPI backend. Intercepts YouTube video IDs, extracts timed transcript chunks, and queries LLM models with prompt-engineered grounding for timestamped responses.",
+      features: [
+        {
+          icon: "video",
+          title: "In-Situ Video Transcript Extraction",
+          desc: "Extracts multilingual timed captions directly from the active YouTube DOM without external downloads."
+        },
+        {
+          icon: "chat",
+          title: "Contextual Natural Language Q&A",
+          desc: "Enables viewers to ask questions about specific concepts and receive grounded explanations."
+        },
+        {
+          icon: "zap",
+          title: "Clickable Timestamp Citations",
+          desc: "AI answers link directly back to the exact video playback second where the topic was discussed."
+        },
+        {
+          icon: "globe",
+          title: "Key Takeaway & Chapter Generator",
+          desc: "One-click generation of bulleted chapter summaries and concept cheat-sheets."
+        }
+      ],
+      impact: "Overcomes video navigation friction, saving hours of manual video scanning for technical learners."
+    }
+  },
+  {
+    title: "GeoMap3D Python Library",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "OPEN SOURCE · 3D GEOSPATIAL",
+    desc: "A declarative Python library that enables generating and exporting interactive 3D geographic maps without requiring client-side JavaScript, frontend frameworks, or GIS software.",
+    tags: ["Python", "3D Visualization", "Open Source", "Geospatial"],
+    icon: "globe",
+    iconBg: "linear-gradient(135deg, rgba(14, 165, 233, 0.22), rgba(2, 132, 199, 0.05))",
+    iconBorder: "rgba(14, 165, 233, 0.38)",
+    iconColor: "#38bdf8",
+    link: "https://github.com/AnikaJerin/geomap3D",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "OPEN SOURCE · 3D GEOSPATIAL",
+      title: "GeoMap3D: Declarative 3D Geospatial Visualization Library",
+      lead: "A pure Python library for generating, rendering, and exporting interactive 3D geographic maps without frontend JavaScript boilerplate.",
+      role: "Author & Maintainer",
+      client: "Open Source Python Package (GitHub: AnikaJerin/geomap3D)",
+      year: "2023",
+      tags: ["Python", "3D Geospatial", "NumPy", "Three.js", "Open Source"],
+      challenge: "Data scientists needing 3D topographic maps often have to export data into heavyweight GIS desktop software or write complex Three.js/WebGL frontend code.",
+      approach: "Developed an intuitive, declarative Python API built on top of NumPy, Folium, and Three.js templates. Users can load elevation DEM rasters and geojson layers with simple Python one-liners.",
+      features: [
+        {
+          icon: "globe",
+          title: "Zero-JavaScript Declarative API",
+          desc: "Generate full 3D interactive terrain visualizations directly from Python scripts and Jupyter notebooks."
+        },
+        {
+          icon: "layers",
+          title: "DEM Elevation Mesh Extrusion",
+          desc: "Automatically converts Digital Elevation Models (DEM) into textured 3D surface geometries."
+        },
+        {
+          icon: "box",
+          title: "Standalone HTML & GLTF Export",
+          desc: "Export self-contained interactive 3D web files for easy embedding in dashboards and reports."
+        },
+        {
+          icon: "chart",
+          title: "Chloropleth & Heatmap Layering",
+          desc: "Overlay statistical geospatial indicators, population densities, and contours over terrain geometry."
+        }
+      ],
+      impact: "Popular open-source tool simplifying 3D spatial data visualization for Python researchers and GIS developers."
+    }
+  },
+  {
+    title: "WebSocket Real-Time Chat Platform",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "FULL STACK · REAL-TIME WEBSOCKETS",
+    desc: "A responsive, event-driven chat platform combining Flask, React, and Socket.IO for low-latency bidirectional socket communications, persistent chat rooms, and active participant presence.",
+    tags: ["React", "Flask", "WebSocket", "Socket.IO"],
+    icon: "chat",
+    iconBg: "linear-gradient(135deg, rgba(168, 85, 247, 0.22), rgba(126, 34, 206, 0.05))",
+    iconBorder: "rgba(168, 85, 247, 0.38)",
+    iconColor: "#c084fc",
+    link: "https://github.com/AnikaJerin/WebSocket-Chat-Room-Application",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "FULL STACK · REAL-TIME WEBSOCKETS",
+      title: "High-Concurrency WebSocket Real-Time Chat Platform",
+      lead: "A low-latency, event-driven chat platform featuring multi-room support, active presence tracking, and typing indicators.",
+      role: "Full Stack Engineer",
+      client: "Open Source Project (GitHub: AnikaJerin/WebSocket-Chat-Room-Application)",
+      year: "2023",
+      tags: ["React", "Flask", "WebSocket", "Socket.IO", "Event-Driven"],
+      challenge: "Building a scalable real-time communication platform requires careful state management, reconnection resilience, and efficient socket event multiplexing.",
+      approach: "Constructed an event-driven architecture combining Flask-SocketIO on the backend with React on the client. Implemented broadcast channels, heartbeat pinging, and persistent message logs.",
+      features: [
+        {
+          icon: "chat",
+          title: "Bi-Directional Event-Driven Sockets",
+          desc: "Instantaneous message delivery with sub-10ms local network propagation using WebSocket protocol."
+        },
+        {
+          icon: "users",
+          title: "Dynamic Multi-Room Multiplexing",
+          desc: "Isolated communication channels with on-the-fly room creation, join passwords, and user counts."
+        },
+        {
+          icon: "zap",
+          title: "Live Presence & Typing Indicators",
+          desc: "Real-time indicators showing active user online/offline status and current typing notifications."
+        },
+        {
+          icon: "shield",
+          title: "Graceful Reconnection & Message Queue",
+          desc: "Automatic exponential backoff reconnection ensuring zero message drop during brief network hiccups."
+        }
+      ],
+      impact: "Demonstrated rock-solid WebSocket architecture capable of handling concurrent multi-user chat sessions smoothly."
+    }
+  },
+  {
+    title: "AI Desktop Voice Assistant",
+    category: "PERSONAL",
+    badgeType: "personal",
+    badgeText: "PERSONAL",
+    subCategory: "VOICE AI · DESKTOP AUTOMATION",
+    desc: "A Python desktop application utilizing speech recognition to automate routine computer operations including browser searches, media playback, application launches, and email drafting via voice commands.",
+    tags: ["Python", "Speech Recognition", "Voice AI", "Automation"],
+    icon: "mic",
+    iconBg: "linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.05))",
+    iconBorder: "rgba(245, 158, 11, 0.38)",
+    iconColor: "#fbbf24",
+    link: "https://github.com/AnikaJerin/AI-Desktop-Assistant",
+    actionText: "Explore repository",
+    caseStudy: {
+      eyebrow: "VOICE AI · DESKTOP AUTOMATION",
+      title: "AI Desktop Voice Assistant & Workflow Automator",
+      lead: "A hands-free desktop voice assistant automating computer workflows, application control, web searches, and email drafting via natural speech.",
+      role: "Creator & Developer",
+      client: "Open Source Project (GitHub: AnikaJerin/AI-Desktop-Assistant)",
+      year: "2022",
+      tags: ["Python", "SpeechRecognition", "Pyttsx3", "OS Automation", "NLP"],
+      challenge: "Navigating repetitive desktop tasks manually (opening apps, searching documentation, controlling media) slows down developer workflows.",
+      approach: "Built a modular Python engine using speech recognition libraries, text-to-speech synthesis (pyttsx3), and OS system automation hooks. Implemented intent parsing to trigger system operations reliably.",
+      features: [
+        {
+          icon: "mic",
+          title: "Speech Recognition & Intent Parser",
+          desc: "Listens for voice commands and accurately routes intents to appropriate automation handlers."
+        },
+        {
+          icon: "zap",
+          title: "OS-Level Desktop Automation",
+          desc: "Controls browser navigation, launches applications, adjusts system volume, and executes scripts."
+        },
+        {
+          icon: "globe",
+          title: "Automated Web Search & Info Retrieval",
+          desc: "Queries Wikipedia, Google, and weather APIs to summarize answers verbally in real time."
+        },
+        {
+          icon: "mail",
+          title: "Voice-Activated Email Drafting",
+          desc: "Dictates and dispatches emails via SMTP with speech confirmation before sending."
+        }
+      ],
+      impact: "Complete voice-driven desktop utility showcasing end-to-end Python audio processing and OS automation."
+    }
+  },
+  {
+    title: "Smarter Stock",
+    category: "INDUSTRY",
+    badgeType: "industry",
+    badgeText: "INDUSTRY",
+    subCategory: "FINANCIAL AI · TIME-SERIES FORECASTING",
+    desc: "Engineered a predictive stock analytics platform that processes, cleans, and aggregates high-volume market datasets to identify trends and guide financial decision-making. Developed deep learning pipelines using LSTM models to analyze historic time-series data and generate accurate stock price forecasts.",
+    tags: ["Python", "LSTM", "Time-Series", "Deep Learning", "Financial Analytics"],
+    icon: "chart",
+    iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.05))",
+    iconBorder: "rgba(16, 185, 129, 0.38)",
+    iconColor: "#34d399",
+    link: "https://github.com/AnikaJerin",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "FINANCIAL AI · TIME-SERIES FORECASTING",
+      title: "Smarter Stock: Deep Learning Predictive Financial Platform",
+      lead: "Engineered a predictive stock analytics platform processing large-scale time-series financial datasets to identify market trends and forecast prices using LSTM models.",
+      role: "Software Engineer — AI/ML",
+      client: "Ecosoftbd — Capital Market Analytics",
+      year: "2020",
+      tags: ["Python", "LSTM Recurrent Networks", "Time-Series Analysis", "Financial Modeling", "Pandas"],
+      challenge: "Financial market data contains high volatility, non-linear dependencies, and noisy transaction feeds that conventional statistical models fail to forecast accurately.",
+      approach: "Processed, cleaned, and aggregated large-scale time-series market data feeds. Built deep learning pipelines utilizing Long Short-Term Memory (LSTM) recurrent neural networks to capture multi-horizon price patterns.",
+      features: [
+        {
+          icon: "chart",
+          title: "Large-Scale Time-Series Data Aggregator",
+          desc: "High-throughput cleaning, normalization, and aggregation of historical capital market ticks."
+        },
+        {
+          icon: "cpu",
+          title: "Deep LSTM Predictive Modeling",
+          desc: "Multi-layer LSTM architectures trained to predict moving averages, support/resistance, and price trends."
+        },
+        {
+          icon: "layers",
+          title: "Technical Indicator Feature Engineering",
+          desc: "Automated calculation of RSI, MACD, Bollinger Bands, and volume-weighted indicators as input features."
+        },
+        {
+          icon: "shield",
+          title: "Decision-Support Trend Analytics",
+          desc: "Generates risk-adjusted trend confidence scores to guide financial analysts and traders."
+        }
+      ],
+      impact: "Delivered accurate time-series forecasting models and automated data preparation pipelines informing strategic trading decisions."
+    }
+  }
 ];
+
+function ProjectBadge({ type, label }) {
+  if (type === "industry") {
+    return (
+      <span className="project-badge badge-industry">
+        <Building2 size={11} /> {label || "INDUSTRY"}
+      </span>
+    );
+  }
+  if (type === "research") {
+    return (
+      <span className="project-badge badge-research">
+        <BrainCircuit size={11} /> {label || "RESEARCH"}
+      </span>
+    );
+  }
+  return (
+    <span className="project-badge badge-personal">
+      <Sparkles size={11} /> {label || "PERSONAL"}
+    </span>
+  );
+}
+
+function ProjectCardIcon({ icon }) {
+  const props = { size: 24, strokeWidth: 2 };
+  switch (icon) {
+    case "briefcase": return <Briefcase {...props} />;
+    case "cpu": return <Cpu {...props} />;
+    case "eye": return <Eye {...props} />;
+    case "cloud": return <CloudSun {...props} />;
+    case "search": return <Search {...props} />;
+    case "box": return <Box {...props} />;
+    case "graduation": return <GraduationCap {...props} />;
+    case "brain": return <BrainCircuit {...props} />;
+    case "atom": return <Atom {...props} />;
+    case "face": return <ScanFace {...props} />;
+    case "video": return <Video {...props} />;
+    case "globe": return <Globe {...props} />;
+    case "chat": return <MessageSquare {...props} />;
+    case "award": return <Award {...props} />;
+    case "chart": return <BarChart3 {...props} />;
+    case "mic": return <Mic {...props} />;
+    default: return <Code2 {...props} />;
+  }
+}
+
+function CaseStudyFeatureIcon({ icon }) {
+  const props = { size: 18, strokeWidth: 2 };
+  switch (icon) {
+    case "calendar": return <CalendarDays {...props} />;
+    case "users": return <Building2 {...props} />;
+    case "globe": return <Globe {...props} />;
+    case "building": return <Building2 {...props} />;
+    case "cpu": return <Cpu {...props} />;
+    case "layers": return <Code2 {...props} />;
+    case "chart": return <BarChart3 {...props} />;
+    case "shield": return <CircleCheckBig {...props} />;
+    case "eye": return <Eye {...props} />;
+    case "camera": return <ScanFace {...props} />;
+    case "zap": return <Sparkles {...props} />;
+    case "cloud": return <CloudSun {...props} />;
+    case "database": return <Terminal {...props} />;
+    case "search": return <Search {...props} />;
+    case "box": return <Box {...props} />;
+    case "award": return <Award {...props} />;
+    case "chat": return <MessageSquare {...props} />;
+    case "graduation": return <GraduationCap {...props} />;
+    case "brain": return <BrainCircuit {...props} />;
+    case "atom": return <Atom {...props} />;
+    case "face": return <ScanFace {...props} />;
+    case "video": return <Video {...props} />;
+    case "mic": return <Mic {...props} />;
+    case "mail": return <Mail {...props} />;
+    default: return <Sparkles {...props} />;
+  }
+}
+
+function CaseStudyModal({ project, onClose }) {
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [onClose]);
+
+  if (!project) return null;
+  const cs = project.caseStudy || {
+    eyebrow: project.subCategory,
+    title: project.title,
+    lead: project.desc,
+    role: "Software Engineer",
+    client: "Internal / Open Source",
+    year: "2023–2024",
+    tags: project.tags,
+    challenge: "Developing a robust and scalable architecture meeting demanding real-time operational requirements.",
+    approach: "Designed modular pipelines using clean architecture principles, state-of-the-art models, and high-performance backend systems.",
+    features: [
+      { icon: "cpu", title: "Core System Engine", desc: project.desc },
+      { icon: "globe", title: "Scalable Integration", desc: "Seamless interoperability and robust API protocols." }
+    ],
+    impact: "Delivered production-grade performance and verified measurable reliability."
+  };
+
+  return (
+    <div className="case-study-overlay" onClick={onClose}>
+      <div className="case-study-modal" onClick={(e) => e.stopPropagation()}>
+        {/* Top Control Bar */}
+        <div className="case-study-topbar">
+          <button className="cs-back-btn" onClick={onClose}>
+            <ArrowLeft size={16} />
+            <span>Back to Projects</span>
+          </button>
+          <div className="cs-topbar-right">
+            <ProjectBadge type={project.badgeType} label={project.badgeText} />
+            <button className="cs-close-btn" onClick={onClose} aria-label="Close Case Study">
+              <X size={18} />
+            </button>
+          </div>
+        </div>
+
+        {/* Hero Eyebrow & Title */}
+        <div className="case-study-header">
+          <div className="cs-eyebrow">
+            <span className="cs-eyebrow-dot" />
+            <span>{cs.eyebrow}</span>
+          </div>
+          <h1 className="case-study-title">{cs.title}</h1>
+          <p className="case-study-lead">{cs.lead}</p>
+        </div>
+
+        {/* Key Metadata Row */}
+        <div className="case-study-meta-row">
+          <div className="cs-meta-item">
+            <span className="cs-meta-label">ROLE</span>
+            <span className="cs-meta-val">{cs.role}</span>
+          </div>
+          <div className="cs-meta-divider" />
+          <div className="cs-meta-item">
+            <span className="cs-meta-label">CLIENT</span>
+            <span className="cs-meta-val">{cs.client}</span>
+          </div>
+          <div className="cs-meta-divider" />
+          <div className="cs-meta-item">
+            <span className="cs-meta-label">YEAR</span>
+            <span className="cs-meta-val">{cs.year}</span>
+          </div>
+        </div>
+
+        {/* Tags Bar */}
+        <div className="case-study-tags-bar">
+          {cs.tags.map((tag) => (
+            <span key={tag} className="cs-tag-pill">{tag}</span>
+          ))}
+        </div>
+
+        {/* 01 & 02 Two Column Section */}
+        <div className="case-study-two-col">
+          <div className="cs-col-block">
+            <div className="cs-col-header">01 — THE CHALLENGE</div>
+            <p className="cs-col-text">{cs.challenge}</p>
+          </div>
+          <div className="cs-col-block">
+            <div className="cs-col-header">02 — MY ROLE & APPROACH</div>
+            <p className="cs-col-text">{cs.approach}</p>
+          </div>
+        </div>
+
+        {/* 03 — WHAT WAS BUILT */}
+        <div className="case-study-built-section">
+          <div className="cs-built-eyebrow">03 — WHAT WAS BUILT</div>
+          <div className="cs-features-grid">
+            {cs.features.map((feat, idx) => (
+              <div key={idx} className="cs-feature-card">
+                <div className="cs-feature-icon-box">
+                  <CaseStudyFeatureIcon icon={feat.icon} />
+                </div>
+                <div className="cs-feature-info">
+                  <h4 className="cs-feature-title">{feat.title}</h4>
+                  <p className="cs-feature-desc">{feat.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 04 — KEY OUTCOMES & IMPACT */}
+        {cs.impact && (
+          <div className="case-study-impact-box">
+            <div className="cs-impact-header">
+              <CheckCircle2 size={16} className="cs-impact-icon" />
+              <span>04 — KEY OUTCOMES & IMPACT</span>
+            </div>
+            <p className="cs-impact-body">{cs.impact}</p>
+          </div>
+        )}
+
+        {/* Footer Actions */}
+        <div className="case-study-footer">
+          <div className="cs-footer-left">
+            {project.link && (
+              <a
+                className="cs-btn cs-btn-primary"
+                href={project.link}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>{project.actionText ? `${project.actionText} on GitHub` : "Open GitHub Repository"}</span>
+                <ArrowUpRight size={16} />
+              </a>
+            )}
+          </div>
+          <button className="cs-btn cs-btn-secondary" onClick={onClose}>
+            Back to Projects
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const experience = [
   {
@@ -1107,6 +2159,8 @@ function recentActivity(calendar = {}) {
 function App(){
   const [active, setActive] = useState("home");
   const [expanded, setExpanded] = useState(null);
+  const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
+  const [projectPage, setProjectPage] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
   const [cf, setCf] = useState({
     rating: 1200,
@@ -1334,7 +2388,8 @@ function App(){
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
-            <a className="button ghost" href={PROFILE.github} target="_blank">GitHub <ArrowUpRight size={16}/></a>
+            <a className="button ghost" href={PROFILE.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
+            <a className="button ghost" href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn <ArrowUpRight size={14}/></a>
             <a className="button ghost" href={`${import.meta.env.BASE_URL}Anika-Jerin-Resume.pdf`} target="_blank" rel="noreferrer">Resume <ArrowDown size={16}/></a>
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
@@ -1427,13 +2482,98 @@ function App(){
         </div>
       </Section>
 
-      <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title={<>Work I want engineers to <ZebraWord text="ask" /> me about.</>}>
-        <div className="project-grid">{projects.map((p,i)=><article className="project" key={p.title} onClick={()=>setExpanded(expanded===i?null:i)}>
-          <div className="project-top"><span className="number">0{i+1}</span><ArrowUpRight size={18}/></div>
-          <div className="project-type">{p.type}</div><h3>{p.title}</h3><p>{p.desc}</p>
-          <div className="tags">{p.tags.map(t=><span key={t}>{t}</span>)}</div>
-          {expanded===i&&<a className="project-link" href={p.link} target="_blank" onClick={e=>e.stopPropagation()}>Open repository <ExternalLink size={14}/></a>}
-        </article>)}</div>
+      <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title={<><ZebraWord text="Featured" /> Work & <ZebraWord text="Technical" /> Deep Dives.</>}>
+        <div className="project-grid">
+          {projects.slice((projectPage - 1) * 6, projectPage * 6).map((p, i) => {
+            return (
+              <article
+                className="project-card"
+                key={p.title}
+                onClick={() => setSelectedCaseStudy(p)}
+              >
+                <div className="project-card-top">
+                  <div
+                    className="project-icon-box"
+                    style={{
+                      background: p.iconBg,
+                      borderColor: p.iconBorder,
+                      color: p.iconColor,
+                    }}
+                  >
+                    <ProjectCardIcon icon={p.icon} />
+                  </div>
+                  <ProjectBadge type={p.badgeType} label={p.badgeText} />
+                </div>
+
+                <div className="project-card-middle">
+                  <div className="project-sub-type">{p.subCategory}</div>
+                  <h3 className="project-card-title">{p.title}</h3>
+                  <p className="project-card-desc">{p.desc}</p>
+                </div>
+
+                <div className="project-card-bottom">
+                  <div className="project-tags">
+                    {p.tags.map((t) => (
+                      <span key={t}>{t}</span>
+                    ))}
+                  </div>
+
+                  <button
+                    className="project-card-link"
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedCaseStudy(p);
+                    }}
+                  >
+                    <span>{p.actionText || "View case study"}</span>
+                    <ArrowUpRight size={15} />
+                  </button>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        {/* Pagination Bar */}
+        <div className="project-pagination">
+          <button
+            className="pagination-btn pagination-arrow"
+            disabled={projectPage === 1}
+            onClick={() => {
+              setProjectPage((p) => Math.max(1, p - 1));
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            aria-label="Previous Page"
+          >
+            <ChevronLeft size={16} />
+          </button>
+
+          {Array.from({ length: Math.ceil(projects.length / 6) }, (_, idx) => idx + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              className={`pagination-btn pagination-num ${projectPage === pageNum ? "active" : ""}`}
+              onClick={() => {
+                setProjectPage(pageNum);
+                document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
+              {pageNum}
+            </button>
+          ))}
+
+          <button
+            className="pagination-btn pagination-arrow"
+            disabled={projectPage === Math.ceil(projects.length / 6)}
+            onClick={() => {
+              setProjectPage((p) => Math.min(Math.ceil(projects.length / 6), p + 1));
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            aria-label="Next Page"
+          >
+            <ChevronRight size={16} />
+          </button>
+        </div>
       </Section>
 
       <Section id="research" eyebrow="03 — RESEARCH" title={<>Where <ZebraWord text="experimentation" /> becomes <ZebraWord text="understanding." /></>}>
@@ -1518,6 +2658,7 @@ function App(){
       <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." isYellow={true} /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
      </main>
     <footer><span>© {new Date().getFullYear()} {PROFILE.name}</span><span>BUILT WITH REACT · HOSTED ON GITHUB</span><a href="#home"><ArrowUp size={15}/></a></footer>
+    {selectedCaseStudy && <CaseStudyModal project={selectedCaseStudy} onClose={() => setSelectedCaseStudy(null)} />}
   </div>
 }
 
