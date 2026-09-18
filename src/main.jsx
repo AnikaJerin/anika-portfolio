@@ -122,7 +122,7 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "ODOO ERP · AI DEFECT PREDICTION",
-      title: "AI-Driven Quality Monitoring & Defect Prediction",
+      title: "AI-Driven Quality Monitoring Module",
       lead: "Embedded automated machine learning intelligence directly into production line ERP workflows to predict manufacturing defects before products reach packaging.",
       role: "Software Engineer & Technical Lead",
       client: "Smart Hi-Tech",
@@ -159,7 +159,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "COMPUTER VISION · HIGHWAY POLICE",
-    desc: "Contributed to a production-scale traffic monitoring and auto-fining system for real-world violation detection. Developed CV pipelines for vehicle tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, and OpenCV.",
+    desc: "Contributed to a production-scale traffic monitoring and auto-fining system for real-world violation detection, collaborating with international vendors. Developed CV pipelines for vehicle tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, and OpenCV.",
     tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI"],
     icon: "eye",
     iconBg: "linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.05))",
@@ -169,13 +169,13 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "COMPUTER VISION · HIGHWAY POLICE",
-      title: "AI Traffic Monitoring & Automated Fining System",
-      lead: "Contributed to a production-scale traffic monitoring and auto-fining system designed to reliably detect violations under complex real-world road conditions. Developed and optimized computer-vision pipelines for vehicle detection, multi-object tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, OpenCV, and deep-learning models. Built backend inference and evidence-processing workflows, incorporating trajectory-based reasoning, confidence validation, and Bangladesh-specific traffic data to improve the reliability of automated violation detection.",
+      title: "AI-Driven Traffic Monitoring System",
+      lead: "Contributed to a production-scale traffic monitoring and auto-fining system designed to reliably detect violations under complex real-world road conditions. Collaborated with international hardware and software vendors to integrate edge camera hardware, specialized sensors, and inference pipelines. Developed and optimized computer-vision pipelines for vehicle detection, multi-object tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, OpenCV, and deep-learning models. Built backend inference and evidence-processing workflows, incorporating trajectory-based reasoning, confidence validation, and Bangladesh-specific traffic data to improve the reliability of automated violation detection.",
       role: "Software Engineer & Technical Lead",
       client: "Bangladesh Highway Police",
       tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI", "Edge AI"],
       challenge: "The key challenge was achieving reliable violation and license-plate detection under dense traffic, occlusion, varying lighting/weather, and diverse real-world road conditions while minimizing false violations. Developed and optimized computer-vision pipelines for vehicle detection, multi-object tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, OpenCV, and deep-learning models. Built backend inference and evidence-processing workflows and performed Bangladesh-specific data analysis, augmentation, model evaluation, and optimization to improve real-world detection reliability.",
-      approach: "Contributed to a production-scale traffic monitoring system as a computer-vision and backend engineer. Developed and deployed CV components for speeding and wrong-way detection and ANPR, fine-tuned and optimized deep-learning models, and built backend services for real-time inference workflows. Performed EDA, data augmentation, and model evaluation on Bangladesh-specific traffic datasets to improve detection reliability under real-world conditions.",
+      approach: "Contributed to a production-scale traffic monitoring system as a computer-vision and backend engineer. Collaborated with international vendors to integrate edge devices, high-speed camera sensors, and deployment pipelines. Developed and deployed CV components for speeding and wrong-way detection and ANPR, fine-tuned and optimized deep-learning models, and built backend services for real-time inference workflows. Performed EDA, data augmentation, and model evaluation on Bangladesh-specific traffic datasets to improve detection reliability under real-world conditions.",
       features: [
         {
           icon: "eye",
@@ -206,7 +206,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "DATA PLATFORMS · BMD & WMO PLATFORM",
-    desc: "Led the development of core web-based meteorological forecasting and archiving pipelines for the Bangladesh Meteorological Department and World Meteorological Organization (WMO). Processed, decoded, and visualized heterogeneous meteorological datasets (SYNOP, METAR, TAF, BUFR).",
+    desc: "Led core development for a web-based meteorological forecasting and archiving platform for the Bangladesh Meteorological Department, backed by the World Meteorological Organization (WMO) and funded by the World Bank. Processed, decoded, stored, and visualized SYNOP, METAR, TAF, and BUFR observations.",
     tags: ["Python", "BUFR / SYNOP", "Data Ingestion", "Plotly", "PostgreSQL"],
     icon: "cloud",
     iconBg: "linear-gradient(135deg, rgba(45, 212, 191, 0.22), rgba(20, 184, 166, 0.05))",
@@ -216,33 +216,33 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "DATA PLATFORMS · BMD & WMO PLATFORM",
-      title: "National Meteorological Data Ingestion & Forecasting Platform",
-      lead: "Built the national data ingestion, binary decoding, spatial mapping, and historical archiving infrastructure for nationwide real-time meteorological observations.",
+      title: "Weather Forecasting & Archiving Platform",
+      lead: "Led core development of a web-based forecasting and archiving platform for the Bangladesh Meteorological Department, backed by the World Meteorological Organization (WMO) and funded by the World Bank, turning heterogeneous observations into operational data pipelines and interactive visualizations.",
       role: "Software Engineer & Technical Lead",
-      client: "Bangladesh Meteorological Department (BMD)",
+      client: "Bangladesh Meteorological Department (BMD) · Backed by WMO · Funded by World Bank",
       tags: ["Python", "BUFR / SYNOP / METAR", "PostgreSQL / PostGIS", "Plotly", "Leaflet"],
-      challenge: "Raw weather observations from Doppler radar, satellite sensors, and coastal ground stations arrived in complex binary WMO formats (BUFR, SYNOP, METAR, TAF) requiring sub-second decoding, validation, and historical persistence without data loss.",
-      approach: "Engineered scalable Python asynchronous data ingestion daemons, custom binary BUFR decoders, and a spatial PostgreSQL/PostGIS database. Built interactive meteorologist mapping consoles using Plotly and Leaflet.",
+      challenge: "Operational forecasting depends on observations arriving in varied aviation and meteorological formats. The platform needed reliable decoding, validation, storage, and accessible analysis across both current and historical data.",
+      approach: "Built Python data-processing components to collect, decode, process, and store SYNOP, METAR, TAF, and BUFR data, then added analysis and visualization workflows for forecasting and long-term archiving.",
       features: [
         {
           icon: "cloud",
           title: "Binary Meteorological Decoders (BUFR/SYNOP)",
-          desc: "High-throughput parsers transforming complex WMO binary telemetry streams into normalized structured formats."
+          desc: "Processing components that convert meteorological observations into structured records for downstream analysis."
         },
         {
           icon: "database",
           title: "High-Volume Spatial Archiving",
-          desc: "Optimized time-series database architecture indexing millions of sensor data points with sub-second retrieval."
+          desc: "Historical storage workflows for retaining and retrieving meteorological observations."
         },
         {
           icon: "globe",
-          title: "Geospatial Isobar & Radar Visualizer",
-          desc: "Interactive weather map overlays rendering wind vectors, pressure isobars, precipitation forecasts, and cyclone tracks."
+          title: "Interactive Forecasting Visualizations",
+          desc: "Plotly- and Leaflet-based views that support exploration of processed weather data."
         },
         {
           icon: "zap",
-          title: "Automated Severe Weather Alerts",
-          desc: "Continuous threshold monitoring triggering early flood and cyclone alerts to emergency response agencies."
+          title: "Operational Data Analysis",
+          desc: "Analysis workflows designed to support routine forecasting and archival use."
         }
       ]
     }
@@ -253,7 +253,7 @@ const projects = [
     badgeType: "personal",
     badgeText: "PERSONAL",
     subCategory: "DEVELOPER TOOL · AI LEARNING COACH",
-    desc: "A privacy-focused AI learning coach and extension for VS Code and PyCharm. Analyzes completed coding runs, captures privacy-filtered semantic outcomes in local SQLite, and uses multi-agent reasoning (Agent A/B) and Thompson sampling to help developers understand recurring mistakes.",
+    desc: "A local-first AI learning coach for VS Code that turns completed coding runs into privacy-filtered learning evidence, helping developers spot recurring error patterns instead of only receiving fixes.",
     tags: ["TypeScript", "Python", "VS Code Extension", "Local SQLite", "Multi-Agent AI"],
     icon: "search",
     iconBg: "linear-gradient(135deg, rgba(52, 211, 153, 0.22), rgba(16, 185, 129, 0.05))",
@@ -263,33 +263,33 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "DEVELOPER TOOL · AI LEARNING COACH",
-      title: "HypoTrace: Privacy-Preserving AI Coding Coach",
-      lead: "A privacy-focused AI learning coach and IDE extension that turns silent debugging loops into structured knowledge without storing sensitive codebase content.",
+      title: "HypoTrace",
+      lead: "A local-first VS Code learning coach that turns completed runs into privacy-filtered evidence, pattern forecasts, and concise coaching prompts.",
       role: "Owner & Developer",
       client: "Open Source Tool (GitHub: AnikaJerin/HypoTrace)",
       tags: ["TypeScript", "Python", "VS Code Extension", "Local SQLite", "Multi-Agent AI"],
       challenge: "Developers frequently repeat cognitive errors and debugging mistakes, yet existing AI assistants simply write code for them without helping them identify root misconceptions or protecting code confidentiality.",
-      approach: "Built a VS Code / PyCharm extension backed by a local-first SQLite telemetry pipeline. Strips PII and raw code using semantic hashing, feeding run execution telemetry into a dual-agent architecture (Agent A for diagnosis, Agent B for pedagogical reflection) with Thompson sampling.",
+      approach: "Built a VS Code extension with a local SQLite evidence store. It records privacy-filtered outcomes rather than raw source code, then uses Agent A/B reasoning and a Thompson-sampling policy to select evidence-based coaching checks.",
       features: [
         {
           icon: "search",
           title: "Multi-Agent Reflection (Agent A & B)",
-          desc: "Agent A isolates mechanical failure patterns while Agent B analyzes mental models and formulates targeted feedback."
+          desc: "Agent A proposes possible causes; Agent B records counterevidence that could change the explanation."
         },
         {
           icon: "database",
           title: "100% Local-First SQLite Storage",
-          desc: "Zero code leaves the developer machine; all semantic outcomes, error signatures, and run metadata reside in encrypted local DB."
+          desc: "Stores semantic outcomes, error signatures, and recovery evidence locally in SQLite; raw source code and terminal history are not stored in the learning database."
         },
         {
           icon: "shield",
           title: "Privacy-Preserving Semantic Masking",
-          desc: "Aggressive PII scrubbing and AST tokenization ensures proprietary client/work code is never exposed."
+          desc: "Filters private filenames and sensitive categories before storing outcomes, keeping the learning record focused on semantic run results."
         },
         {
           icon: "zap",
           title: "Thompson Sampling Insight Optimization",
-          desc: "Reinforcement learning model that selects the most impactful debugging prompts tailored to the engineer's growth curve."
+          desc: "A Thompson-sampling policy selects a coaching check from previously measured interventions for a recurring signature."
         }
       ]
     }
@@ -310,7 +310,7 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "3D ENGINE · GAUSSIAN SPLATTING",
-      title: "GSP-RenderX: Edge-Aware Gaussian Splatting 3D Engine",
+      title: "GSP-RenderX",
       lead: "A lightweight web-based 3D engine replacing heavy polygon STL meshes with an innovative compressed Gaussian Splat format.",
       role: "Owner & Developer",
       client: "Open Source Engine (GitHub: AnikaJerin/GSP-RenderX)",
@@ -320,23 +320,23 @@ const projects = [
       features: [
         {
           icon: "box",
-          title: "Custom .GSP Compressed Asset Format",
-          desc: "Reduces raw 3D model asset payloads by up to 85% compared to standard uncompressed OBJ/STL files."
+          title: "Custom .GSP Asset Format",
+          desc: "Explores a compressed Gaussian-Splat representation as an alternative to heavyweight STL assets."
         },
         {
           icon: "cpu",
           title: "Edge-Aware Gaussian Splatting",
-          desc: "Novel boundary regularization algorithm preventing fuzzy artifacts along sharp mechanical contours."
+          desc: "Uses geometric constraints to preserve sharper boundaries during Gaussian-splat reconstruction."
         },
         {
           icon: "globe",
-          title: "WebGL & Three.js Custom Shader Pipeline",
-          desc: "High-performance GPU compute shaders delivering smooth 60+ FPS rendering across mobile and desktop browsers."
+          title: "Three.js Rendering Pipeline",
+          desc: "Brings the representation into a browser-based 3D rendering workflow using Three.js."
         },
         {
           icon: "layers",
-          title: "Real-Time Mesh-to-Splat Converter",
-          desc: "Client-side pipeline transforming CAD meshes directly into optimized splat point clouds in seconds."
+          title: "Mesh-to-Splat Exploration",
+          desc: "Investigates conversion of mesh geometry into an optimized splat-based representation for web rendering."
         }
       ]
     }
@@ -357,7 +357,7 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "FINTECH & REWARDS · NETIS BANGLADESH",
-      title: "Netis Installer Incentive & Digital Rewards Platform",
+      title: "Netis Installer Incentive & Rewards Ecosystem",
       lead: "Architected the central administrative web portal and high-availability RESTful APIs driving the nationwide Netis Reward mobile ecosystem.",
       role: "Software Engineer & Technical Lead",
       client: "Authorized Sole Distributor of Netis Networking Products of Smart Technologies",
@@ -404,7 +404,7 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "ODOO ERP · WHATSAPP AUTOMATION",
-      title: "USL Intelligent WhatsApp-to-Odoo Helpdesk Automation",
+      title: "USL Helpdesk & WhatsApp Ticketing Automation",
       lead: "Built a bi-directional WhatsApp-to-Odoo ticketing engine that parses group chat conversations and auto-creates structured helpdesk tickets.",
       role: "Software Engineer & Technical Lead",
       client: "Smart Tech Enterprise Technical Support Team",
@@ -451,13 +451,13 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "EDTECH · SMART ACADEMY SCHOOL",
-      title: "Smart Academy: Unified School Management & LMS Platform",
+      title: "Smart Education Management System",
       lead: "Engineered an end-to-end institutional management ERP automating student admissions, academic records, fee collections, biometric attendance, and online testing.",
       role: "Software Engineer & Technical Lead",
-      client: "Smart Academy School & College",
+      client: "Smart Academy",
       tags: ["Python", "Django / Odoo", "PostgreSQL", "Biometric IoT", "SOLID Architecture"],
-      challenge: "Managing thousands of students, parent communications, manual tuition billing, and paper exam grading caused administrative strain and frequent reconciliation errors.",
-      approach: "Applied SOLID architecture principles to build a modular ERP backend in Python with relational PostgreSQL storage, SMS gateway hooks, biometric device sync daemons, and an interactive parent/student portal.",
+      challenge: "The school needed to replace disconnected, manual processes for admissions, student records, fee collection, attendance, and examinations with a reliable system that could support day-to-day academic administration.",
+      approach: "Worked with the development team to design, build, and maintain efficient, reusable Python code for admissions, records, fee collection, attendance, and online examinations. Applied SOLID design principles, source control, build practices, bug tracking, and coding standards to keep the system maintainable.",
       features: [
         {
           icon: "graduation",
@@ -488,7 +488,7 @@ const projects = [
     badgeType: "research",
     badgeText: "RESEARCH",
     subCategory: "MULTIMODAL MEDICAL AI · PYTORCH",
-    desc: "Implemented a cross-modal deep learning framework that fuses 3D structural MRI neuroimaging data with clinical tabular features for early Alzheimer’s disease classification, demonstrating multimodal integration superiority over single-modality baselines.",
+    desc: "A reference cross-modal deep learning framework that combines MRI imaging with tabular clinical features for Alzheimer’s disease classification, including preprocessing, model architecture, and training routines.",
     tags: ["PyTorch", "Multimodal DL", "Medical AI", "CNN", "Tabular"],
     icon: "brain",
     iconBg: "linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(220, 38, 38, 0.05))",
@@ -498,33 +498,33 @@ const projects = [
     actionText: "Explore research repo",
     caseStudy: {
       eyebrow: "MULTIMODAL MEDICAL AI · PYTORCH",
-      title: "Cross-Modal Deep Learning for Early Alzheimer's Detection",
-      lead: "Developed a cross-modal deep neural framework fusing 3D structural MRI neuroimaging with clinical tabular biomarker data for early Alzheimer's Disease classification.",
+      title: "Cross-Modal Alzheimer's Classification",
+      lead: "A reference multimodal learning framework that combines MRI imaging and tabular clinical features for Alzheimer’s disease classification.",
       role: "Owner & Developer",
       client: "Academic Research (GitHub: AnikaJerin/Cross-Modal-DL-Framework...)",
-      tags: ["PyTorch", "3D-CNN", "Multimodal Fusion", "Medical AI", "Explainable AI"],
-      challenge: "Single-modality diagnosis (either MRI imaging alone or clinical tabular data alone) struggles with early-stage prodromal detection (MCI) due to subtle morphological brain changes.",
-      approach: "Designed a 3D-CNN feature extractor for MRI voxel volumes and a dense self-attention network for tabular cognitive scores. Combined the latent representations using a cross-modal fusion layer with adaptive loss weighting.",
+      tags: ["PyTorch", "Multimodal Fusion", "Medical AI", "MRI", "Tabular Data"],
+      challenge: "MRI and clinical data describe complementary aspects of disease progression, but they are often modeled separately. The project explores how to structure both modalities in one classification workflow.",
+      approach: "Implemented the repository’s core model architecture, data-preprocessing pipeline, and training routines as a reproducible multimodal reference implementation.",
       features: [
         {
           icon: "brain",
-          title: "3D-CNN Neuroimaging Feature Extractor",
-          desc: "Processes volumetric 3D T1-weighted MRI scans to capture subtle hippocampal and cortical atrophy patterns."
+          title: "MRI Imaging Pipeline",
+          desc: "Prepares MRI imaging data for use in the multimodal classification workflow."
         },
         {
           icon: "database",
-          title: "Tabular Biomarker & Cognitive Encoder",
-          desc: "Processes MMSE, CDR, age, and demographic indicators through specialized dense residual representations."
+          title: "Clinical Feature Pipeline",
+          desc: "Processes tabular clinical features alongside the imaging input."
         },
         {
           icon: "layers",
-          title: "Cross-Attention Multimodal Fusion",
-          desc: "Learns cross-modality correlations, dynamically weighting image regions based on tabular risk profiles."
+          title: "Multimodal Fusion",
+          desc: "Combines imaging and tabular representations within the project’s core model architecture."
         },
         {
           icon: "chart",
-          title: "Explainable AI (Grad-CAM & Saliency)",
-          desc: "Generates 3D heatmap overlays highlighting anatomical regions driving model diagnostic classifications."
+          title: "Training & Evaluation Routines",
+          desc: "Provides a structured reference workflow for training and evaluating multimodal classification experiments."
         }
       ]
     }
@@ -545,13 +545,13 @@ const projects = [
     actionText: "Explore research repo",
     caseStudy: {
       eyebrow: "QUANTUM ML · MOLECULAR DESIGN",
-      title: "Quantum-Enhanced Graph Learning for Molecular Design",
+      title: "Quantum-Enhanced Graph Learning",
       lead: "Built a hybrid classical-quantum machine learning pipeline predicting molecular electronic bandgaps (HOMO-LUMO) and toxicity for novel biomaterials.",
       role: "Owner & Developer",
       client: "Academic Research (GitHub: AnikaJerin/Quantum-Enhanced-Graph-Learning...)",
       tags: ["GNN", "Quantum Machine Learning", "PennyLane", "PyTorch", "Molecular AI"],
-      challenge: "Classical graph neural networks struggle to capture non-local electron correlation effects in complex conjugated molecular graphs without exponential compute.",
-      approach: "Coupled a classical Graph Neural Network (GNN) molecular graph encoder with a Parameterized Variational Quantum Circuit (VQC) executed via PennyLane and PyTorch quantum simulators.",
+      challenge: "The MVP explores whether a quantum variational layer can complement graph-derived molecular representations for joint property prediction.",
+      approach: "Built a hybrid predictive pipeline: a GNN encodes molecular structure and a variational quantum head targets HOMO-LUMO gap regression and toxicity-risk classification. Conditional generation hooks are intentionally future work.",
       features: [
         {
           icon: "atom",
@@ -566,12 +566,12 @@ const projects = [
         {
           icon: "chart",
           title: "HOMO-LUMO Gap & Bandgap Prediction",
-          desc: "Accurately predicts electronic transport properties essential for organic semiconductor design."
+          desc: "Targets HOMO-LUMO gap prediction as a proxy for electronic bandgap in the MVP."
         },
         {
           icon: "shield",
-          title: "Toxicity & ADMET Risk Scoring",
-          desc: "Simultaneous multi-task prediction of biological toxicity and chemical stability constraints."
+          title: "Toxicity-Risk Classification",
+          desc: "Targets toxicity-risk classification alongside the regression objective."
         }
       ]
     }
@@ -592,33 +592,33 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "COMPUTER VISION · BIOMETRICS & ERP",
-      title: "Real-Time Face Recognition & Odoo Attendance Bridge",
-      lead: "A real-time contactless biometric attendance platform combining OpenCV facial recognition with automated Odoo ERP attendance logging.",
+      title: "Real-Time Face Recognition + Odoo",
+      lead: "A Python computer-vision prototype that connects webcam-based face recognition with Odoo attendance workflows.",
       role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/Face-Recognition-OpenCV)",
       tags: ["Python", "OpenCV", "Flask", "Odoo XML-RPC", "Biometrics"],
       challenge: "Physical fingerprint scanners in enterprise offices cause bottlenecks at peak entry hours and present hygiene concerns during outbreaks.",
-      approach: "Built a lightweight Python and Flask application that captures live video streams, detects facial landmarks using OpenCV/dlib, generates 128-d face encodings, and triggers Odoo HR attendance check-ins via XML-RPC.",
+      approach: "Built a Python, OpenCV, and Flask application that detects and recognizes faces from a webcam, then connects recognition events to Odoo attendance workflows.",
       features: [
         {
           icon: "face",
-          title: "Sub-Second Live Video Face Recognition",
-          desc: "High-accuracy facial detection and embedding comparison operating at 30+ FPS on standard webcams."
+          title: "Live Webcam Recognition",
+          desc: "Uses a webcam feed to detect and recognize faces in a real-time prototype workflow."
         },
         {
           icon: "zap",
           title: "Direct Odoo XML-RPC Attendance Sync",
-          desc: "Automatically updates employee check-in/check-out timestamps and location in real time."
+          desc: "Connects verified recognition events to Odoo employee attendance workflows."
         },
         {
           icon: "shield",
-          title: "Anti-Spoofing & Liveness Detection",
-          desc: "Blink detection and micro-texture analysis to prevent spoofing with printed photographs or digital screens."
+          title: "Contactless Attendance Prototype",
+          desc: "Demonstrates how computer vision can reduce manual attendance logging in an ERP-connected workflow."
         },
         {
           icon: "users",
-          title: "Interactive Employee Enrolment UI",
-          desc: "Web-based portal allowing administrators to onboard new employee facial templates in seconds."
+          title: "Flask Application Layer",
+          desc: "Uses Flask to expose the computer-vision workflow as an application component."
         }
       ]
     }
@@ -639,18 +639,18 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "LLM APPLICATION · BROWSER EXTENSION",
-      title: "YouTube AI Q&A: In-Browser LLM Video Assistant",
-      lead: "An intelligent Chrome extension that extracts video transcripts in real time to allow interactive natural language Q&A and instant timestamped summaries.",
+      title: "YouTube AI Q&A Chrome Extension",
+      lead: "A Chrome extension prototype that lets viewers ask natural-language questions about a YouTube video through a custom chat interface.",
       role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/ChaGPT-Extension-for-Youtube)",
-      tags: ["Chrome Extension Manifest V3", "Python FastAPI", "LLMs", "JavaScript", "NLP"],
+      tags: ["Chrome Extension", "JavaScript", "Python", "LLMs", "NLP"],
       challenge: "Long educational lectures and technical video tutorials require significant time to find specific explanations or code snippets.",
-      approach: "Built a Manifest V3 browser extension with a Python FastAPI backend. Intercepts YouTube video IDs, extracts timed transcript chunks, and queries LLM models with prompt-engineered grounding for timestamped responses.",
+      approach: "Built a browser extension with JavaScript content and popup components plus a Python backend prototype. The project uses a video identifier and transcript context to support question answering on the YouTube page.",
       features: [
         {
           icon: "video",
           title: "In-Situ Video Transcript Extraction",
-          desc: "Extracts multilingual timed captions directly from the active YouTube DOM without external downloads."
+          desc: "Uses video and transcript context to ground questions in the current YouTube session."
         },
         {
           icon: "chat",
@@ -659,13 +659,13 @@ const projects = [
         },
         {
           icon: "zap",
-          title: "Clickable Timestamp Citations",
-          desc: "AI answers link directly back to the exact video playback second where the topic was discussed."
+          title: "Custom In-Page Chat Interface",
+          desc: "Adds a focused Q&A experience alongside the video rather than requiring users to leave YouTube."
         },
         {
           icon: "globe",
-          title: "Key Takeaway & Chapter Generator",
-          desc: "One-click generation of bulleted chapter summaries and concept cheat-sheets."
+          title: "Extension + Backend Prototype",
+          desc: "Separates browser UI, content scripts, and backend experimentation for a clear full-stack learning project."
         }
       ]
     }
@@ -686,33 +686,33 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "OPEN SOURCE · 3D GEOSPATIAL",
-      title: "GeoMap3D: Declarative 3D Geospatial Visualization Library",
-      lead: "A pure Python library for generating, rendering, and exporting interactive 3D geographic maps without frontend JavaScript boilerplate.",
+      title: "GeoMap3D Python Library",
+      lead: "A declarative Python library that generates self-contained interactive 3D geographic map views without requiring users to write frontend JavaScript.",
       role: "Owner & Developer",
       client: "Open Source Python Package (GitHub: AnikaJerin/geomap3D)",
-      tags: ["Python", "3D Geospatial", "NumPy", "Three.js", "Open Source"],
-      challenge: "Data scientists needing 3D topographic maps often have to export data into heavyweight GIS desktop software or write complex Three.js/WebGL frontend code.",
-      approach: "Developed an intuitive, declarative Python API built on top of NumPy, Folium, and Three.js templates. Users can load elevation DEM rasters and geojson layers with simple Python one-liners.",
+      tags: ["Python", "3D Geospatial", "Three.js", "HTML Export", "Open Source"],
+      challenge: "Creating an interactive 3D map often forces data practitioners to move into frontend tooling. The library explores a simpler Python-first API for geographic shapes and surfaces.",
+      approach: "Built a Python API that accepts polygon bars and surface points, projects them around their geographic bounds, and writes a self-contained HTML viewer backed by bundled Three.js assets.",
       features: [
         {
           icon: "globe",
-          title: "Zero-JavaScript Declarative API",
-          desc: "Generate full 3D interactive terrain visualizations directly from Python scripts and Jupyter notebooks."
+          title: "Python-First Map API",
+          desc: "Adds geographic bars and surfaces from Python without requiring users to author client-side JavaScript."
         },
         {
           icon: "layers",
-          title: "DEM Elevation Mesh Extrusion",
-          desc: "Automatically converts Digital Elevation Models (DEM) into textured 3D surface geometries."
+          title: "Polygon Bars & Surface Layers",
+          desc: "Renders projected polygon bars and 3D surface-point layers in the generated viewer."
         },
         {
           icon: "box",
-          title: "Standalone HTML & GLTF Export",
-          desc: "Export self-contained interactive 3D web files for easy embedding in dashboards and reports."
+          title: "Standalone HTML Export",
+          desc: "Writes a portable HTML viewer with the map configuration embedded for easy sharing."
         },
         {
           icon: "chart",
-          title: "Chloropleth & Heatmap Layering",
-          desc: "Overlay statistical geospatial indicators, population densities, and contours over terrain geometry."
+          title: "Bounds-Aware Projection",
+          desc: "Calculates a map center and scale from the submitted geographic coordinates before rendering."
         }
       ]
     }
@@ -733,33 +733,33 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "FULL STACK · REAL-TIME WEBSOCKETS",
-      title: "High-Concurrency WebSocket Real-Time Chat Platform",
-      lead: "A low-latency, event-driven chat platform featuring multi-room support, active presence tracking, and typing indicators.",
+      title: "WebSocket Real-Time Chat Platform",
+      lead: "A full-stack chat-room prototype demonstrating browser-to-server messaging with Flask-SocketIO and a React client.",
       role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/WebSocket-Chat-Room-Application)",
       tags: ["React", "Flask", "WebSocket", "Socket.IO", "Event-Driven"],
-      challenge: "Building a scalable real-time communication platform requires careful state management, reconnection resilience, and efficient socket event multiplexing.",
-      approach: "Constructed an event-driven architecture combining Flask-SocketIO on the backend with React on the client. Implemented broadcast channels, heartbeat pinging, and persistent message logs.",
+      challenge: "The project explores the core event model behind real-time web communication: accepting messages from one client and broadcasting them to connected participants.",
+      approach: "Built a Flask application with Flask-SocketIO and permissive CORS configuration; its message event handler broadcasts received messages to connected clients. The repository pairs this backend with a React chat-room application.",
       features: [
         {
           icon: "chat",
-          title: "Bi-Directional Event-Driven Sockets",
-          desc: "Instantaneous message delivery with sub-10ms local network propagation using WebSocket protocol."
+          title: "Broadcast Message Events",
+          desc: "Receives a Socket.IO message event and broadcasts it to connected chat participants."
         },
         {
           icon: "users",
-          title: "Dynamic Multi-Room Multiplexing",
-          desc: "Isolated communication channels with on-the-fly room creation, join passwords, and user counts."
+          title: "Flask-SocketIO Backend",
+          desc: "Demonstrates a compact Python real-time backend with a dedicated Socket.IO server."
         },
         {
           icon: "zap",
-          title: "Live Presence & Typing Indicators",
-          desc: "Real-time indicators showing active user online/offline status and current typing notifications."
+          title: "React Chat Client",
+          desc: "Pairs the socket backend with a React-based chat-room interface."
         },
         {
           icon: "shield",
-          title: "Graceful Reconnection & Message Queue",
-          desc: "Automatic exponential backoff reconnection ensuring zero message drop during brief network hiccups."
+          title: "CORS-Enabled Development Setup",
+          desc: "Configures the backend for browser-client communication during local development."
         }
       ]
     }
@@ -780,33 +780,33 @@ const projects = [
     actionText: "Explore repository",
     caseStudy: {
       eyebrow: "VOICE AI · DESKTOP AUTOMATION",
-      title: "AI Desktop Voice Assistant & Workflow Automator",
-      lead: "A hands-free desktop voice assistant automating computer workflows, application control, web searches, and email drafting via natural speech.",
+      title: "AI Desktop Voice Assistant",
+      lead: "A Python voice-assistant project that uses speech recognition to open websites, play local music, and support email tasks through spoken commands.",
       role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/AI-Desktop-Assistant)",
-      tags: ["Python", "SpeechRecognition", "Pyttsx3", "OS Automation", "NLP"],
+      tags: ["Python", "Speech Recognition", "Desktop Automation", "Voice Commands"],
       challenge: "Navigating repetitive desktop tasks manually (opening apps, searching documentation, controlling media) slows down developer workflows.",
-      approach: "Built a modular Python engine using speech recognition libraries, text-to-speech synthesis (pyttsx3), and OS system automation hooks. Implemented intent parsing to trigger system operations reliably.",
+      approach: "Built a Python application around speech recognition and command routing to connect spoken requests with browser access, music playback, and email-related actions.",
       features: [
         {
           icon: "mic",
           title: "Speech Recognition & Intent Parser",
-          desc: "Listens for voice commands and accurately routes intents to appropriate automation handlers."
+          desc: "Listens for spoken commands and routes recognized requests to the matching application action."
         },
         {
           icon: "zap",
-          title: "OS-Level Desktop Automation",
-          desc: "Controls browser navigation, launches applications, adjusts system volume, and executes scripts."
+          title: "Website Shortcuts",
+          desc: "Opens frequently used destinations such as Google, YouTube, GitHub, and Stack Overflow by voice command."
         },
         {
           icon: "globe",
-          title: "Automated Web Search & Info Retrieval",
-          desc: "Queries Wikipedia, Google, and weather APIs to summarize answers verbally in real time."
+          title: "Local Music Playback",
+          desc: "Connects a voice command to music playback from the desktop."
         },
         {
           icon: "mail",
-          title: "Voice-Activated Email Drafting",
-          desc: "Dictates and dispatches emails via SMTP with speech confirmation before sending."
+          title: "Email Commands",
+          desc: "Includes email-related voice commands as part of the desktop automation workflow."
         }
       ]
     }
@@ -827,7 +827,7 @@ const projects = [
     actionText: "View case study",
     caseStudy: {
       eyebrow: "FINANCIAL AI · TIME-SERIES FORECASTING",
-      title: "Smarter Stock: Deep Learning Predictive Financial Platform",
+      title: "Smarter Stock",
       lead: "Engineered a predictive stock analytics platform processing large-scale time-series financial datasets to identify market trends and forecast prices using LSTM models.",
       role: "Software Engineer & Technical Lead",
       client: "Ecosoftbd — Capital Market Analytics",
@@ -1093,11 +1093,11 @@ const experience = [
 ];
 
 const skills = [
-  ["AI / ML", "PyTorch · TensorFlow · Keras · Scikit-learn · OpenCV · YOLO · CNN · LSTM · Vision Transformers · GNN"],
-  ["Programming", "Python · C++ · C · Go · MATLAB · SQL · JavaScript"],
-  ["Backend", "FastAPI · Flask · Django · Odoo · REST APIs · PostgreSQL"],
-  ["Frontend / Data", "React · HTML · CSS · Plotly · Folium · Leaflet"],
-  ["Engineering", "Git · GitHub · Linux · Postman · Jupyter · NumPy · Pandas"],
+  ["Languages", "Python · C++ · JavaScript / TypeScript · Java · SQL · C"],
+  ["Web Technologies", "Next.js · React.js · Node.js · Flask · Express.js"],
+  ["Databases", "PostgreSQL · MySQL · MongoDB"],
+  ["DevOps & Version Control", "Git · GitHub · AWS (EC2)"],
+  ["API", "REST API · FastAPI"],
 ];
 
 const SKILL_ITEMS = [
@@ -2154,12 +2154,12 @@ const ROADMAP_MILESTONES = [
     icon: Medal,
     color: "#22c55e",
     badge: "BOARD DISTINCTION",
-    stoppageLabel: "SSC · A+ in All",
+    stoppageLabel: "SSC",
     summary: "Achieved maximum GPA 5.0 with A+ in all subjects and government merit-based board scholarship in the 2012 SSC examinations.",
     achievements: [
       "Achieved perfect Grade Point Average (GPA 5.0 / A+ in all subjects) in the national Secondary School Certificate (SSC) examination in 2012.",
-      "Awarded prestigious government merit-based board scholarship for top-echelon regional standing.",
-      "Demonstrated academic excellence in higher mathematics, physics, chemistry, biology, and language sciences."
+      "Awarded prestigious government merit-based board scholarship.",
+      "Demonstrated academic excellence in higher mathematics, physics, chemistry, biology, and core academic subjects."
     ],
     tags: ["GPA 5.0 (A+ in All)", "SSC Merit Scholarship", "Board Distinction", "Science Group"]
   },
@@ -2173,11 +2173,11 @@ const ROADMAP_MILESTONES = [
     icon: Sparkles,
     color: "#f59e0b",
     badge: "BOARD DISTINCTION",
-    stoppageLabel: "HSC · A+ in All",
+    stoppageLabel: "HSC",
     summary: "Achieved perfect GPA 5.0 with A+ in all subjects in HSC 2014, earning competitive merit-based scholarship.",
     achievements: [
       "Secured maximum Grade Point Average (GPA 5.0 / A+ in all subjects) in the national Higher Secondary Certificate (HSC) examination in 2014.",
-      "Awarded prestigious merit-based scholarship in 2014 by the Education Board for top-tier academic rank.",
+      "Awarded prestigious merit-based scholarship in 2014 by the Education Board.",
       "Earned competitive admission into the Department of Computer Science & Engineering / Information Technology at Jahangirnagar University."
     ],
     tags: ["GPA 5.0 (A+ in All)", "HSC Exam 2014", "Board Merit Scholarship", "Science Group"]
@@ -2193,15 +2193,32 @@ const ROADMAP_MILESTONES = [
     color: "#d9ff62",
     badge: "LEADERSHIP & CONTESTS",
     stoppageLabel: "IEEE CS & Contests",
-    summary: "Joint Secretary for IEEE Computer Society JU Chapter, champion for women in STEM, and IUPC programming finalist.",
+    summary: "Joint Secretary for IEEE Computer Society JU Chapter, driving women's empowerment in STEM and competing in premier IEEE programming events.",
     achievements: [
       "Joint Secretary, IEEE Computer Society (Jahangirnagar University Chapter): Spearheaded initiatives and programs aimed at empowering women, especially in STEM and computing disciplines where women are historically underrepresented.",
       "Conducted technical workshops, hands-on coding bootcamps, and seminars to help female students build programming skills, confidence, and pursue leadership positions.",
-      "Inter-University Programming Contest (IUPC) Finalist: Competed in multiple inter-university programming contests for women and open university-wide contests, successfully advancing to the finals.",
-      "Active participant and coordinator across premier IEEE competitions: IEEE Xtreme 24-Hour Programming, IEEE MadC (Mobile Application Development Contest), and IEEE CS BDC Summit 2019.",
-      "Cultivated deep algorithmic problem-solving discipline on LeetCode and HackerRank, mastering data structures, algorithms, and computational optimization."
+      "Competed in multiple inter-university programming contests for women and open university-wide contests, successfully advancing to the finals.",
+      "Active participant and coordinator across premier IEEE competitions: IEEE Xtreme 24-Hour Programming, IEEE MadC (Mobile Application Development Contest), and IEEE CS BDC Summit 2019."
     ],
     tags: ["IEEE Computer Society", "Joint Secretary", "Women in STEM", "IUPC Finalist", "IEEE Xtreme", "Hackathons"]
+  },
+  {
+    id: "2020-career",
+    year: "2020",
+    period: "CAREER START",
+    title: "Software Engineer — Ecosoft BD & Smart Technologies",
+    org: "Smarter Stock — Ecosoftbd · Smart Technologies BD. Ltd.",
+    category: "Professional Experience",
+    icon: Briefcase,
+    color: "#38bdf8",
+    badge: "CAREER MILESTONE",
+    stoppageLabel: "Career Start",
+    summary: "Began professional software engineering career in 2020, first at Ecosoftbd then at Smart Technologies BD, building AI-driven and enterprise systems.",
+    achievements: [
+      "Joined Smarter Stock — Ecosoftbd (Sept 2020) as a Software Engineer.",
+      "Joined Smart Technologies BD. Ltd. (Dec 2020): Contributed to high-stakes, government-funded national infrastructure initiatives backed by total funding exceeding 100 Crore BDT (~$10M+ USD) from agencies including the World Meteorological Organization (WMO)."
+    ],
+    tags: ["Software Engineering", "Ecosoftbd", "Smart Technologies", "Computer Vision", "YOLO", "Odoo ERP", "Deep Learning"]
   },
   {
     id: "2021-publication",
@@ -2217,19 +2234,55 @@ const ROADMAP_MILESTONES = [
     summary: "Co-authored peer-reviewed book chapter in Springer CCIS and received the Best Impact Award.",
     achievements: [
       "Co-Author of peer-reviewed paper: 'COVID-Hero: Machine Learning Based COVID-19 Awareness Enhancement Mobile Game for Children', published as a book chapter in Communications in Computer and Information Science (CCIS), Springer, Cham.",
-      "Honored with the Best Impact Award for meaningful real-world societal impact through intelligent interactive technology.",
-      "Implemented and evaluated machine learning regression models (Linear Regression, Decision Tree, Random Forest, XGBoost, and k-NN).",
-      "Evaluated model performance using max error (ME), mean absolute error (MAE), mean squared error (MSE), and R² score metrics to model user engagement."
+      "Honored with the Best Impact Award for meaningful real-world societal impact through intelligent interactive technology."
     ],
     tags: ["Co-Author", "Best Impact Award", "Springer CCIS", "Machine Learning", "Research Publication"]
+  },
+  {
+    id: "2025-certifications",
+    year: "2025",
+    period: "CERTIFICATIONS",
+    title: "Coursera AI/ML Specializations — DeepLearning.AI",
+    org: "DeepLearning.AI · Coursera",
+    category: "Professional Certifications",
+    icon: Award,
+    color: "#a855f7",
+    badge: "CERTIFIED",
+    stoppageLabel: "Learning & Certs",
+    summary: "Completed industry-recognized AI/ML specializations on Coursera from DeepLearning.AI, covering machine learning, mathematics, and deep learning foundations.",
+    achievements: [
+      "Completed Mathematics for Machine Learning and Data Science Specialization (DeepLearning.AI / Coursera): Linear Algebra, Calculus for Machine Learning, and Probability & Statistics for Machine Learning.",
+      "Completed Machine Learning Specialization (DeepLearning.AI / Coursera): Supervised Learning, Advanced Learning Algorithms, and Unsupervised Learning, Recommenders & Reinforcement Learning.",
+      "Achieved HackerRank Software Engineer Role Certification — verified software engineering competency across algorithms, data structures, and problem solving."
+    ],
+    tags: ["DeepLearning.AI", "Coursera", "Machine Learning", "Math for ML", "Calculus", "HackerRank Certified"]
+  },
+  {
+    id: "2026-milestones",
+    year: "2026",
+    period: "2026 — HIGHLIGHTS",
+    title: "Admissions & Recognition",
+    org: "University of Rochester · UB · Stony Brook · HackerRank",
+    category: "Graduate Admissions & Recognition",
+    icon: GraduationCap,
+    color: "#f59e0b",
+    badge: "MERIT SCHOLARSHIP",
+    stoppageLabel: "2026",
+    summary: "Admitted to three prestigious US universities for MS in Computer Science with merit-based scholarships, and achieved Top 31% global ranking in HackerRank Orchestrate.",
+    achievements: [
+      "Admitted to MS in Computer Science programs at the University of Rochester, University at Buffalo (SUNY), and Stony Brook University (SUNY) — all with merit-based scholarships.",
+      "Ranked Top 31% globally in HackerRank Orchestrate (Sep 2026, Rank #924) — a competitive AI-powered ranking among software engineers worldwide."
+    ],
+    tags: ["MS Computer Science", "University of Rochester", "University at Buffalo", "Stony Brook University", "Merit Scholarship", "HackerRank Orchestrate", "Top 31%"]
   }
 ];
 
 function HorizontalRoadmap() {
-  const [activeIndex, setActiveIndex] = useState(4); // Default to IEEE leadership & Contests
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0); // Always default point is the first one (index 0)
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true); // Auto drive mode ON by default
   const trackRef = useRef(null);
   const stoppageRefs = useRef([]);
+  const isInitialMount = useRef(true);
 
   const current = ROADMAP_MILESTONES[activeIndex];
   const total = ROADMAP_MILESTONES.length;
@@ -2243,11 +2296,20 @@ function HorizontalRoadmap() {
   }, [isAutoPlaying, total]);
 
   useEffect(() => {
-    if (stoppageRefs.current[activeIndex]) {
-      stoppageRefs.current[activeIndex].scrollIntoView({
-        behavior: "smooth",
-        inline: "center",
-        block: "nearest"
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+      if (trackRef.current) {
+        trackRef.current.scrollLeft = 0;
+      }
+      return;
+    }
+    const node = stoppageRefs.current[activeIndex];
+    const container = trackRef.current;
+    if (node && container) {
+      const targetScroll = node.offsetLeft - (container.clientWidth / 2) + (node.clientWidth / 2);
+      container.scrollTo({
+        left: Math.max(0, targetScroll),
+        behavior: "smooth"
       });
     }
   }, [activeIndex]);
@@ -2559,11 +2621,34 @@ function App(){
 
   useEffect(()=>{
     const obs = new IntersectionObserver(es=>{
+      if (window.scrollY < 120) {
+        setActive("home");
+        return;
+      }
       const visible = es.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
       if(visible) setActive(visible.target.id);
     }, {rootMargin:"-30% 0px -55% 0px", threshold:[.05,.2,.5]});
     document.querySelectorAll("section[id]").forEach(s=>obs.observe(s));
-    return ()=>obs.disconnect();
+
+    const handleScroll = () => {
+      if (window.scrollY < 120) {
+        setActive("home");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    // On load or refresh near top, ensure home is active and strip any leftover hash
+    if (window.scrollY < 120) {
+      setActive("home");
+      if (window.location.hash === "#roadmap") {
+        window.history.replaceState(null, "", window.location.pathname);
+      }
+    }
+
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("scroll", handleScroll);
+    };
   },[]);
 
   useEffect(()=>{
@@ -2736,7 +2821,7 @@ function App(){
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
             <a className="button ghost" href={PROFILE.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
             <a className="button ghost" href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn <ArrowUpRight size={14}/></a>
-            <a className="button ghost" href={`${import.meta.env.BASE_URL}Anika-Jerin-Resume.pdf`} target="_blank" rel="noreferrer">Resume <ArrowDown size={16}/></a>
+            <span className="button ghost" style={{opacity:0.4, cursor:"not-allowed", pointerEvents:"none"}} aria-disabled="true">Resume <ArrowDown size={16}/></span>
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
@@ -3022,23 +3107,19 @@ function App(){
         <div className="skills skills-text-breakdown">
           {skills.map(([a,b])=><div key={a}><span>{a}</span><p>{b}</p></div>)}
         </div>
+
       </section>
 
-      <Section id="credentials" eyebrow="07 — EDUCATION & RECOGNITION" title={<>Grounded in <ZebraWord text="delivery," /> driven by <ZebraWord text="learning." /></>}>
-        <div className="credentials-grid">
-          <article><GraduationCap size={21}/><span>EDUCATION</span><h3>B.Sc. in Information Technology</h3><p>Jahangirnagar University · CGPA 3.48 / 4.00</p></article>
-          <article><Award size={21}/><span>RECOGNITION</span><h3>Best Impact Award</h3><p>Co-authored “COVID-Hero,” a machine-learning based awareness mobile game for children.</p></article>
-          <article><MapPin size={21}/><span>GLOBAL CAREER</span><h3>Open to global SWE & AI roles</h3><p>Focused on meaningful engineering work across applied AI, backend systems, and research.</p></article>
-        </div>
-      </Section>
-
-      <Section id="about" eyebrow="08 — ABOUT" title="A hybrid profile by design.">
+      <Section id="about" eyebrow="07 — ABOUT" title={<>Let's build something <ZebraWord text="worth remembering." /></>}>
         <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI/ML, research, and algorithmic problem solving." isYellow={true} /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
       </Section>
 
-      <section className="cta"><Sparkles size={24}/><h2>Let's build something<br/><em><ZebraWord text="worth remembering." isYellow={true} /></em></h2><a className="button primary" href={`mailto:${PROFILE.email}`}>Get in touch <ArrowUpRight size={16}/></a></section>
-     </main>
-    <footer><span>© {new Date().getFullYear()} {PROFILE.name}</span><span>BUILT WITH REACT · HOSTED ON GITHUB</span><a href="#home"><ArrowUp size={15}/></a></footer>
+
+    </main>
+    <footer>
+      <span>© {new Date().getFullYear()} {PROFILE.name}</span>
+      <a href="#home" aria-label="Back to top" title="Back to top"><ArrowUp size={15}/></a>
+    </footer>
     {selectedCaseStudy && <CaseStudyModal project={selectedCaseStudy} onClose={() => setSelectedCaseStudy(null)} />}
   </div>
 }
