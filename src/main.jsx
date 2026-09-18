@@ -2834,7 +2834,7 @@ function App(){
             <span className="hero-ref-label"><span className="dot"/>REFERENCES AVAILABLE FROM</span>
             <div className="hero-ref-list">
               <div className="hero-ref-item">M. Shamim Kaiser, PhD <em>— Prof., IIT, Jahangirnagar University</em></div>
-              <div className="hero-ref-item">Md. Whaiduzzaman, PhD <em>— Assoc. Prof., Torrens University &amp; Prof. on Leave, IIT, JU</em></div>
+              <div className="hero-ref-item">Md. Whaiduzzaman, PhD <em>— Research Fellow, QUT &amp; Prof. on Leave, IIT, JU</em></div>
               <div className="hero-ref-item">Zamshed Chowdhury, PhD <em>— ASIC Engineer, Meta &amp; Lecturer on Leave, IIT, JU</em></div>
               <div className="hero-ref-item">Mostofa Zaman <em>— Head of Software Development, Smart Technologies BD Ltd.</em></div>
             </div>
