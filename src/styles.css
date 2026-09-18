@@ -585,6 +585,34 @@ footer a:hover{color:var(--accent)}
   animation: fadeOutCursor 1s forwards;
   animation-delay: 1.2s;
 }
+
+/* Mobile hero containment — keep the first section within the viewport. */
+@media (max-width: 560px) {
+  .hero > .hero-copy {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .hero h1,
+  .hero-text,
+  .hero-references,
+  .hero-ref-list {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 12vw, 54px);
+    overflow-wrap: normal;
+  }
+
+  .hero-text {
+    width: 100%;
+    text-align: left;
+    text-justify: auto;
+    overflow-wrap: break-word;
+  }
+}
 @keyframes blinkCursor {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
@@ -1852,7 +1880,6 @@ button.project-card-link:hover svg,
     font-size: 9px;
   }
 }
-
 
 
 
