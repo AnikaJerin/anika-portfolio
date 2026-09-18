@@ -6,7 +6,7 @@ import {
   BookOpen, Award, MapPin, GraduationCap, CalendarDays, CircleCheckBig,
   Eye, Cpu, MousePointer2, Building2, Briefcase, CloudSun, Box, Search,
   Atom, ScanFace, Video, Globe, MessageSquare, Mic, Star, ChevronLeft, ChevronRight,
-  ArrowLeft, X, CheckCircle2
+  ArrowLeft, X, Users, Play, Pause, Car, CheckCircle2
 } from "lucide-react";
 import "./styles.css";
 
@@ -60,13 +60,13 @@ const PROFILE = {
 
 const projects = [
   {
-    title: "Enterprise ERP & Business Automation",
+    title: "ERP & Business Automation",
     category: "INDUSTRY",
     badgeType: "industry",
     badgeText: "INDUSTRY",
-    subCategory: "ODOO · MULTI-COMPANY HR/CRM",
-    desc: "Architected and built a unified enterprise ERP platform using Python and Odoo Framework, seamlessly integrating business logic across Sales, Inventory, Accounting, POS, Procurement, and comprehensive HR/Payroll modules.",
-    tags: ["Python", "Odoo", "PostgreSQL", "HR & Payroll", "REST APIs"],
+    subCategory: "ODOO FRAMEWORK · SUPPLY CHAIN & FINANCE",
+    desc: "Engineered an enterprise-grade distribution ERP platform using Python and Odoo Framework, centralizing multi-warehouse inventory, automated procurement, foreign purchase & Letter of Credit (LC) tracking, landed-cost accounting, and sales operations.",
+    tags: ["Python", "Odoo", "PostgreSQL", "Supply Chain", "Financial Accounting", "REST APIs"],
     icon: "briefcase",
     iconBg: "linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.05))",
     iconBorder: "rgba(245, 158, 11, 0.38)",
@@ -74,38 +74,36 @@ const projects = [
     link: "https://github.com/AnikaJerin",
     actionText: "View case study",
     caseStudy: {
-      eyebrow: "ODOO · MULTI-COMPANY HR/CRM",
-      title: "Full Business Automation Platform",
-      lead: "Delivered a fully automated, end-to-end platform spanning customer engagement and internal HR/finance operations — architected and managed from planning through implementation.",
-      role: "Project Manager & Solution Architect",
-      client: "Chuti Resort Group, Bangladesh — Resort Sharing Business",
-      year: "2025–2026",
-      tags: ["CRM", "HR & Payroll", "Multi-Company", "Odoo", "PostgreSQL", "REST APIs"],
-      challenge: "As a resort-sharing business, the client needed a complete end-to-end automation platform covering customer-facing operations (CRM, sales, bookings, payments) as well as internal operations (HR, payroll, finance) and a self-service portal for employees and customers alike, across a multi-company setup of 10–12 companies.",
-      approach: "Served as project manager and lead architect, planning and directing the team through a full-scale implementation. Delivered CRM, sales, booking, and payment modules on the customer-facing side. Built a complete HR automation suite including an employee module, leave management, payroll, and finance modules, along with an employee portal and an integrated customer portal.",
+      eyebrow: "ODOO · ENTERPRISE DISTRIBUTION & SUPPLY CHAIN",
+      title: "ERP & Business Automation",
+      lead: "Engineered a high-performance, modular enterprise ERP platform powered by Python and the Odoo framework, replacing fragmented legacy workflows with unified automation across multi-warehouse inventory, procurement, international LC tracking, landed cost calculation, and financial accounting.",
+      role: "Software Engineer",
+      client: "Smart Technologies, Starseed, Global Automation Ltd. & Smart Hi-Tech",
+      tags: ["Odoo Framework", "Python", "PostgreSQL", "Supply Chain", "Inventory & Warehouse", "Financial Accounting", "Letter of Credit (LC)", "REST APIs"],
+      challenge: "Enterprise distribution operations relied on fragmented legacy systems, uncoordinated spreadsheets, and paper-driven records across multi-location warehouses. Crucial operational bottlenecks plagued foreign purchase orders, tracking multi-stage Letter of Credit (LC) consignments, calculating landed costs (tariffs, port duties, international freight), and reconciling accounts with accurate inventory valuation under high transaction volumes.",
+      approach: "Led backend engineering and system customization using the Odoo (Python) framework with PostgreSQL. Architected end-to-end automated procurement-to-pay pipelines, multi-warehouse routing rules, and dynamic landed-cost calculation engines that automatically adjust general ledger asset valuations upon customs clearance. Engineered scalable RESTful integration layers and granular role-based access control, ensuring transactional atomicity and real-time auditability across all enterprise operational entities.",
       features: [
         {
-          icon: "calendar",
-          title: "CRM, sales, booking, and payment modules",
-          desc: "End-to-end automated customer reservation lifecycle with multi-channel payment gateway settlement."
-        },
-        {
-          icon: "users",
-          title: "Full HR suite — employee records, leave, payroll",
-          desc: "Automated onboarding, biometric clock-in sync, statutory deductions, and computerized payslip dispatches."
+          icon: "box",
+          title: "Multi-Warehouse Inventory & Logistics Routing",
+          desc: "Engineered automated replenishment rules, warehouse transfer tracking, serial/lot traceability, and real-time stock valuation based on automated FIFO/AVCO costing."
         },
         {
           icon: "globe",
-          title: "Employee portal and integrated customer portal",
-          desc: "Self-service web dashboards for booking management, leave requests, expense reimbursements, and tax sheets."
+          title: "International Procurement & Letter of Credit (LC) Tracking",
+          desc: "Automated end-to-end import lifecycles: foreign purchase orders, multi-stage bank LC status tracking, proforma invoicing, and customs shipment reconciliation."
         },
         {
-          icon: "building",
-          title: "Multi-company architecture across 10–12 companies",
-          desc: "Multi-tiered ledger consolidation, inter-company billing, and granular role-based security isolation."
+          icon: "layers",
+          title: "Dynamic Landed-Cost Calculation & Finance Engine",
+          desc: "Built custom financial modules dynamically distributing freight, customs duties, insurance, and local port fees onto unit costs with automated general ledger journal entries."
+        },
+        {
+          icon: "database",
+          title: "Integrated Sales, Invoicing & Double-Entry Accounting",
+          desc: "Built streamlined order-to-cash workflows connecting quotation approvals, multi-currency invoicing, tax compliance rules, and automated accounts receivable/payable reconciliation."
         }
-      ],
-      impact: "Replaced 6 disconnected legacy spreadsheets and paper workflows with a single real-time enterprise hub, reducing monthly payroll calculation cycles by 80% and unifying 12 corporate branches under one system."
+      ]
     }
   },
   {
@@ -126,9 +124,8 @@ const projects = [
       eyebrow: "ODOO ERP · AI DEFECT PREDICTION",
       title: "AI-Driven Quality Monitoring & Defect Prediction",
       lead: "Embedded automated machine learning intelligence directly into production line ERP workflows to predict manufacturing defects before products reach packaging.",
-      role: "Lead AI/ML Engineer",
-      client: "Smart Technologies BD Ltd. — Assembly & Manufacturing",
-      year: "2023–2024",
+      role: "Software Engineer & Technical Lead",
+      client: "Smart Hi-Tech",
       tags: ["Machine Learning", "Odoo ERP", "Python", "Telemetry Analytics", "PostgreSQL"],
       challenge: "High-volume hardware and electronics assembly lines suffered from late-stage defect discoveries, resulting in expensive product scrappage, delayed shipments, and labor-intensive manual QA inspections.",
       approach: "Engineered predictive ML pipelines integrated with Odoo manufacturing work orders. Captured real-time telemetry from production line testing sensors alongside technician logs, training supervised classification models to score defect risk in real-time.",
@@ -153,8 +150,7 @@ const projects = [
           title: "Predictive Quality Threshold Alerts",
           desc: "Automated email and SMS notifications triggered when batch anomaly metrics exceed safety thresholds."
         }
-      ],
-      impact: "Reduced manufacturing line defect escape rates by 34% and reduced manual QA audit cycle times by over 50% across key assembly facilities."
+      ]
     }
   },
   {
@@ -163,7 +159,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "COMPUTER VISION · HIGHWAY POLICE",
-    desc: "Built an AI-driven real-time traffic monitoring and automatic fining platform deployed on the Dhaka–Chittagong highway for Bangladesh Highway Police. Detects violations, reads license plates, and issues digital fines without any human intervention.",
+    desc: "Contributed to a production-scale traffic monitoring and auto-fining system for real-world violation detection. Developed CV pipelines for vehicle tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, and OpenCV.",
     tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI"],
     icon: "eye",
     iconBg: "linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.05))",
@@ -174,13 +170,12 @@ const projects = [
     caseStudy: {
       eyebrow: "COMPUTER VISION · HIGHWAY POLICE",
       title: "AI Traffic Monitoring & Automated Fining System",
-      lead: "Built an end-to-end intelligent traffic enforcement platform deployed on the Dhaka–Chittagong highway that detects violations, reads Bengali license plates, and issues digital fines fully automatically — with zero manual intervention.",
-      role: "Computer Vision Engineer",
-      client: "Bangladesh Highway Police — Dhaka–Chittagong Highway",
-      year: "2022–2024",
+      lead: "Contributed to a production-scale traffic monitoring and auto-fining system designed to reliably detect violations under complex real-world road conditions. Developed and optimized computer-vision pipelines for vehicle detection, multi-object tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, OpenCV, and deep-learning models. Built backend inference and evidence-processing workflows, incorporating trajectory-based reasoning, confidence validation, and Bangladesh-specific traffic data to improve the reliability of automated violation detection.",
+      role: "Software Engineer & Technical Lead",
+      client: "Bangladesh Highway Police",
       tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI", "Edge AI"],
-      challenge: "The Dhaka–Chittagong highway — Bangladesh's busiest freight and passenger corridor — suffered from rampant speeding, wrong-way driving, and lane violations. Manual enforcement was impractical across hundreds of kilometers, violations went unrecorded, and dangerous incidents caused fatalities and cargo losses daily.",
-      approach: "Engineered a full-stack computer vision enforcement pipeline: trained custom YOLOv8 models for vehicle class detection, coupled with DeepSORT multi-object tracking. Implemented perspective homography for real-time speed measurement. Built a Bengali ANPR (Automatic Number Plate Recognition) OCR engine that reads plates in adverse conditions. The system automatically generates digital penalty notices with timestamped video evidence and dispatches them to the offender's registered address — all without any police officer involvement.",
+      challenge: "The key challenge was achieving reliable violation and license-plate detection under dense traffic, occlusion, varying lighting/weather, and diverse real-world road conditions while minimizing false violations. Developed and optimized computer-vision pipelines for vehicle detection, multi-object tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, OpenCV, and deep-learning models. Built backend inference and evidence-processing workflows and performed Bangladesh-specific data analysis, augmentation, model evaluation, and optimization to improve real-world detection reliability.",
+      approach: "Contributed to a production-scale traffic monitoring system as a computer-vision and backend engineer. Developed and deployed CV components for speeding and wrong-way detection and ANPR, fine-tuned and optimized deep-learning models, and built backend services for real-time inference workflows. Performed EDA, data augmentation, and model evaluation on Bangladesh-specific traffic datasets to improve detection reliability under real-world conditions.",
       features: [
         {
           icon: "eye",
@@ -202,8 +197,7 @@ const projects = [
           title: "Multi-Violation Detection Engine",
           desc: "Simultaneously detects speeding, wrong-way driving, illegal overtaking, and lane violations on live CCTV feeds across the Dhaka–Chittagong corridor."
         }
-      ],
-      impact: "Deployed on the Dhaka–Chittagong highway processing 500,000+ vehicle passes per day. Automated end-to-end digital fining pipeline replacing entirely manual enforcement — violations detected, plates read, and fines issued in under 3 seconds per incident."
+      ]
     }
   },
   {
@@ -224,9 +218,8 @@ const projects = [
       eyebrow: "DATA PLATFORMS · BMD & WMO PLATFORM",
       title: "National Meteorological Data Ingestion & Forecasting Platform",
       lead: "Built the national data ingestion, binary decoding, spatial mapping, and historical archiving infrastructure for nationwide real-time meteorological observations.",
-      role: "Backend & Data Pipeline Engineer",
-      client: "Bangladesh Meteorological Department (BMD) & WMO",
-      year: "2021–2024",
+      role: "Software Engineer & Technical Lead",
+      client: "Bangladesh Meteorological Department (BMD)",
       tags: ["Python", "BUFR / SYNOP / METAR", "PostgreSQL / PostGIS", "Plotly", "Leaflet"],
       challenge: "Raw weather observations from Doppler radar, satellite sensors, and coastal ground stations arrived in complex binary WMO formats (BUFR, SYNOP, METAR, TAF) requiring sub-second decoding, validation, and historical persistence without data loss.",
       approach: "Engineered scalable Python asynchronous data ingestion daemons, custom binary BUFR decoders, and a spatial PostgreSQL/PostGIS database. Built interactive meteorologist mapping consoles using Plotly and Leaflet.",
@@ -251,8 +244,7 @@ const projects = [
           title: "Automated Severe Weather Alerts",
           desc: "Continuous threshold monitoring triggering early flood and cyclone alerts to emergency response agencies."
         }
-      ],
-      impact: "Streamlined national weather forecasting workflows for 50+ senior meteorologists and improved bulletin distribution speed by 4x across nationwide networks."
+      ]
     }
   },
   {
@@ -273,9 +265,8 @@ const projects = [
       eyebrow: "DEVELOPER TOOL · AI LEARNING COACH",
       title: "HypoTrace: Privacy-Preserving AI Coding Coach",
       lead: "A privacy-focused AI learning coach and IDE extension that turns silent debugging loops into structured knowledge without storing sensitive codebase content.",
-      role: "Creator & Lead Developer",
+      role: "Owner & Developer",
       client: "Open Source Tool (GitHub: AnikaJerin/HypoTrace)",
-      year: "2025",
       tags: ["TypeScript", "Python", "VS Code Extension", "Local SQLite", "Multi-Agent AI"],
       challenge: "Developers frequently repeat cognitive errors and debugging mistakes, yet existing AI assistants simply write code for them without helping them identify root misconceptions or protecting code confidentiality.",
       approach: "Built a VS Code / PyCharm extension backed by a local-first SQLite telemetry pipeline. Strips PII and raw code using semantic hashing, feeding run execution telemetry into a dual-agent architecture (Agent A for diagnosis, Agent B for pedagogical reflection) with Thompson sampling.",
@@ -300,8 +291,7 @@ const projects = [
           title: "Thompson Sampling Insight Optimization",
           desc: "Reinforcement learning model that selects the most impactful debugging prompts tailored to the engineer's growth curve."
         }
-      ],
-      impact: "Delivered a fully functional open-source developer productivity tool with full IDE extension lifecycle and local Python AI daemon."
+      ]
     }
   },
   {
@@ -322,9 +312,8 @@ const projects = [
       eyebrow: "3D ENGINE · GAUSSIAN SPLATTING",
       title: "GSP-RenderX: Edge-Aware Gaussian Splatting 3D Engine",
       lead: "A lightweight web-based 3D engine replacing heavy polygon STL meshes with an innovative compressed Gaussian Splat format.",
-      role: "Creator & Graphics Engineer",
+      role: "Owner & Developer",
       client: "Open Source Engine (GitHub: AnikaJerin/GSP-RenderX)",
-      year: "2024–2025",
       tags: ["Three.js", "Gaussian Splatting", "WebGL", "3D Shaders", "JavaScript"],
       challenge: "Loading high-resolution 3D CAD/STL assets on web browsers causes severe bandwidth choking, memory crashes on mobile devices, and poor rendering framerates.",
       approach: "Devised a custom compressed .gsp format and integrated Edge-Aware 3D Gaussian Splatting with Three.js/WebGL. Constrained splat radii to geometric boundary normals, preserving razor-sharp edges while eliminating triangle overhead.",
@@ -349,8 +338,7 @@ const projects = [
           title: "Real-Time Mesh-to-Splat Converter",
           desc: "Client-side pipeline transforming CAD meshes directly into optimized splat point clouds in seconds."
         }
-      ],
-      impact: "Achieved instantaneous loading of complex 3D models with 60 FPS performance in low-power browser environments."
+      ]
     }
   },
   {
@@ -371,9 +359,8 @@ const projects = [
       eyebrow: "FINTECH & REWARDS · NETIS BANGLADESH",
       title: "Netis Installer Incentive & Digital Rewards Platform",
       lead: "Architected the central administrative web portal and high-availability RESTful APIs driving the nationwide Netis Reward mobile ecosystem.",
-      role: "Full Stack & API Architect",
-      client: "Netis Systems Bangladesh — Networking & Hardware",
-      year: "2023–2024",
+      role: "Software Engineer & Technical Lead",
+      client: "Authorized Sole Distributor of Netis Networking Products of Smart Technologies",
       tags: ["Python", "RESTful APIs", "bKash & Nagad MFS", "Admin Portal", "PostgreSQL"],
       challenge: "Tracking sales and incentive claims for thousands of independent internet equipment installers across Bangladesh was manual, prone to fraud, and suffered from slow cash disbursements.",
       approach: "Designed a secure administrative portal with multi-level approval workflows and built resilient microservice APIs connecting the Netis mobile app to automated mobile financial services (bKash, Nagad).",
@@ -398,8 +385,7 @@ const projects = [
           title: "Executive Management Portal",
           desc: "Real-time analytics dashboard tracking territory sales performance, technician leaderboards, and payout reconciliation."
         }
-      ],
-      impact: "Automated rewards for 10,000+ registered network installers nationwide, cutting claim verification and payout turnaround from 14 days to under 60 seconds."
+      ]
     }
   },
   {
@@ -420,9 +406,8 @@ const projects = [
       eyebrow: "ODOO ERP · WHATSAPP AUTOMATION",
       title: "USL Intelligent WhatsApp-to-Odoo Helpdesk Automation",
       lead: "Built a bi-directional WhatsApp-to-Odoo ticketing engine that parses group chat conversations and auto-creates structured helpdesk tickets.",
-      role: "ERP Integration & Backend Engineer",
-      client: "Union Systems Ltd. (USL) — Enterprise Technical Support",
-      year: "2024",
+      role: "Software Engineer & Technical Lead",
+      client: "Smart Tech Enterprise Technical Support Team",
       tags: ["Python", "Odoo ERP", "WhatsApp Cloud API", "Webhook Automation", "CRM"],
       challenge: "Corporate clients regularly submitted critical technical support requests in unstructured WhatsApp groups, resulting in dropped requests, missing SLAs, and manual copy-pasting into ERP.",
       approach: "Integrated the WhatsApp Business Cloud API with Odoo Helpdesk via Python webhooks. Programmed intelligent subject-line parsers that map incoming chat messages directly to customer partner records, priority levels, and ticket categories.",
@@ -447,8 +432,7 @@ const projects = [
           title: "Automated Escalation & On-Call Alerts",
           desc: "Notifies team leads when high-priority tickets approach SLA breach thresholds without engineer assignment."
         }
-      ],
-      impact: "Eliminated 100% of untracked client requests and reduced mean time to initial ticket acknowledgment by 75%."
+      ]
     }
   },
   {
@@ -469,9 +453,8 @@ const projects = [
       eyebrow: "EDTECH · SMART ACADEMY SCHOOL",
       title: "Smart Academy: Unified School Management & LMS Platform",
       lead: "Engineered an end-to-end institutional management ERP automating student admissions, academic records, fee collections, biometric attendance, and online testing.",
-      role: "Lead Software Engineer",
+      role: "Software Engineer & Technical Lead",
       client: "Smart Academy School & College",
-      year: "2022–2023",
       tags: ["Python", "Django / Odoo", "PostgreSQL", "Biometric IoT", "SOLID Architecture"],
       challenge: "Managing thousands of students, parent communications, manual tuition billing, and paper exam grading caused administrative strain and frequent reconciliation errors.",
       approach: "Applied SOLID architecture principles to build a modular ERP backend in Python with relational PostgreSQL storage, SMS gateway hooks, biometric device sync daemons, and an interactive parent/student portal.",
@@ -496,8 +479,7 @@ const projects = [
           title: "Online Examination & Quiz Portal",
           desc: "Timed online testing environment with auto-grading for objective exams and faculty review dashboards."
         }
-      ],
-      impact: "Digitized 100% of administrative operations for 2,500+ students and eliminated manual tuition collection discrepancies."
+      ]
     }
   },
   {
@@ -518,9 +500,8 @@ const projects = [
       eyebrow: "MULTIMODAL MEDICAL AI · PYTORCH",
       title: "Cross-Modal Deep Learning for Early Alzheimer's Detection",
       lead: "Developed a cross-modal deep neural framework fusing 3D structural MRI neuroimaging with clinical tabular biomarker data for early Alzheimer's Disease classification.",
-      role: "Research Author & AI Architect",
+      role: "Owner & Developer",
       client: "Academic Research (GitHub: AnikaJerin/Cross-Modal-DL-Framework...)",
-      year: "2023–2024",
       tags: ["PyTorch", "3D-CNN", "Multimodal Fusion", "Medical AI", "Explainable AI"],
       challenge: "Single-modality diagnosis (either MRI imaging alone or clinical tabular data alone) struggles with early-stage prodromal detection (MCI) due to subtle morphological brain changes.",
       approach: "Designed a 3D-CNN feature extractor for MRI voxel volumes and a dense self-attention network for tabular cognitive scores. Combined the latent representations using a cross-modal fusion layer with adaptive loss weighting.",
@@ -545,8 +526,7 @@ const projects = [
           title: "Explainable AI (Grad-CAM & Saliency)",
           desc: "Generates 3D heatmap overlays highlighting anatomical regions driving model diagnostic classifications."
         }
-      ],
-      impact: "Outperformed single-modality baseline models by 8.4% in early MCI-to-AD conversion detection accuracy."
+      ]
     }
   },
   {
@@ -567,9 +547,8 @@ const projects = [
       eyebrow: "QUANTUM ML · MOLECULAR DESIGN",
       title: "Quantum-Enhanced Graph Learning for Molecular Design",
       lead: "Built a hybrid classical-quantum machine learning pipeline predicting molecular electronic bandgaps (HOMO-LUMO) and toxicity for novel biomaterials.",
-      role: "Research Author & Quantum ML Engineer",
+      role: "Owner & Developer",
       client: "Academic Research (GitHub: AnikaJerin/Quantum-Enhanced-Graph-Learning...)",
-      year: "2024",
       tags: ["GNN", "Quantum Machine Learning", "PennyLane", "PyTorch", "Molecular AI"],
       challenge: "Classical graph neural networks struggle to capture non-local electron correlation effects in complex conjugated molecular graphs without exponential compute.",
       approach: "Coupled a classical Graph Neural Network (GNN) molecular graph encoder with a Parameterized Variational Quantum Circuit (VQC) executed via PennyLane and PyTorch quantum simulators.",
@@ -594,8 +573,7 @@ const projects = [
           title: "Toxicity & ADMET Risk Scoring",
           desc: "Simultaneous multi-task prediction of biological toxicity and chemical stability constraints."
         }
-      ],
-      impact: "Demonstrated superior convergence in predicting quantum chemical properties on molecular benchmark datasets (QM9/Tox21)."
+      ]
     }
   },
   {
@@ -616,9 +594,8 @@ const projects = [
       eyebrow: "COMPUTER VISION · BIOMETRICS & ERP",
       title: "Real-Time Face Recognition & Odoo Attendance Bridge",
       lead: "A real-time contactless biometric attendance platform combining OpenCV facial recognition with automated Odoo ERP attendance logging.",
-      role: "Creator & Developer",
+      role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/Face-Recognition-OpenCV)",
-      year: "2023",
       tags: ["Python", "OpenCV", "Flask", "Odoo XML-RPC", "Biometrics"],
       challenge: "Physical fingerprint scanners in enterprise offices cause bottlenecks at peak entry hours and present hygiene concerns during outbreaks.",
       approach: "Built a lightweight Python and Flask application that captures live video streams, detects facial landmarks using OpenCV/dlib, generates 128-d face encodings, and triggers Odoo HR attendance check-ins via XML-RPC.",
@@ -643,8 +620,7 @@ const projects = [
           title: "Interactive Employee Enrolment UI",
           desc: "Web-based portal allowing administrators to onboard new employee facial templates in seconds."
         }
-      ],
-      impact: "Delivered a reliable touchless biometric check-in prototype with zero latency and direct ERP synchronization."
+      ]
     }
   },
   {
@@ -665,9 +641,8 @@ const projects = [
       eyebrow: "LLM APPLICATION · BROWSER EXTENSION",
       title: "YouTube AI Q&A: In-Browser LLM Video Assistant",
       lead: "An intelligent Chrome extension that extracts video transcripts in real time to allow interactive natural language Q&A and instant timestamped summaries.",
-      role: "Creator & Full Stack Engineer",
+      role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/ChaGPT-Extension-for-Youtube)",
-      year: "2023",
       tags: ["Chrome Extension Manifest V3", "Python FastAPI", "LLMs", "JavaScript", "NLP"],
       challenge: "Long educational lectures and technical video tutorials require significant time to find specific explanations or code snippets.",
       approach: "Built a Manifest V3 browser extension with a Python FastAPI backend. Intercepts YouTube video IDs, extracts timed transcript chunks, and queries LLM models with prompt-engineered grounding for timestamped responses.",
@@ -692,8 +667,7 @@ const projects = [
           title: "Key Takeaway & Chapter Generator",
           desc: "One-click generation of bulleted chapter summaries and concept cheat-sheets."
         }
-      ],
-      impact: "Overcomes video navigation friction, saving hours of manual video scanning for technical learners."
+      ]
     }
   },
   {
@@ -714,9 +688,8 @@ const projects = [
       eyebrow: "OPEN SOURCE · 3D GEOSPATIAL",
       title: "GeoMap3D: Declarative 3D Geospatial Visualization Library",
       lead: "A pure Python library for generating, rendering, and exporting interactive 3D geographic maps without frontend JavaScript boilerplate.",
-      role: "Author & Maintainer",
+      role: "Owner & Developer",
       client: "Open Source Python Package (GitHub: AnikaJerin/geomap3D)",
-      year: "2023",
       tags: ["Python", "3D Geospatial", "NumPy", "Three.js", "Open Source"],
       challenge: "Data scientists needing 3D topographic maps often have to export data into heavyweight GIS desktop software or write complex Three.js/WebGL frontend code.",
       approach: "Developed an intuitive, declarative Python API built on top of NumPy, Folium, and Three.js templates. Users can load elevation DEM rasters and geojson layers with simple Python one-liners.",
@@ -741,8 +714,7 @@ const projects = [
           title: "Chloropleth & Heatmap Layering",
           desc: "Overlay statistical geospatial indicators, population densities, and contours over terrain geometry."
         }
-      ],
-      impact: "Popular open-source tool simplifying 3D spatial data visualization for Python researchers and GIS developers."
+      ]
     }
   },
   {
@@ -763,9 +735,8 @@ const projects = [
       eyebrow: "FULL STACK · REAL-TIME WEBSOCKETS",
       title: "High-Concurrency WebSocket Real-Time Chat Platform",
       lead: "A low-latency, event-driven chat platform featuring multi-room support, active presence tracking, and typing indicators.",
-      role: "Full Stack Engineer",
+      role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/WebSocket-Chat-Room-Application)",
-      year: "2023",
       tags: ["React", "Flask", "WebSocket", "Socket.IO", "Event-Driven"],
       challenge: "Building a scalable real-time communication platform requires careful state management, reconnection resilience, and efficient socket event multiplexing.",
       approach: "Constructed an event-driven architecture combining Flask-SocketIO on the backend with React on the client. Implemented broadcast channels, heartbeat pinging, and persistent message logs.",
@@ -790,8 +761,7 @@ const projects = [
           title: "Graceful Reconnection & Message Queue",
           desc: "Automatic exponential backoff reconnection ensuring zero message drop during brief network hiccups."
         }
-      ],
-      impact: "Demonstrated rock-solid WebSocket architecture capable of handling concurrent multi-user chat sessions smoothly."
+      ]
     }
   },
   {
@@ -812,9 +782,8 @@ const projects = [
       eyebrow: "VOICE AI · DESKTOP AUTOMATION",
       title: "AI Desktop Voice Assistant & Workflow Automator",
       lead: "A hands-free desktop voice assistant automating computer workflows, application control, web searches, and email drafting via natural speech.",
-      role: "Creator & Developer",
+      role: "Owner & Developer",
       client: "Open Source Project (GitHub: AnikaJerin/AI-Desktop-Assistant)",
-      year: "2022",
       tags: ["Python", "SpeechRecognition", "Pyttsx3", "OS Automation", "NLP"],
       challenge: "Navigating repetitive desktop tasks manually (opening apps, searching documentation, controlling media) slows down developer workflows.",
       approach: "Built a modular Python engine using speech recognition libraries, text-to-speech synthesis (pyttsx3), and OS system automation hooks. Implemented intent parsing to trigger system operations reliably.",
@@ -839,8 +808,7 @@ const projects = [
           title: "Voice-Activated Email Drafting",
           desc: "Dictates and dispatches emails via SMTP with speech confirmation before sending."
         }
-      ],
-      impact: "Complete voice-driven desktop utility showcasing end-to-end Python audio processing and OS automation."
+      ]
     }
   },
   {
@@ -861,9 +829,8 @@ const projects = [
       eyebrow: "FINANCIAL AI · TIME-SERIES FORECASTING",
       title: "Smarter Stock: Deep Learning Predictive Financial Platform",
       lead: "Engineered a predictive stock analytics platform processing large-scale time-series financial datasets to identify market trends and forecast prices using LSTM models.",
-      role: "Software Engineer — AI/ML",
+      role: "Software Engineer & Technical Lead",
       client: "Ecosoftbd — Capital Market Analytics",
-      year: "2020",
       tags: ["Python", "LSTM Recurrent Networks", "Time-Series Analysis", "Financial Modeling", "Pandas"],
       challenge: "Financial market data contains high volatility, non-linear dependencies, and noisy transaction feeds that conventional statistical models fail to forecast accurately.",
       approach: "Processed, cleaned, and aggregated large-scale time-series market data feeds. Built deep learning pipelines utilizing Long Short-Term Memory (LSTM) recurrent neural networks to capture multi-horizon price patterns.",
@@ -888,8 +855,7 @@ const projects = [
           title: "Decision-Support Trend Analytics",
           desc: "Generates risk-adjusted trend confidence scores to guide financial analysts and traders."
         }
-      ],
-      impact: "Delivered accurate time-series forecasting models and automated data preparation pipelines informing strategic trading decisions."
+      ]
     }
   }
 ];
@@ -991,15 +957,13 @@ function CaseStudyModal({ project, onClose }) {
     lead: project.desc,
     role: "Software Engineer",
     client: "Internal / Open Source",
-    year: "2023–2024",
     tags: project.tags,
     challenge: "Developing a robust and scalable architecture meeting demanding real-time operational requirements.",
     approach: "Designed modular pipelines using clean architecture principles, state-of-the-art models, and high-performance backend systems.",
     features: [
       { icon: "cpu", title: "Core System Engine", desc: project.desc },
       { icon: "globe", title: "Scalable Integration", desc: "Seamless interoperability and robust API protocols." }
-    ],
-    impact: "Delivered production-grade performance and verified measurable reliability."
+    ]
   };
 
   return (
@@ -1040,11 +1004,6 @@ function CaseStudyModal({ project, onClose }) {
             <span className="cs-meta-label">CLIENT</span>
             <span className="cs-meta-val">{cs.client}</span>
           </div>
-          <div className="cs-meta-divider" />
-          <div className="cs-meta-item">
-            <span className="cs-meta-label">YEAR</span>
-            <span className="cs-meta-val">{cs.year}</span>
-          </div>
         </div>
 
         {/* Tags Bar */}
@@ -1083,17 +1042,6 @@ function CaseStudyModal({ project, onClose }) {
             ))}
           </div>
         </div>
-
-        {/* 04 — KEY OUTCOMES & IMPACT */}
-        {cs.impact && (
-          <div className="case-study-impact-box">
-            <div className="cs-impact-header">
-              <CheckCircle2 size={16} className="cs-impact-icon" />
-              <span>04 — KEY OUTCOMES & IMPACT</span>
-            </div>
-            <p className="cs-impact-body">{cs.impact}</p>
-          </div>
-        )}
 
         {/* Footer Actions */}
         <div className="case-study-footer">
@@ -2156,6 +2104,404 @@ function recentActivity(calendar = {}) {
   });
 }
 
+/* ─── Horizontal Animated Roadmap ─────────────────────────────────────── */
+const ROADMAP_MILESTONES = [
+  {
+    id: "2006-primary",
+    year: "2006",
+    period: "CLASS 5",
+    title: "Merit-Based Primary School Scholarship",
+    org: "Primary Education Board, Bangladesh",
+    category: "Academic Scholarship",
+    icon: Award,
+    color: "#38bdf8",
+    badge: "BOARD SCHOLARSHIP",
+    stoppageLabel: "Primary Merit",
+    summary: "Awarded competitive government merit-based scholarship in the nationwide Class 5 primary education board examinations.",
+    achievements: [
+      "Awarded government merit-based scholarship in the Class 5 nationwide primary scholarship examination administered by the Primary Education Board.",
+      "Achieved top percentile ranking in regional board talent assessments for foundational mathematics and analytical aptitude.",
+      "Recognized for early scholastic discipline with sustained academic honors and stipend."
+    ],
+    tags: ["Primary Education Board", "Merit Scholarship", "Academic Distinction", "Class 5"]
+  },
+  {
+    id: "2009-junior",
+    year: "2009",
+    period: "CLASS 8",
+    title: "Junior School Merit-Based Scholarship",
+    org: "Board of Intermediate & Secondary Education",
+    category: "Academic Scholarship",
+    icon: GraduationCap,
+    color: "#a855f7",
+    badge: "BOARD SCHOLARSHIP",
+    stoppageLabel: "Junior Merit",
+    summary: "Competitive merit-based scholarship awarded for academic excellence in Class 8 junior secondary examinations.",
+    achievements: [
+      "Earned competitive merit-based junior school scholarship in Class 8 under the Education Board.",
+      "Demonstrated sustained scholastic distinction across science, mathematics, and analytical curriculum.",
+      "Ranked among the high-achieving junior scholars in the regional talent pool."
+    ],
+    tags: ["Junior School Certificate", "Talent Pool Merit", "Science & Mathematics"]
+  },
+  {
+    id: "2012-ssc",
+    year: "2012",
+    period: "CLASS 10 · SSC",
+    title: "Secondary School Certificate (SSC) — GPA 5.0 (A+ in All Subjects) & Merit Scholarship",
+    org: "Board of Intermediate & Secondary Education",
+    category: "Board Exam Distinction",
+    icon: Medal,
+    color: "#22c55e",
+    badge: "BOARD DISTINCTION",
+    stoppageLabel: "SSC · A+ in All",
+    summary: "Achieved maximum GPA 5.0 with A+ in all subjects and government merit-based board scholarship in the 2012 SSC examinations.",
+    achievements: [
+      "Achieved perfect Grade Point Average (GPA 5.0 / A+ in all subjects) in the national Secondary School Certificate (SSC) examination in 2012.",
+      "Awarded prestigious government merit-based board scholarship for top-echelon regional standing.",
+      "Demonstrated academic excellence in higher mathematics, physics, chemistry, biology, and language sciences."
+    ],
+    tags: ["GPA 5.0 (A+ in All)", "SSC Merit Scholarship", "Board Distinction", "Science Group"]
+  },
+  {
+    id: "2014-hsc",
+    year: "2014",
+    period: "CLASS 12 · HSC",
+    title: "Higher Secondary Certificate (HSC) — GPA 5.0 (A+ in All Subjects) & Merit Scholarship",
+    org: "Board of Intermediate & Secondary Education",
+    category: "Board Exam Distinction",
+    icon: Sparkles,
+    color: "#f59e0b",
+    badge: "BOARD DISTINCTION",
+    stoppageLabel: "HSC · A+ in All",
+    summary: "Achieved perfect GPA 5.0 with A+ in all subjects in HSC 2014, earning competitive merit-based scholarship.",
+    achievements: [
+      "Secured maximum Grade Point Average (GPA 5.0 / A+ in all subjects) in the national Higher Secondary Certificate (HSC) examination in 2014.",
+      "Awarded prestigious merit-based scholarship in 2014 by the Education Board for top-tier academic rank.",
+      "Earned competitive admission into the Department of Computer Science & Engineering / Information Technology at Jahangirnagar University."
+    ],
+    tags: ["GPA 5.0 (A+ in All)", "HSC Exam 2014", "Board Merit Scholarship", "Science Group"]
+  },
+  {
+    id: "2015-2019-undergrad",
+    year: "2015 – 2019",
+    period: "UNDERGRADUATE & LEADERSHIP",
+    title: "Joint Secretary, IEEE Computer Society & Programming Contest Finalist",
+    org: "IEEE Computer Society JU Student Branch Chapter · Inter-University Contests",
+    category: "Professional Leadership & Contests",
+    icon: Users,
+    color: "#d9ff62",
+    badge: "LEADERSHIP & CONTESTS",
+    stoppageLabel: "IEEE CS & Contests",
+    summary: "Joint Secretary for IEEE Computer Society JU Chapter, champion for women in STEM, and IUPC programming finalist.",
+    achievements: [
+      "Joint Secretary, IEEE Computer Society (Jahangirnagar University Chapter): Spearheaded initiatives and programs aimed at empowering women, especially in STEM and computing disciplines where women are historically underrepresented.",
+      "Conducted technical workshops, hands-on coding bootcamps, and seminars to help female students build programming skills, confidence, and pursue leadership positions.",
+      "Inter-University Programming Contest (IUPC) Finalist: Competed in multiple inter-university programming contests for women and open university-wide contests, successfully advancing to the finals.",
+      "Active participant and coordinator across premier IEEE competitions: IEEE Xtreme 24-Hour Programming, IEEE MadC (Mobile Application Development Contest), and IEEE CS BDC Summit 2019.",
+      "Cultivated deep algorithmic problem-solving discipline on LeetCode and HackerRank, mastering data structures, algorithms, and computational optimization."
+    ],
+    tags: ["IEEE Computer Society", "Joint Secretary", "Women in STEM", "IUPC Finalist", "IEEE Xtreme", "Hackathons"]
+  },
+  {
+    id: "2021-publication",
+    year: "2021",
+    period: "RESEARCH & PUBLICATION",
+    title: "Published Co-Author & Best Impact Award — Springer CCIS",
+    org: "Springer, Cham · Communications in Computer and Information Science",
+    category: "Peer-Reviewed Research",
+    icon: BookOpen,
+    color: "#f43f5e",
+    badge: "PEER-REVIEWED PUBLICATION",
+    stoppageLabel: "Springer Co-Author",
+    summary: "Co-authored peer-reviewed book chapter in Springer CCIS and received the Best Impact Award.",
+    achievements: [
+      "Co-Author of peer-reviewed paper: 'COVID-Hero: Machine Learning Based COVID-19 Awareness Enhancement Mobile Game for Children', published as a book chapter in Communications in Computer and Information Science (CCIS), Springer, Cham.",
+      "Honored with the Best Impact Award for meaningful real-world societal impact through intelligent interactive technology.",
+      "Implemented and evaluated machine learning regression models (Linear Regression, Decision Tree, Random Forest, XGBoost, and k-NN).",
+      "Evaluated model performance using max error (ME), mean absolute error (MAE), mean squared error (MSE), and R² score metrics to model user engagement."
+    ],
+    tags: ["Co-Author", "Best Impact Award", "Springer CCIS", "Machine Learning", "Research Publication"]
+  }
+];
+
+function HorizontalRoadmap() {
+  const [activeIndex, setActiveIndex] = useState(4); // Default to IEEE leadership & Contests
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const trackRef = useRef(null);
+  const stoppageRefs = useRef([]);
+
+  const current = ROADMAP_MILESTONES[activeIndex];
+  const total = ROADMAP_MILESTONES.length;
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const timer = setInterval(() => {
+      setActiveIndex(prev => (prev + 1) % total);
+    }, 4200);
+    return () => clearInterval(timer);
+  }, [isAutoPlaying, total]);
+
+  useEffect(() => {
+    if (stoppageRefs.current[activeIndex]) {
+      stoppageRefs.current[activeIndex].scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    }
+  }, [activeIndex]);
+
+  const handlePrev = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex(prev => (prev === 0 ? total - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setIsAutoPlaying(false);
+    setActiveIndex(prev => (prev + 1) % total);
+  };
+
+  const handleSelectNode = (idx) => {
+    setIsAutoPlaying(false);
+    setActiveIndex(idx);
+  };
+
+  // Node percentage along the road track
+  const nodePercent = (activeIndex / (total - 1)) * 84 + 8; // 8% to 92%
+
+  return (
+    <div className="roadmap-wrapper">
+      {/* Top Controls Header */}
+      <div className="roadmap-controls-bar">
+        <div className="roadmap-meta-info">
+          <span className="roadmap-badge-live">
+            <span className="live-dot" /> MILESTONE JOURNEY &amp; ACHIEVEMENTS
+          </span>
+          <span className="roadmap-instructions">Click any checkpoint or drive across milestones</span>
+        </div>
+
+        <div className="roadmap-nav-actions">
+          <button 
+            type="button"
+            className={`roadmap-play-btn ${isAutoPlaying ? "active" : ""}`}
+            onClick={() => setIsAutoPlaying(p => !p)}
+            title={isAutoPlaying ? "Pause auto-drive" : "Auto-drive journey"}
+          >
+            {isAutoPlaying ? <Pause size={13} /> : <Play size={13} />}
+            <span>{isAutoPlaying ? "PAUSE TOUR" : "AUTO DRIVE"}</span>
+          </button>
+          <div className="roadmap-stepper-btns">
+            <button 
+              type="button" 
+              className="roadmap-arrow-btn" 
+              onClick={handlePrev} 
+              aria-label="Previous milestone"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <span className="roadmap-step-counter">
+              <b>{String(activeIndex + 1).padStart(2, "0")}</b> / {String(total).padStart(2, "0")}
+            </span>
+            <button 
+              type="button" 
+              className="roadmap-arrow-btn" 
+              onClick={handleNext} 
+              aria-label="Next milestone"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Horizontal Road Track Viewport */}
+      <div className="roadmap-viewport" ref={trackRef}>
+        <div className="roadmap-track">
+          {/* Top Year Badges Row */}
+          <div className="roadmap-years-row">
+            {ROADMAP_MILESTONES.map((item, idx) => {
+              const isActive = idx === activeIndex;
+              const pct = (idx / (total - 1)) * 84 + 8;
+              return (
+                <div 
+                  key={`year-${item.id}`}
+                  className={`roadmap-year-anchor ${isActive ? "active" : ""}`}
+                  style={{ left: `${pct}%` }}
+                  onClick={() => handleSelectNode(idx)}
+                >
+                  <span className="roadmap-phase-tag">{item.period}</span>
+                  <span 
+                    className="roadmap-year-pill" 
+                    style={{ 
+                      borderColor: isActive ? item.color : undefined, 
+                      color: isActive ? item.color : undefined,
+                      boxShadow: isActive ? `0 0 16px ${item.color}44` : undefined
+                    }}
+                  >
+                    {item.year}
+                  </span>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* The Horizontal Road Bed */}
+          <div className="roadmap-road-bed">
+            <div className="road-curb road-curb-top" />
+            <div className="road-dashed-line" />
+            <div className="road-curb road-curb-bottom" />
+
+            {/* Moving Traveler Vehicle */}
+            <div 
+              className="roadmap-vehicle-indicator"
+              style={{ left: `${nodePercent}%` }}
+            >
+              <div className="vehicle-capsule">
+                <div className="vehicle-headlight-beam" />
+                <Car size={15} className="vehicle-icon" />
+                <span className="vehicle-ping" />
+              </div>
+              <div className="vehicle-label">{current.year}</div>
+            </div>
+
+            {/* Checkpoint / Stoppage Nodes */}
+            {ROADMAP_MILESTONES.map((item, idx) => {
+              const IconComp = item.icon;
+              const isActive = idx === activeIndex;
+              const isPassed = idx <= activeIndex;
+              const pct = (idx / (total - 1)) * 84 + 8;
+              return (
+                <button
+                  key={`node-${item.id}`}
+                  ref={el => stoppageRefs.current[idx] = el}
+                  type="button"
+                  className={`roadmap-stoppage-node ${isActive ? "active" : ""} ${isPassed ? "passed" : ""}`}
+                  style={{ left: `${pct}%`, "--node-color": item.color }}
+                  onClick={() => handleSelectNode(idx)}
+                  aria-label={`${item.year} - ${item.title}`}
+                >
+                  {isActive && (
+                    <>
+                      <span className="stoppage-ripple r1" />
+                      <span className="stoppage-ripple r2" />
+                    </>
+                  )}
+                  <div className="stoppage-pin">
+                    <IconComp size={15} />
+                  </div>
+                  <span className="stoppage-seq">{String(idx + 1).padStart(2, "0")}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Bottom Stoppage Labels Row */}
+          <div className="roadmap-labels-row">
+            {ROADMAP_MILESTONES.map((item, idx) => {
+              const isActive = idx === activeIndex;
+              const pct = (idx / (total - 1)) * 84 + 8;
+              return (
+                <div
+                  key={`label-${item.id}`}
+                  className={`roadmap-label-anchor ${isActive ? "active" : ""}`}
+                  style={{ left: `${pct}%` }}
+                  onClick={() => handleSelectNode(idx)}
+                >
+                  <span className="stoppage-short-label">{item.stoppageLabel}</span>
+                  <span className="stoppage-cat-text">{item.category}</span>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+
+      {/* Selected Milestone Achievement Details Card */}
+      <div className="roadmap-detail-card" key={current.id}>
+        <div className="rd-card-header">
+          <div className="rd-badges-group">
+            <span className="rd-period-badge">{current.period}</span>
+            <span className="rd-year-badge" style={{ borderColor: `${current.color}66`, color: current.color }}>
+              {current.year}
+            </span>
+            <span className="rd-category-badge">{current.category}</span>
+          </div>
+          <div className="rd-checkpoint-num">
+            CHECKPOINT {String(activeIndex + 1).padStart(2, "0")} OF {String(total).padStart(2, "0")}
+          </div>
+        </div>
+
+        <div className="rd-card-main">
+          <h3 className="rd-title">{current.title}</h3>
+          <div className="rd-org-sub">
+            <span className="rd-org-dot" style={{ backgroundColor: current.color }} />
+            <span>{current.org}</span>
+          </div>
+          <p className="rd-summary">{current.summary}</p>
+
+          <div className="rd-list-heading">
+            <span className="rd-list-icon"><Medal size={14} /></span>
+            <span>ACHIEVEMENTS &amp; KEY CONTRIBUTIONS</span>
+          </div>
+
+          <ul className="rd-achievements-list">
+            {current.achievements.map((item, i) => (
+              <li key={i}>
+                <span className="rd-bullet-icon" style={{ color: current.color }}>
+                  <CheckCircle2 size={15} />
+                </span>
+                <span className="rd-bullet-text">{item}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="rd-tags-wrap">
+            {current.tags.map((tag, i) => (
+              <span key={i} className="rd-tag">#{tag}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="rd-card-footer">
+          <button 
+            type="button"
+            className="rd-nav-btn prev"
+            onClick={handlePrev}
+          >
+            <ChevronLeft size={15} />
+            <span>PREVIOUS CHECKPOINT</span>
+          </button>
+          
+          <div className="rd-quick-timeline">
+            {ROADMAP_MILESTONES.map((m, i) => (
+              <button
+                key={m.id}
+                type="button"
+                className={`rd-dot-pill ${i === activeIndex ? "active" : ""}`}
+                style={{ "--dot-color": m.color }}
+                onClick={() => handleSelectNode(i)}
+                title={`${m.year} · ${m.stoppageLabel}`}
+              >
+                <span>{m.year}</span>
+              </button>
+            ))}
+          </div>
+
+          <button 
+            type="button"
+            className="rd-nav-btn next"
+            onClick={handleNext}
+          >
+            <span>NEXT CHECKPOINT</span>
+            <ChevronRight size={15} />
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function App(){
   const [active, setActive] = useState("home");
   const [expanded, setExpanded] = useState(null);
@@ -2345,7 +2691,7 @@ function App(){
       .then(r=>r.ok?r.json():null).then(x=>x&&setGh(x)).catch(()=>{});
   },[]);
 
-  const nav = ["home","work","projects","research","problem-solving","github","skills","about"];
+  const nav = ["home","work","projects","research","problem-solving","roadmap","skills","about"];
   const activity = recentActivity(lcCalendar);
   const cfActivity = recentActivity(cfCalendar);
   const maxActivity = Math.max(...activity, 1);
@@ -2398,6 +2744,15 @@ function App(){
             <span className="hero-tag hero-tag-swe">SWE (FULL-STACK)</span>
             <span className="hero-tag hero-tag-research">RESEARCH</span>
             <span className="hero-tag hero-tag-odoo">ODOO ERP</span>
+          </div>
+          <div className="hero-references">
+            <span className="hero-ref-label"><span className="dot"/>REFERENCES AVAILABLE FROM</span>
+            <div className="hero-ref-list">
+              <div className="hero-ref-item">M. Shamim Kaiser, PhD <em>— Prof., IIT, Jahangirnagar University</em></div>
+              <div className="hero-ref-item">Md. Whaiduzzaman, PhD <em>— Assoc. Prof., Torrens University &amp; Prof. on Leave, IIT, JU</em></div>
+              <div className="hero-ref-item">Zamshed Chowdhury, PhD <em>— ASIC Engineer, Meta &amp; Lecturer on Leave, IIT, JU</em></div>
+              <div className="hero-ref-item">Mostofa Zaman <em>— Head of Software Development, Smart Technologies BD Ltd.</em></div>
+            </div>
           </div>
         </div>
 
@@ -2577,10 +2932,36 @@ function App(){
       </Section>
 
       <Section id="research" eyebrow="03 — RESEARCH" title={<>Where <ZebraWord text="experimentation" /> becomes <ZebraWord text="understanding." /></>}>
-        <div className="research-list">
-          <div><span>01</span><h3>Cross-Modal Deep Learning for Alzheimer's Disease</h3><p>MRI imaging + clinical/tabular features → multimodal representation → classification.</p></div>
-          <div><span>02</span><h3>Quantum-Enhanced Graph Learning for Molecular Design</h3><p>GNN molecular representations + variational quantum head for bandgap and toxicity prediction.</p></div>
-          <div><span>03</span><h3>Cross-Modal Explanations of Alzheimer's Disease Progression</h3><p>Exploring interpretability across multimodal biomedical information.</p></div>
+
+        <div className="pub-section">
+          <div className="pub-section-label"><span className="dot"/>CONFERENCE PAPER</div>
+          <div className="pub-card">
+            <div className="pub-card-left">
+              <div className="pub-type-badge">PUBLISHED</div>
+              <div className="pub-title">COVID-Hero: Machine Learning Based COVID-19 Awareness Enhancement Mobile Game for Children</div>
+              <div className="pub-author-role">Co-Author</div>
+              <div className="pub-meta">
+                <span className="pub-publisher">Springer, Cham · CCIS Book Chapter</span>
+                <span className="pub-dot">·</span>
+                <span className="pub-date">Jul 27, 2021</span>
+              </div>
+            </div>
+            <div className="pub-card-right">
+              <BookOpen size={22}/>
+            </div>
+          </div>
+          <div className="stay-tuned-strip">
+            <div className="st-pulse"><span/><span/><span/></div>
+            <div className="st-text">
+              <span className="st-label">STAY TUNED</span>
+              <span className="st-sub">Stay tuned for more</span>
+            </div>
+            <div className="st-dots">
+              <span className="st-dot-anim" style={{animationDelay:'0s'}}/>
+              <span className="st-dot-anim" style={{animationDelay:'.3s'}}/>
+              <span className="st-dot-anim" style={{animationDelay:'.6s'}}/>
+            </div>
+          </div>
         </div>
       </Section>
 
@@ -2628,8 +3009,8 @@ function App(){
         <div className="solve-focus"><span><Terminal size={16}/> DSA</span><span>Arrays</span><span>Binary Search</span><span>Graphs</span><span>DP</span><span>Trees</span><span>Greedy</span><span>Math</span><span>Recursion</span></div>
       </Section>
 
-      <Section id="github" eyebrow="05 — OPEN SOURCE" title={<><ZebraWord text="A living engineering archive." /></>}>
-        <div className="github-panel"><div><Github size={38}/><h3>GitHub / AnikaJerin</h3><p>AI experiments, research implementations, libraries, full-stack systems, algorithms and ongoing learning.</p><a className="text-link" href={PROFILE.github} target="_blank">Explore repositories <ArrowUpRight size={15}/></a></div><div className="gh-numbers"><strong>{gh?.public_repos ?? "35+"}</strong><span>public repos</span><strong>{gh?.followers ?? "—"}</strong><span>followers</span></div></div>
+      <Section id="roadmap" eyebrow="05 — TIMELINE & ACHIEVEMENTS" title={<>Milestones of <ZebraWord text="leadership," /> merit &amp; <ZebraWord text="impact." /></>}>
+        <HorizontalRoadmap />
       </Section>
 
       <section id="skills" className="section skills-section-wrap">
