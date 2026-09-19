@@ -1074,10 +1074,8 @@ const experience = [
     company: "Smart Technologies BD. Ltd.",
     location: "West Kafrul, Dhaka, Bangladesh",
     points: [
-      "Contributed to high-stakes, government-funded national infrastructure initiatives backed by total funding exceeding 100 Crore BDT (~$10M+ USD) from government agencies and international organizations like the World Meteorological Organization (WMO).",
-      "Developed, optimized, and deployed custom computer vision models (YOLO, DeepSORT) for real-time video inference and automated violation detection in large-scale edge-monitoring applications.",
-      "Engineered core data ingestion, decoding, and forecasting pipelines to process, analyze, and archive heterogeneous real-time sensor and meteorological datasets (e.g., SYNOP, METAR, BUFR).",
-      "Customized and built modular enterprise ERP systems by developing backend APIs and seamlessly integrating business logic across Sales, Inventory, Accounting, POS, and HR/Admission modules using Python and Odoo."
+      "Built production AI, data-platform, and enterprise software for public-sector and commercial clients.",
+      "Delivered computer-vision workflows, meteorological data pipelines, and Python/Odoo integrations."
     ]
   },
   {
@@ -1086,8 +1084,7 @@ const experience = [
     company: "Smarter Stock — Ecosoftbd",
     location: "Dhaka, Bangladesh",
     points: [
-      "Processed, cleaned, and aggregated large-scale time-series financial datasets to inform strategic decision-making.",
-      "Applied deep learning algorithms (LSTM) on processed datasets to model trends and generate predictive analytics."
+      "Built data-processing and predictive-analytics workflows for financial time-series data."
     ]
   }
 ];
@@ -2178,7 +2175,7 @@ const ROADMAP_MILESTONES = [
     achievements: [
       "Secured maximum Grade Point Average (GPA 5.0 / A+ in all subjects) in the national Higher Secondary Certificate (HSC) examination in 2014.",
       "Awarded prestigious merit-based scholarship in 2014 by the Education Board.",
-      "Earned competitive admission into the Department of Computer Science & Engineering / Information Technology at Jahangirnagar University."
+      "Earned competitive admission into the Institute of Information Technology at Jahangirnagar University."
     ],
     tags: ["GPA 5.0 (A+ in All)", "HSC Exam 2014", "Board Merit Scholarship", "Science Group"]
   },
@@ -2200,7 +2197,7 @@ const ROADMAP_MILESTONES = [
       "Competed in multiple inter-university programming contests for women and open university-wide contests, successfully advancing to the finals.",
       "Active participant and coordinator across premier IEEE competitions: IEEE Xtreme 24-Hour Programming, IEEE MadC (Mobile Application Development Contest), and IEEE CS BDC Summit 2019."
     ],
-    tags: ["IEEE Computer Society", "Joint Secretary", "Women in STEM", "IUPC Finalist", "IEEE Xtreme", "Hackathons"]
+    tags: ["IEEE Computer Society", "Joint Secretary", "Women in STEM", "IEEE Xtreme", "Hackathons"]
   },
   {
     id: "2020-career",
@@ -2815,7 +2812,7 @@ function App(){
           <div className="eyebrow"><span className="dot"/> SOFTWARE ENGINEER · AI ENGINEER</div>
           <HeroHeading />
           <p className="hero-text">
-            I'm {PROFILE.name}, a software engineer with 5+ years of building intelligent, scalable solutions across Computer Vision, Deep Learning, Odoo ERP, and full-stack development. I’ve worked on <strong>AI-driven software, enterprise platforms, and business automation solutions</strong> for a range of clients, with major projects including the <strong>Bangladesh Highway Police, Bangladesh Meteorological Department, and Smart Technologies</strong>. My experience spans <strong>AI/ML, Computer Vision, full-stack development, and complex Odoo ERP customization and integration</strong>, while my research explores <strong>multimodal medical AI, HCI, and interactive 3D visualization</strong>. I enjoy turning complex ideas into <strong>practical, scalable technology</strong>.
+            I'm {PROFILE.name}, a software engineer with 5+ years building intelligent, scalable products across Computer Vision, Deep Learning, Odoo ERP, and full-stack engineering.
           </p>
           <div className="hero-actions">
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
@@ -2865,18 +2862,18 @@ function App(){
             <span>SOFTWARE ENGINEERING <b>✦</b></span>
             <span>AI & MACHINE LEARNING <b>✦</b></span>
             <span>COMPUTER VISION PIPELINES <b>✦</b></span>
-            <span>METEOROLOGICAL DATA PLATFORMS <b>✦</b></span>
-            <span>MULTIMODAL DEEP LEARNING <b>✦</b></span>
-            <span>RESTFUL BACKEND APIS <b>✦</b></span>
+            <span>GEOSPATIAL & METEOROLOGICAL DATA <b>✦</b></span>
+            <span>HCI & INTERACTIVE 3D <b>✦</b></span>
+            <span>ENTERPRISE ERP & APIS <b>✦</b></span>
             <span>ALGORITHMIC PROBLEM SOLVING <b>✦</b></span>
           </div>
           <div className="ticker-group" aria-hidden="true">
             <span>SOFTWARE ENGINEERING <b>✦</b></span>
             <span>AI & MACHINE LEARNING <b>✦</b></span>
             <span>COMPUTER VISION PIPELINES <b>✦</b></span>
-            <span>METEOROLOGICAL DATA PLATFORMS <b>✦</b></span>
-            <span>MULTIMODAL DEEP LEARNING <b>✦</b></span>
-            <span>RESTFUL BACKEND APIS <b>✦</b></span>
+            <span>GEOSPATIAL & METEOROLOGICAL DATA <b>✦</b></span>
+            <span>HCI & INTERACTIVE 3D <b>✦</b></span>
+            <span>ENTERPRISE ERP & APIS <b>✦</b></span>
             <span>ALGORITHMIC PROBLEM SOLVING <b>✦</b></span>
           </div>
         </div>
@@ -3111,7 +3108,7 @@ function App(){
       </section>
 
       <Section id="about" eyebrow="07 — ABOUT" title={<>Let's build something <ZebraWord text="worth remembering." /></>}>
-        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI/ML, research, and algorithmic problem solving." isYellow={true} /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
+        <div className="about-grid"><p className="about-lead">My work sits at the intersection of <em><ZebraWord text="software engineering, AI, geospatial systems, and human-computer interaction." isYellow={true} /></em></p><div className="about-copy"><p>I enjoy taking a problem from data and model experimentation through backend services, integration, visualization, and a usable product.</p><p>My professional work includes government and enterprise systems, computer vision, meteorological data platforms, ERP integration, ML experimentation, and REST APIs.</p><div className="about-links"><a href={PROFILE.linkedin} target="_blank"><Linkedin/> LinkedIn</a><a href={PROFILE.medium} target="_blank"><BookOpen/> Medium</a><a href={`mailto:${PROFILE.email}`}><Mail/> Email</a></div></div></div>
       </Section>
 
 

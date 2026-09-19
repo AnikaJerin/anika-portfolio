@@ -586,6 +586,36 @@ footer a:hover{color:var(--accent)}
   animation-delay: 1.2s;
 }
 
+/* Compact skill marquee below the hero references. */
+.hero-keyword-ticker {
+  width: 100%;
+  margin-top: 14px;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.07);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.hero-keyword-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: heroKeywordMarquee 34s linear infinite;
+}
+.hero-keyword-track span,
+.hero-keyword-track b {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font: 9px "DM Mono", monospace;
+  letter-spacing: .1em;
+}
+.hero-keyword-track span { color: #8a8f9b; padding: 10px 0; }
+.hero-keyword-track b { color: var(--accent); padding: 0 14px; }
+@keyframes heroKeywordMarquee {
+  to { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-keyword-track { animation: none; }
+}
+
 /* Mobile hero containment — keep the first section within the viewport. */
 @media (max-width: 560px) {
   .hero > .hero-copy {
@@ -1880,7 +1910,6 @@ button.project-card-link:hover svg,
     font-size: 9px;
   }
 }
-
 
 
 
