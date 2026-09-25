@@ -860,6 +860,16 @@ const projects = [
   }
 ];
 
+/* Keep the selected-project sequence intentional without changing project data. */
+const orderedProjects = [...projects].sort((a, b) => {
+  const placement = {
+    "Cross-Modal Explanations of Alzheimer's Progression": 4,
+    "GSP-RenderX": 5,
+    "HypoTrace": 6,
+  };
+  return (placement[a.title] ?? projects.indexOf(a)) - (placement[b.title] ?? projects.indexOf(b));
+});
+
 function ProjectBadge({ type, label }) {
   if (type === "industry") {
     return (
@@ -2921,7 +2931,7 @@ function App(){
 
       <Section id="projects" eyebrow="02 — SELECTED PROJECTS" title={<><ZebraWord text="Featured" /> Work & <ZebraWord text="Technical" /> Deep Dives.</>}>
         <div className="project-grid">
-          {projects.slice((projectPage - 1) * 6, projectPage * 6).map((p, i) => {
+          {orderedProjects.slice((projectPage - 1) * 6, projectPage * 6).map((p, i) => {
             return (
               <article
                 className="project-card"
@@ -2986,7 +2996,7 @@ function App(){
             <ChevronLeft size={16} />
           </button>
 
-          {Array.from({ length: Math.ceil(projects.length / 6) }, (_, idx) => idx + 1).map((pageNum) => (
+          {Array.from({ length: Math.ceil(orderedProjects.length / 6) }, (_, idx) => idx + 1).map((pageNum) => (
             <button
               key={pageNum}
               className={`pagination-btn pagination-num ${projectPage === pageNum ? "active" : ""}`}
@@ -3001,9 +3011,9 @@ function App(){
 
           <button
             className="pagination-btn pagination-arrow"
-            disabled={projectPage === Math.ceil(projects.length / 6)}
+            disabled={projectPage === Math.ceil(orderedProjects.length / 6)}
             onClick={() => {
-              setProjectPage((p) => Math.min(Math.ceil(projects.length / 6), p + 1));
+              setProjectPage((p) => Math.min(Math.ceil(orderedProjects.length / 6), p + 1));
               document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
             }}
             aria-label="Next Page"
