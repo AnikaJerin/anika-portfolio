@@ -54,7 +54,8 @@ const PROFILE = {
   linkedin: "https://www.linkedin.com/in/anika-jerin/",
   medium: "https://medium.com/@anikajerin2",
   leetcode: "https://leetcode.com/u/AnikaJerin/",
-  codeforces: "https://codeforces.com/profile/Anne29",
+  deepml: "https://www.deep-ml.com/profile/gGq3xAXd2OeX3OUPUPNxSBUdvDh1",
+  tensortonic: "https://www.tensortonic.com/profile/anikajerin2",
   hackerrank: "https://www.hackerrank.com/profile/anikajerin2",
 };
 
@@ -2577,12 +2578,8 @@ function App(){
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
   const [projectPage, setProjectPage] = useState(1);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [cf, setCf] = useState({
-    rating: 1200,
-    rank: "newbie",
-    maxRating: 1200,
-    maxRank: "newbie"
-  });
+  const [deepml, setDeepml] = useState({ solved: 5, easyPercent: 40, mediumPercent: 60, hardPercent: 0, flameScore: 95, streak: 0 });
+  const [tensortonic, setTensortonic] = useState({ username: "anikajerin2", name: "Anika Jerin", rank: 44284, solved: 0, easy: 0, medium: 0, hard: 0, totalEasy: 481, totalMedium: 510, totalHard: 207, badgesEarned: 0, badgesTotal: 64 });
   const [gh, setGh] = useState({
     public_repos: 37,
     followers: 1,
@@ -2594,16 +2591,16 @@ function App(){
     mediumSolved: 19,
     hardSolved: 3,
     ranking: 2232254,
-    contestRating: 1480,
+    contestRating: 1490,
     globalRanking: null,
-    attendedContests: 1,
+    attendedContests: 2,
     badges: [
       {
         displayName: "Data Structure I",
         icon: "https://assets.leetcode.com/static_assets/others/DS_I.png"
       }
     ],
-    contest: { rating: 1480, attendedContestsCount: 1, globalRanking: null },
+    contest: { rating: 1490, attendedContestsCount: 2, globalRanking: null },
   });
   const [hr, setHr] = useState({
     solved: 23,
@@ -2622,9 +2619,6 @@ function App(){
   });
   const [syncedAt, setSyncedAt] = useState(null);
   const [lcCalendar, setLcCalendar] = useState({});
-  const [cfContests, setCfContests] = useState([]);
-  const [cfCalendar, setCfCalendar] = useState({});
-  const [cfSolved, setCfSolved] = useState(0);
 
   useEffect(()=>{
     const obs = new IntersectionObserver(es=>{
@@ -2675,9 +2669,10 @@ function App(){
         if (!r.ok) r = await fetch(`${import.meta.env.BASE_URL}live-data.json`);
         if (r.ok) {
           const data = await r.json();
-          if (data.codeforces) setCf(data.codeforces);
           if (data.github) setGh(data.github);
           if (data.leetcode && data.leetcode.totalSolved) setLc(data.leetcode);
+          if (data.deepml) setDeepml(data.deepml);
+          if (data.tensortonic) setTensortonic(data.tensortonic);
           if (data.hackerrank) setHr(data.hackerrank);
           if (data.updatedAt) setSyncedAt(data.updatedAt);
         }
@@ -2685,29 +2680,6 @@ function App(){
     };
     fetchLiveData();
 
-    const cfUser = "Anne29";
-    fetch(`https://codeforces.com/api/user.info?handles=${cfUser}`)
-      .then(r=>r.ok?r.json():null).then(x=>x?.result?.[0]&&setCf(x.result[0])).catch(()=>{});
-    fetch(`https://codeforces.com/api/user.rating?handle=${cfUser}`)
-      .then(r=>r.ok?r.json():null).then(x=>Array.isArray(x?.result)&&setCfContests(x.result)).catch(()=>{});
-    fetch(`https://codeforces.com/api/user.status?handle=${cfUser}&from=1&count=10000`)
-      .then(r=>r.ok?r.json():null).then(x=>{
-        if (!Array.isArray(x?.result)) return;
-        const calendar = x.result.reduce((all, submission)=>{
-          const day = Math.floor(submission.creationTimeSeconds / 86400) * 86400;
-          all[day] = (all[day] || 0) + 1;
-          return all;
-        }, {});
-        setCfCalendar(calendar);
-        // Count unique accepted problems
-        const accepted = new Set(
-          x.result
-            .filter(s => s.verdict === "OK")
-            .map(s => `${s.problem.contestId}-${s.problem.index}`)
-        );
-        setCfSolved(accepted.size);
-      }).catch(()=>{});
-    
     // Real-time LeetCode fetch via fast CORS proxy
     const lcUser = "AnikaJerin";
     const tryLCApis = async () => {
@@ -2723,7 +2695,7 @@ function App(){
               mediumSolved: d.mediumSolved ?? prev.mediumSolved ?? 19,
               hardSolved: d.hardSolved ?? prev.hardSolved ?? 3,
               ranking: d.ranking ?? prev.ranking ?? 2232254,
-              contestRating: prev.contestRating ?? 1480,
+              contestRating: prev.contestRating ?? 1490,
               globalRanking: prev.globalRanking ?? null,
               badges: (d.badges && d.badges.length) ? d.badges : (prev.badges && prev.badges.length ? prev.badges : [{ displayName: "Data Structure I", icon: "https://assets.leetcode.com/static_assets/others/DS_I.png" }]),
             }));
@@ -2785,19 +2757,17 @@ function App(){
 
   const nav = ["home","work","projects","research","problem-solving","roadmap","skills","about"];
   const activity = recentActivity(lcCalendar);
-  const cfActivity = recentActivity(cfCalendar);
   const maxActivity = Math.max(...activity, 1);
-  const maxCfActivity = Math.max(...cfActivity, 1);
   const solved = lc?.totalSolved || 0;
-  const totalCombinedSolved = (lc?.totalSolved || 67) + (cfSolved || 0) + (hr?.solved || 23);
+  const totalCombinedSolved = (lc?.totalSolved || 67) + (deepml?.solved || 0) + (hr?.solved || 23);
   const achievements = [
     ...(lc?.badges || []).map(b=>({kind:"LEETCODE BADGE", title:b.displayName, icon:b.icon})),
     ...(hr?.badges || []).map(b=>({kind:"HACKERRANK BADGE", title:`${b.badge_name || "Problem Solving"} · ${b.stars || 3}★`, icon:null})),
     ...(hr?.certifications || []).map(c=>({kind:"CERTIFICATION", title:`${c.title} · ${c.role}`, icon:null})),
     ...(hr?.orchestrate ? [{kind:"ORCHESTRATE", title:`Rank ${hr.orchestrate.rank} · ${hr.orchestrate.percentile} (${hr.orchestrate.edition})`, icon:null}]:[]),
-    ...(cf?.maxRating ? [{kind:"CODEFORCES", title:`Peak ${cf.maxRating} · ${cf.maxRank || "rank"}`}]:[]),
-    ...(cfContests.length ? [{kind:"CONTESTS", title:`${cfContests.length} rated contest${cfContests.length === 1 ? "" : "s"}`}]:[]),
-    ...(lc?.contestRating || lc?.contest?.rating ? [{kind:"LEETCODE CONTEST", title:`Rating ${Math.round(lc?.contestRating || lc?.contest?.rating)} · ${lc?.globalRanking ? `Global Rank #${lc.globalRanking.toLocaleString()}` : `${lc?.attendedContests || 1} contest attended`}`}]:[])
+    ...(lc?.contestRating || lc?.contest?.rating ? [{kind:"LEETCODE CONTEST", title:`Rating ${Math.round(lc?.contestRating || lc?.contest?.rating)} · ${lc?.globalRanking ? `Global Rank #${lc.globalRanking.toLocaleString()}` : `${lc?.attendedContests || 2} contests attended`}`}]:[]),
+    ...(deepml?.flameScore !== undefined ? [{kind:"DEEP-ML", title:`${deepml.flameScore} Flame Score · ${deepml.streak || 0} day streak`}]:[]),
+    ...(tensortonic?.rank ? [{kind:"TENSORTONIC", title:`Public rank #${tensortonic.rank.toLocaleString()}`}]:[])
   ];
   return <div>
     <IconRain />
@@ -3067,19 +3037,29 @@ function App(){
             </div>
             <div className="mini-graph leet-graph">{activity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxActivity) * 100)}%`}} title={`${count} LeetCode submission${count === 1 ? "" : "s"}`}/>)}</div>
             <div className="account-foot">
-              <span>{lc?.globalRanking ? `Global Rank #${lc.globalRanking.toLocaleString()}` : `Rating ${lc?.contestRating || lc?.contest?.rating || 1480}`}</span>
+              <span>Rating {lc?.contestRating || lc?.contest?.rating || 1490} · {lc?.attendedContests || lc?.contest?.attendedContestsCount || 2} contests</span>
               <span title={lc?.badges?.[0]?.displayName || "Data Structure I"}>{lc?.badges?.length || 1} badge{lc?.badges?.length === 1 ? "" : "s"}</span>
             </div>
           </article>
 
-          <article className="account-card codeforces-card">
-            <div className="account-top"><span><BarChart3 size={16}/> CODEFORCES</span><a href={PROFILE.codeforces} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
+          <article className="account-card deepml-card">
+            <div className="account-top"><span><BrainCircuit size={16}/> DEEP-ML</span><a href={PROFILE.deepml} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
             <div className="account-stats">
-              <div className="account-main"><strong>{cfSolved ?? 0}</strong><small>PROBLEMS SOLVED</small></div>
-              <div className="mini-splits"><span>HANDLE <b>{PROFILE.codeforces.split("/").pop()}</b></span><span>CONTESTS <b>{cfContests.length || 0}</b></span></div>
+              <div className="account-main"><strong>{deepml?.solved ?? "—"}</strong><small>PROBLEMS SOLVED</small></div>
+              <div className="mini-splits"><span>FLAME <b>{deepml?.flameScore ?? "—"}</b></span><span>STREAK <b>{deepml?.streak ?? 0}d</b></span></div>
             </div>
-            <div className="mini-graph cf-graph">{cfActivity.slice(-49).map((count,i)=><i key={i} style={{height:`${Math.max(10, (count / maxCfActivity) * 100)}%`}} title={`${count} Codeforces submission${count === 1 ? "" : "s"}`}/>)}</div>
-            <div className="account-foot"><span>{cf?.rank || "Practice"}</span><span>{cf?.rating ? `rating ${cf.rating}` : "Anne29"}</span></div>
+            <div className="mini-graph deepml-graph">{[["Easy", deepml?.easyPercent], ["Medium", deepml?.mediumPercent], ["Hard", deepml?.hardPercent]].map(([label,value])=><i key={label} style={{height:`${Math.max(8, Number(value) || 0)}%`}} title={`${label}: ${value ?? 0}%`} />)}</div>
+            <div className="account-foot"><span>E {deepml?.easyPercent ?? "—"}% · M {deepml?.mediumPercent ?? "—"}% · H {deepml?.hardPercent ?? "—"}%</span><span>Live profile</span></div>
+          </article>
+
+          <article className="account-card tensortonic-card">
+            <div className="account-top"><span><Sparkles size={16}/> TENSORTONIC</span><a href={PROFILE.tensortonic} target="_blank" rel="noreferrer"><ArrowUpRight size={17}/></a></div>
+            <div className="account-stats">
+              <div className="account-main"><strong>{tensortonic?.solved ?? "—"}</strong><small>PROBLEMS SOLVED</small></div>
+              <div className="mini-splits"><span>RANK <b>#{tensortonic?.rank?.toLocaleString() || "—"}</b></span><span>BADGES <b>{tensortonic?.badgesEarned ?? 0}/{tensortonic?.badgesTotal ?? 64}</b></span></div>
+            </div>
+            <div className="tt-breakdown"><span><b>{tensortonic?.easy ?? 0}</b>/{tensortonic?.totalEasy ?? 481}<small>Easy</small></span><span><b>{tensortonic?.medium ?? 0}</b>/{tensortonic?.totalMedium ?? 510}<small>Medium</small></span><span><b>{tensortonic?.hard ?? 0}</b>/{tensortonic?.totalHard ?? 207}<small>Hard</small></span></div>
+            <div className="account-foot"><span>@{tensortonic?.username || "anikajerin2"}</span><span>Live profile</span></div>
           </article>
 
           <article className="account-card hackerrank-card">

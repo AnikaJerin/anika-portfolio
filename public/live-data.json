@@ -1,23 +1,20 @@
 {
-  "updatedAt": "2026-09-16T16:01:14.748Z",
+  "updatedAt": "2026-09-25T17:05:22.134Z",
   "github": {
     "public_repos": 37,
     "followers": 1,
     "following": 2,
-    "updated_at": "2026-09-14T18:46:58Z"
-  },
-  "codeforces": {
-    "solved": 0
+    "updated_at": "2026-09-17T10:29:23Z"
   },
   "leetcode": {
     "totalSolved": 67,
     "easySolved": 45,
     "mediumSolved": 19,
     "hardSolved": 3,
-    "ranking": 2232254,
-    "contestRating": 1480,
+    "ranking": 2246470,
+    "contestRating": 1490,
     "globalRanking": null,
-    "attendedContests": 1,
+    "attendedContests": 2,
     "badges": [
       {
         "id": "1020376",
@@ -38,8 +35,32 @@
       "1788307200": 3,
       "1788393600": 2,
       "1788652800": 9,
-      "1789171200": 4
+      "1789171200": 4,
+      "1789948800": 1
     }
+  },
+  "deepml": {
+    "solved": 5,
+    "easyPercent": 40,
+    "mediumPercent": 60,
+    "hardPercent": 0,
+    "flameScore": 95,
+    "streak": 0
+  },
+  "tensortonic": {
+    "username": "anikajerin2",
+    "name": "Anika Jerin",
+    "rank": 44284,
+    "plan": "free",
+    "solved": 0,
+    "easy": 0,
+    "medium": 0,
+    "hard": 0,
+    "totalEasy": 481,
+    "totalMedium": 510,
+    "totalHard": 207,
+    "badgesEarned": 0,
+    "badgesTotal": 64
   },
   "hackerrank": {
     "solved": 23,
@@ -58,7 +79,7 @@
         "solved": 23,
         "total_challenges": 563,
         "track_total_score": 0,
-        "hacker_rank": 1001198,
+        "hacker_rank": 1002232,
         "stars": 3,
         "level": 2,
         "current_points": 236,

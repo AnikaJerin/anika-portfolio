@@ -2,14 +2,20 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 const ghUser = "AnikaJerin";
 const lcUser = "AnikaJerin";
-const cfUser = "Anne29";
 const hrUser = "anikajerin2";
+const deepMlProfile = "https://www.deep-ml.com/profile/gGq3xAXd2OeX3OUPUPNxSBUdvDh1";
+const tensorTonicUser = "anikajerin2";
 const output = new URL("../public/live-data.json", import.meta.url);
 
 async function getJson(url, options) {
   const response = await fetch(url, options);
   if (!response.ok) throw new Error(`${response.status} from ${url}`);
   return response.json();
+}
+async function getText(url, options) {
+  const response = await fetch(url, options);
+  if (!response.ok) throw new Error(`${response.status} from ${url}`);
+  return response.text();
 }
 async function safely(label, request, fallback) {
   try { return await request(); }
@@ -23,23 +29,6 @@ const github = await safely("GitHub", async () => {
   const data = await getJson(`https://api.github.com/users/${ghUser}`, { headers: { Accept: "application/vnd.github+json", "User-Agent": "anika-portfolio-refresh", ...(process.env.GITHUB_TOKEN ? { Authorization: `Bearer ${process.env.GITHUB_TOKEN}` } : {}) } });
   return { public_repos: data.public_repos, followers: data.followers, following: data.following, updated_at: data.updated_at };
 }, previous.github);
-
-const codeforces = await safely("Codeforces", async () => {
-  const data = await getJson(`https://codeforces.com/api/user.info?handles=${cfUser}`);
-  const profile = data.result?.[0];
-  if (!profile) throw new Error("profile not found");
-  
-  let solved = 0;
-  try {
-    const statusData = await getJson(`https://codeforces.com/api/user.status?handle=${cfUser}&from=1&count=5000`);
-    if (Array.isArray(statusData?.result)) {
-      const accepted = new Set(statusData.result.filter(s => s.verdict === "OK").map(s => `${s.problem.contestId}-${s.problem.index}`));
-      solved = accepted.size;
-    }
-  } catch (_) {}
-
-  return { rating: profile.rating, rank: profile.rank, maxRating: profile.maxRating, maxRank: profile.maxRank, solved };
-}, previous.codeforces);
 
 const leetcode = await safely("LeetCode", async () => {
   let statsData = {};
@@ -58,9 +47,9 @@ const leetcode = await safely("LeetCode", async () => {
   } catch (_) {}
 
   let badges = [{ displayName: "Data Structure I", icon: "https://assets.leetcode.com/static_assets/others/DS_I.png" }];
-  let contestRating = 1480;
+  let contestRating = 1490;
   let globalRanking = null;
-  let attendedContests = 1;
+  let attendedContests = 2;
 
   try {
     const gql = await getJson("https://leetcode.com/graphql/", {
@@ -112,13 +101,42 @@ const leetcode = await safely("LeetCode", async () => {
     mediumSolved: statsData.mediumSolved || 19,
     hardSolved: statsData.hardSolved || 3,
     ranking: statsData.ranking || 2232254,
-    contestRating: contestRating || 1480,
+    contestRating: contestRating || 1490,
     globalRanking: globalRanking,
-    attendedContests: attendedContests || 1,
+    attendedContests: attendedContests || 2,
     badges: badges,
     submissionCalendar: statsData.submissionCalendar
   };
 }, previous.leetcode);
+
+const deepml = await safely("Deep-ML", async () => {
+  const html = await getText(deepMlProfile, { headers: { "User-Agent": "anika-portfolio-refresh" } });
+  const description = html.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["']/i)?.[1] || "";
+  const match = description.match(/(\d+)\s+problems solved\s*\(Easy\s+(\d+)%\s*·\s*Medium\s+(\d+)%\s*·\s*Hard\s+(\d+)%\)\s*·\s*🔥\s*(\d+)\s+Flame Score\s*·\s*(\d+)\s+day streak/i);
+  if (!match) throw new Error("public profile statistics were not found");
+  const [, solved, easyPercent, mediumPercent, hardPercent, flameScore, streak] = match;
+  return { solved: Number(solved), easyPercent: Number(easyPercent), mediumPercent: Number(mediumPercent), hardPercent: Number(hardPercent), flameScore: Number(flameScore), streak: Number(streak) };
+}, previous.deepml);
+
+const tensortonic = await safely("TensorTonic", async () => {
+  const data = await getJson(`https://api.tensortonic.com/api/public/profile/${tensorTonicUser}`);
+  const profile = data?.data;
+  if (!profile?.username) throw new Error("public profile not found");
+  const userId = profile.id;
+  const statKinds = ["free", "research", "study-plan", "system-design", "assessment"];
+  const badgeKinds = ["categories", "milestones", "research", "study-plans"];
+  const [statResponses, badgeResponses] = await Promise.all([
+    Promise.all(statKinds.map(kind => getJson(`https://api.tensortonic.com/api/user/${userId}/stats/${kind}`))),
+    Promise.all(badgeKinds.map(kind => getJson(`https://api.tensortonic.com/api/user/${userId}/badges/${kind}`)))
+  ]);
+  const totals = statResponses.map(response => response?.data || {}).reduce((all, stats) => ({
+    solved: all.solved + (stats.total || 0),
+    easy: all.easy + (stats.easy || 0), medium: all.medium + (stats.medium || 0), hard: all.hard + (stats.hard || 0),
+    totalEasy: all.totalEasy + (stats.totalEasy || 0), totalMedium: all.totalMedium + (stats.totalMedium || 0), totalHard: all.totalHard + (stats.totalHard || 0)
+  }), { solved: 0, easy: 0, medium: 0, hard: 0, totalEasy: 0, totalMedium: 0, totalHard: 0 });
+  const badges = badgeResponses.flatMap(response => Array.isArray(response?.data) ? response.data : []);
+  return { username: profile.username, name: profile.name || profile.username, rank: profile.rank ?? null, plan: profile.plan || null, ...totals, badgesEarned: badges.filter(badge => badge.earned).length, badgesTotal: badges.length };
+}, previous.tensortonic);
 
 const hackerrank = await safely("HackerRank", async () => {
   let badges = [{ badge_name: "Problem Solving", stars: 3, points: 236, solved: 23 }];
@@ -174,5 +192,5 @@ const hackerrank = await safely("HackerRank", async () => {
 });
 
 await mkdir(new URL("../public/", import.meta.url), { recursive: true });
-await writeFile(output, `${JSON.stringify({ updatedAt: new Date().toISOString(), github, codeforces, leetcode, hackerrank }, null, 2)}\n`);
+await writeFile(output, `${JSON.stringify({ updatedAt: new Date().toISOString(), github, leetcode, deepml, tensortonic, hackerrank }, null, 2)}\n`);
 console.log("Updated public/live-data.json");

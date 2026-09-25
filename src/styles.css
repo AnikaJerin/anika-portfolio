@@ -616,6 +616,31 @@ footer a:hover{color:var(--accent)}
   .hero-keyword-track { animation: none; }
 }
 
+/* Machine-learning practice profiles in the problem-solving section. */
+.deepml-card {
+  background: linear-gradient(135deg, #1b1747, #413087 55%, #6c4fc7);
+  border-color: #a78bfa;
+  box-shadow: 0 15px 34px rgba(124, 92, 220, .22);
+}
+.tensortonic-card {
+  background: linear-gradient(135deg, #12372f, #17655c 55%, #1c9c8b);
+  border-color: #5eead4;
+  box-shadow: 0 15px 34px rgba(45, 212, 191, .2);
+}
+.deepml-graph i { background: linear-gradient(#e9d5ff, #8b5cf6); }
+.tensortonic-graph i { background: linear-gradient(#ccfbf1, #14b8a6); }
+
+/* Keep the four practice profiles evenly balanced on larger screens. */
+.cp-compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.deepml-graph { gap: 12px; }
+.deepml-graph i { flex: 1; }
+.tt-breakdown { position:relative; z-index:1; min-height:74px; display:grid; grid-template-columns:repeat(3,1fr); align-items:center; gap:8px; margin:26px 0 13px; }
+.tt-breakdown span { padding-right:7px; border-right:1px solid rgba(255,255,255,.22); color:rgba(255,255,255,.72); font:11px "DM Mono"; }
+.tt-breakdown span:last-child { border-right:0; }
+.tt-breakdown b { color:#fff; font-size:20px; }
+.tt-breakdown small { display:block; margin-top:6px; color:rgba(255,255,255,.76); font:10px "DM Mono"; }
+@media (max-width: 700px) { .cp-compact { grid-template-columns: 1fr; } }
+
 /* Mobile hero containment — keep the first section within the viewport. */
 @media (max-width: 560px) {
   .hero > .hero-copy {
@@ -1910,9 +1935,6 @@ button.project-card-link:hover svg,
     font-size: 9px;
   }
 }
-
-
-
 
 
 
