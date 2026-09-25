@@ -483,48 +483,48 @@ const projects = [
     }
   },
   {
-    title: "Cross-Modal Alzheimer's Classification",
+    title: "Cross-Modal Explanations of Alzheimer's Progression",
     category: "RESEARCH",
     badgeType: "research",
     badgeText: "RESEARCH",
     subCategory: "MULTIMODAL MEDICAL AI · PYTORCH",
-    desc: "A reference cross-modal deep learning framework that combines MRI imaging with tabular clinical features for Alzheimer’s disease classification, including preprocessing, model architecture, and training routines.",
-    tags: ["PyTorch", "Multimodal DL", "Medical AI", "CNN", "Tabular"],
+    desc: "Proof-of-concept multimodal precision-health research fusing 3D MRI with cognitive (MMSE) and genetic (APOE) features to classify Alzheimer’s disease, mild cognitive impairment, and cognitively normal groups—with 3D Grad-CAM for model interpretation.",
+    tags: ["PyTorch", "3D CNN", "Multimodal Fusion", "MRI", "Grad-CAM"],
     icon: "brain",
     iconBg: "linear-gradient(135deg, rgba(239, 68, 68, 0.22), rgba(220, 38, 38, 0.05))",
     iconBorder: "rgba(239, 68, 68, 0.38)",
     iconColor: "#f87171",
-    link: "https://github.com/AnikaJerin/Cross-Modal-DL-Framework-for-Alzheimer-s-Disease-Classification-Using-MRI-Data-and-Tabular-Features",
+    link: "https://github.com/AnikaJerin/A-Study-on-Cross-Modal-Explanations-of-Alzheimer-s-Disease-Progression-Linking-MRI-Features-",
     actionText: "Explore research repo",
     caseStudy: {
       eyebrow: "MULTIMODAL MEDICAL AI · PYTORCH",
-      title: "Cross-Modal Alzheimer's Classification",
-      lead: "A reference multimodal learning framework that combines MRI imaging and tabular clinical features for Alzheimer’s disease classification.",
+      title: "Cross-Modal Explanations of Alzheimer's Progression",
+      lead: "A proof-of-concept multimodal precision-health study that links 3D MRI with cognitive (MMSE) and genetic (APOE) features to classify Alzheimer’s disease progression and make model reasoning more inspectable.",
       role: "Owner & Developer",
-      client: "Academic Research (GitHub: AnikaJerin/Cross-Modal-DL-Framework...)",
-      tags: ["PyTorch", "Multimodal Fusion", "Medical AI", "MRI", "Tabular Data"],
-      challenge: "MRI and clinical data describe complementary aspects of disease progression, but they are often modeled separately. The project explores how to structure both modalities in one classification workflow.",
-      approach: "Implemented the repository’s core model architecture, data-preprocessing pipeline, and training routines as a reproducible multimodal reference implementation.",
+      client: "Independent Academic Research · Multimodal Precision Health",
+      tags: ["PyTorch", "3D CNN", "MRI", "MMSE", "APOE", "Grad-CAM"],
+      challenge: "MRI captures structural brain changes, while cognitive scores and genetic risk add complementary patient context. The challenge was to combine these heterogeneous modalities in one transparent classification workflow without treating any single modality as a complete disease narrative.",
+      approach: "Built a PyTorch proof of concept with a 3D CNN MRI branch and a tabular branch for MMSE and APOE, then fused their learned representations for three-class AD/MCI/CN prediction. Added 3D Grad-CAM to inspect the MRI regions that influence a prediction and structured evaluation around held-out validation and test data.",
       features: [
         {
           icon: "brain",
-          title: "MRI Imaging Pipeline",
-          desc: "Prepares MRI imaging data for use in the multimodal classification workflow."
+          title: "3D MRI Representation Learning",
+          desc: "Loads and preprocesses MRI volumes for a 3D CNN branch that learns imaging representations."
         },
         {
           icon: "database",
-          title: "Clinical Feature Pipeline",
-          desc: "Processes tabular clinical features alongside the imaging input."
+          title: "Cognitive & Genetic Context",
+          desc: "Encodes MMSE and APOE values as tabular inputs alongside the imaging signal."
         },
         {
           icon: "layers",
-          title: "Multimodal Fusion",
-          desc: "Combines imaging and tabular representations within the project’s core model architecture."
+          title: "Patient-Level Multimodal Fusion",
+          desc: "Concatenates learned MRI and tabular representations for AD, MCI, and cognitively normal classification."
         },
         {
           icon: "chart",
-          title: "Training & Evaluation Routines",
-          desc: "Provides a structured reference workflow for training and evaluating multimodal classification experiments."
+          title: "Interpretability & Evaluation",
+          desc: "Uses 3D Grad-CAM for visual explanation and tracks classification performance with held-out evaluation workflows."
         }
       ]
     }
