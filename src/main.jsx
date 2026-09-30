@@ -160,7 +160,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "COMPUTER VISION · HIGHWAY POLICE",
-    desc: "Contributed to a production-scale traffic monitoring and auto-fining system for real-world violation detection, collaborating with international vendors. Developed CV pipelines for vehicle tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, and OpenCV.",
+    desc: "Contributed to a production-scale traffic monitoring and auto-fining system for real-world violation detection, collaborating with international organizations. Developed CV pipelines for vehicle tracking, speeding/wrong-way detection, and ANPR using YOLO, Deep SORT, and OpenCV.",
     tags: ["YOLOv8", "DeepSORT", "OpenCV", "PyTorch", "FastAPI"],
     icon: "eye",
     iconBg: "linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(14, 165, 233, 0.05))",
