@@ -66,7 +66,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "ODOO FRAMEWORK · SUPPLY CHAIN & FINANCE",
-    desc: "Engineered an enterprise-grade distribution ERP platform using Python and Odoo Framework, centralizing multi-warehouse inventory, automated procurement, foreign purchase & Letter of Credit (LC) tracking, landed-cost accounting, and sales operations.",
+    desc: "Developed an enterprise-grade distribution ERP platform using Python and Odoo Framework, centralizing multi-warehouse inventory, automated procurement, foreign purchase & Letter of Credit (LC) tracking, landed-cost accounting, and sales operations.",
     tags: ["Python", "Odoo", "PostgreSQL", "Supply Chain", "Financial Accounting", "REST APIs"],
     icon: "briefcase",
     iconBg: "linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(217, 119, 6, 0.05))",
@@ -77,7 +77,7 @@ const projects = [
     caseStudy: {
       eyebrow: "ODOO · ENTERPRISE DISTRIBUTION & SUPPLY CHAIN",
       title: "ERP & Business Automation",
-      lead: "Engineered a high-performance, modular enterprise ERP platform powered by Python and the Odoo framework, replacing fragmented legacy workflows with unified automation across multi-warehouse inventory, procurement, international LC tracking, landed cost calculation, and financial accounting.",
+      lead: "Developed a high-performance, modular enterprise ERP platform powered by Python and the Odoo framework, replacing fragmented legacy workflows with unified automation across multi-warehouse inventory, procurement, international LC tracking, landed cost calculation, and financial accounting.",
       role: "Software Engineer",
       client: "Smart Technologies, Starseed, Global Automation Ltd. & Smart Hi-Tech",
       tags: ["Odoo Framework", "Python", "PostgreSQL", "Supply Chain", "Inventory & Warehouse", "Financial Accounting", "Letter of Credit (LC)", "REST APIs"],
@@ -87,7 +87,7 @@ const projects = [
         {
           icon: "box",
           title: "Multi-Warehouse Inventory & Logistics Routing",
-          desc: "Engineered automated replenishment rules, warehouse transfer tracking, serial/lot traceability, and real-time stock valuation based on automated FIFO/AVCO costing."
+          desc: "Developed automated replenishment rules, warehouse transfer tracking, serial/lot traceability, and real-time stock valuation based on automated FIFO/AVCO costing."
         },
         {
           icon: "globe",
@@ -129,7 +129,7 @@ const projects = [
       client: "Smart Hi-Tech",
       tags: ["Machine Learning", "Odoo ERP", "Python", "Telemetry Analytics", "PostgreSQL"],
       challenge: "High-volume hardware and electronics assembly lines suffered from late-stage defect discoveries, resulting in expensive product scrappage, delayed shipments, and labor-intensive manual QA inspections.",
-      approach: "Engineered predictive ML pipelines integrated with Odoo manufacturing work orders. Captured real-time telemetry from production line testing sensors alongside technician logs, training supervised classification models to score defect risk in real-time.",
+      approach: "Developed predictive ML pipelines integrated with Odoo manufacturing work orders. Captured real-time telemetry from production line testing sensors alongside technician logs, training supervised classification models to score defect risk in real-time.",
       features: [
         {
           icon: "cpu",
@@ -442,7 +442,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "EDTECH · SMART ACADEMY SCHOOL",
-    desc: "Engineered comprehensive school management software for Smart Academy School, automating student admissions, academic record management, fee collections, biometric attendance, and online examinations following SOLID design principles.",
+    desc: "Developed comprehensive school management software for Smart Academy School, automating student admissions, academic record management, fee collections, biometric attendance, and online examinations following SOLID design principles.",
     tags: ["Python", "Odoo / Django", "PostgreSQL", "EdTech", "SOLID Principles"],
     icon: "graduation",
     iconBg: "linear-gradient(135deg, rgba(129, 140, 248, 0.22), rgba(99, 102, 241, 0.05))",
@@ -453,7 +453,7 @@ const projects = [
     caseStudy: {
       eyebrow: "EDTECH · SMART ACADEMY SCHOOL",
       title: "Smart Education Management System",
-      lead: "Engineered an end-to-end institutional management ERP automating student admissions, academic records, fee collections, biometric attendance, and online testing.",
+      lead: "Developed an end-to-end institutional management ERP automating student admissions, academic records, fee collections, biometric attendance, and online testing.",
       role: "Software Engineer & Technical Lead",
       client: "Smart Academy",
       tags: ["Python", "Django / Odoo", "PostgreSQL", "Biometric IoT", "SOLID Architecture"],
@@ -818,7 +818,7 @@ const projects = [
     badgeType: "industry",
     badgeText: "INDUSTRY",
     subCategory: "FINANCIAL AI · TIME-SERIES FORECASTING",
-    desc: "Engineered a predictive stock analytics platform that processes, cleans, and aggregates high-volume market datasets to identify trends and guide financial decision-making. Developed deep learning pipelines using LSTM models to analyze historic time-series data and generate accurate stock price forecasts.",
+    desc: "Developed a predictive stock analytics platform that processes, cleans, and aggregates high-volume market datasets to identify trends and guide financial decision-making. Developed deep learning pipelines using LSTM models to analyze historic time-series data and generate accurate stock price forecasts.",
     tags: ["Python", "LSTM", "Time-Series", "Deep Learning", "Financial Analytics"],
     icon: "chart",
     iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.05))",
@@ -829,7 +829,7 @@ const projects = [
     caseStudy: {
       eyebrow: "FINANCIAL AI · TIME-SERIES FORECASTING",
       title: "Smarter Stock",
-      lead: "Engineered a predictive stock analytics platform processing large-scale time-series financial datasets to identify market trends and forecast prices using LSTM models.",
+      lead: "Developed a predictive stock analytics platform processing large-scale time-series financial datasets to identify market trends and forecast prices using LSTM models.",
       role: "Software Engineer & Technical Lead",
       client: "Ecosoftbd — Capital Market Analytics",
       tags: ["Python", "LSTM Recurrent Networks", "Time-Series Analysis", "Financial Modeling", "Pandas"],
