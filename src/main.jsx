@@ -2798,7 +2798,8 @@ function App(){
             <a className="button primary" href="#projects">Explore my work <ArrowDown size={16}/></a>
             <a className="button ghost" href={PROFILE.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
             <a className="button ghost" href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn <ArrowUpRight size={14}/></a>
-            <span className="button ghost" style={{opacity:0.4, cursor:"not-allowed", pointerEvents:"none"}} aria-disabled="true">Resume <ArrowDown size={16}/></span>
+            <a className="button ghost" href={`${import.meta.env.BASE_URL}Syeda-Anika-Jerin-Resume.pdf`} target="_blank" rel="noreferrer">Resume <ArrowUpRight size={16}/></a>
+            <a className="button ghost" href={`${import.meta.env.BASE_URL}Syeda-Anika-Jerin-Resume.pdf`} download="Syeda-Anika-Jerin-Resume.pdf">Download <ArrowDown size={16}/></a>
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
