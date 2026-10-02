@@ -2799,7 +2799,6 @@ function App(){
             <a className="button ghost" href={PROFILE.github} target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={16}/></a>
             <a className="button ghost" href={PROFILE.linkedin} target="_blank" rel="noreferrer"><Linkedin size={16}/> LinkedIn <ArrowUpRight size={14}/></a>
             <a className="button ghost" href={`${import.meta.env.BASE_URL}Syeda-Anika-Jerin-Resume.pdf`} target="_blank" rel="noreferrer">Resume <ArrowUpRight size={16}/></a>
-            <a className="button ghost" href={`${import.meta.env.BASE_URL}Syeda-Anika-Jerin-Resume.pdf`} download="Syeda-Anika-Jerin-Resume.pdf">Download <ArrowDown size={16}/></a>
             <a className="button ghost" href={`mailto:${PROFILE.email}`}>Contact me <Mail size={16}/></a>
           </div>
           <div className="hero-mini">
