@@ -61,6 +61,53 @@ const PROFILE = {
 
 const projects = [
   {
+    title: "ARC White-Box Estimation Challenge 2026",
+    category: "RESEARCH",
+    badgeType: "research",
+    badgeText: "RESEARCH",
+    subCategory: "AI SAFETY · PROBABILISTIC ML · ALIGNMENT RESEARCH CENTER",
+    desc: "Ranked #57 out of 1,241 participants in a $150K+ AI safety competition by the Alignment Research Center. Analytically estimated neural network neuron activations directly from weights — no forward passes — under a strict compute budget, achieving a 34% improvement in adjusted score across submissions.",
+    tags: ["Probabilistic ML", "Cumulant Propagation", "NumPy", "Python", "AI Safety", "Numerical Optimization"],
+    icon: "atom",
+    iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.05))",
+    iconBorder: "rgba(16, 185, 129, 0.38)",
+    iconColor: "#34d399",
+    link: "https://github.com/AnikaJerin/ARC-WhiteBox-2026",
+    actionText: "View case study",
+    caseStudy: {
+      eyebrow: "AI SAFETY · ALIGNMENT RESEARCH CENTER · AICROWD",
+      title: "ARC White-Box Estimation Challenge 2026",
+      lead: "Ranked #57 out of 1,241 global competitors in a $150,000+ AI safety competition by the Alignment Research Center — a mathematically rigorous challenge in probabilistic machine learning that sits at the frontier of neural network interpretability research.",
+      role: "Independent Researcher & Competitor",
+      client: "ARC White-Box Estimation Challenge 2026 (AIcrowd · Alignment Research Center)",
+      tags: ["Probabilistic ML", "Gaussian Moment Propagation", "Higher-Order Cumulants", "Python", "NumPy", "AI Safety", "FLOP-Aware Optimization", "Numerical Linear Algebra"],
+      challenge: "The task: given only the weight matrices of a randomly initialized ReLU MLP (1,024 neurons × 16 layers), analytically predict the expected post-activation value of every neuron under standard Gaussian inputs — without executing a single forward pass. The scoring function was adversarial by design: adjusted error = final-layer MSE × max(0.1, FLOPs / 2⁴¹). Every accuracy gain had to be won within hard CPU time and memory limits, turning this into a constrained numerical optimization problem rather than a standard ML task. This required deep understanding of how non-Gaussian distributions evolve through repeated ReLU nonlinearities.",
+      approach: "Working from an inherited MIT-licensed cumulant-propagation engine, I diagnosed a fundamental inconsistency in its fourth-order closure: different terms were using a shared scalar input metric when they each needed weight-row-specific norms. I replaced that scalar with the diagonal of the weight Gram matrix — reusing an existing elementwise weight-square computation — and applied it consistently across the K22, K13, and fourth-to-third-order source feed terms. This eliminated internal metric mismatch without adding any new matrix multiplications. I then addressed compressed source-history capacity: by increasing the oldest basis from 192 → 224 directions, I retained more historical distributional signal from earlier layers at a measured cost of only 0.89% more FLOPs. Every candidate change was evaluated on paired local networks with MSE and charged FLOPs tracked independently, and only promoted after all resource constraints passed.",
+      features: [
+        {
+          icon: "cpu",
+          title: "Fourth-Order Cumulant Closure Repair",
+          desc: "Identified a metric inconsistency across K22, K13, and source feed terms in the fourth-order cumulant closure. Replaced the shared scalar with the diagonal of the weight Gram matrix — fixing the root cause of approximation degradation without any additional large matrix operation."
+        },
+        {
+          icon: "layers",
+          title: "Source-History Capacity Optimization",
+          desc: "Investigated the trade-off between compressed basis size and retained distributional signal from earlier layers. Expanded the oldest basis from 192 → 224 directions — capturing more higher-order history propagated across 16 layers — at a precisely measured 0.89% FLOP cost increase."
+        },
+        {
+          icon: "chart",
+          title: "Measurable, Verified Results",
+          desc: "Adjusted score improved 34%: 4.65 × 10⁻⁹ → 3.084 × 10⁻⁹. In controlled paired evaluation, V265 reduced raw MSE on all 8/8 local networks and adjusted error on 7/8. Best submission completed 50/50 public networks with zero failures — both entries selected for private re-evaluation."
+        },
+        {
+          icon: "shield",
+          title: "Principled Experimental Discipline",
+          desc: "Rejected several initially promising directions — extended exact-history windows that inflated FLOP cost, batched operations that introduced hidden reshape overhead — after controlled experiments showed they did not transfer consistently. Dense-tensor reference checks independently verified every repeated-index formula before full-network evaluation."
+        }
+      ]
+    }
+  },
+  {
     title: "ERP & Business Automation",
     category: "INDUSTRY",
     badgeType: "industry",
