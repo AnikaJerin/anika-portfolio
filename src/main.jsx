@@ -2276,12 +2276,14 @@ const ROADMAP_MILESTONES = [
     color: "#f59e0b",
     badge: "MERIT SCHOLARSHIP",
     stoppageLabel: "2026",
-    summary: "Admitted to three prestigious US universities for MS in Computer Science with merit-based scholarships, and achieved Top 31% global ranking in HackerRank Orchestrate.",
+    summary: "Admitted to three prestigious US universities for MS in Computer Science with merit-based scholarships, and achieved Top 22% global ranking in HackerRank Orchestrate.",
     achievements: [
+      "Ranked #57 out of 1,241 participants in the ARC White-Box Estimation Challenge 2026 (AIcrowd, Phase 2) — a \$150K+ AI safety competition by the Alignment Research Center, tasked with analytically predicting neural network activations directly from weights, without running the network.",
+      "Ranked Top 22% globally in HackerRank Orchestrate (Oct 2026) — a competitive ranking among software engineers worldwide.",
       "Admitted to MS in Computer Science programs at the University of Rochester, University at Buffalo, and Stony Brook University — all with merit-based scholarships.",
-      "Ranked Top 31% globally in HackerRank Orchestrate (Sep 2026, Rank #924) — a competitive AI-powered ranking among software engineers worldwide."
+      "Ranked Top 31% globally in HackerRank Orchestrate (Sep 2026) — a competitive ranking among software engineers worldwide.",
     ],
-    tags: ["MS Computer Science", "University of Rochester", "University at Buffalo", "Stony Brook University", "Merit Scholarship", "HackerRank Orchestrate", "Top 31%"]
+    tags: ["MS Computer Science", "University of Rochester", "University at Buffalo", "Stony Brook University", "Merit Scholarship", "HackerRank Orchestrate", "Top 31%", "Top 22%", "ARC Challenge", "AIcrowd", "AI Safety", "#57"]
   }
 ];
 
