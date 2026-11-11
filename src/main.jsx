@@ -67,7 +67,7 @@ const projects = [
     badgeText: "RESEARCH",
     subCategory: "AI SAFETY · PROBABILISTIC ML · ALIGNMENT RESEARCH CENTER",
     desc: "Ranked #57 out of 1,241 participants in a $150K+ AI safety competition by the Alignment Research Center. Analytically estimated neural network neuron activations directly from weights — no forward passes — under a strict compute budget, achieving a 34% improvement in adjusted score across submissions.",
-    tags: ["Probabilistic ML", "Cumulant Propagation", "NumPy", "Python", "AI Safety", "Numerical Optimization"],
+    tags: ["Probabilistic ML", "Cumulant Propagation", "AI Safety", "Numerical Optimization"],
     icon: "atom",
     iconBg: "linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(5, 150, 105, 0.05))",
     iconBorder: "rgba(16, 185, 129, 0.38)",
